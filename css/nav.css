@@ -9,7 +9,7 @@
   justify-content: space-between;
   padding: 0 1.25rem;
   z-index: 100;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.4);
 }
 
 .header-brand {
@@ -63,7 +63,6 @@
   background: #fff;
   margin: 5px 0;
   border-radius: 2px;
-  transition: transform 0.2s, opacity 0.2s;
 }
 
 /* ── Sidebar ── */
@@ -73,7 +72,7 @@
   left: 0;
   width: var(--sidebar-w);
   height: calc(100vh - var(--header-h));
-  background: var(--cs50-mid);
+  background: var(--cs50-sidebar-bg);
   border-right: 1px solid var(--cs50-border);
   overflow-y: auto;
   z-index: 90;
@@ -81,7 +80,7 @@
 }
 
 /* scrollbar */
-.sidebar::-webkit-scrollbar { width: 5px; }
+.sidebar::-webkit-scrollbar { width: 4px; }
 .sidebar::-webkit-scrollbar-track { background: transparent; }
 .sidebar::-webkit-scrollbar-thumb { background: var(--cs50-border); border-radius: 3px; }
 
@@ -91,7 +90,7 @@
 .nav-section-title {
   font-size: 0.7rem;
   font-weight: 700;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--cs50-muted);
   padding: 0 1.25rem 0.4rem;
@@ -103,20 +102,19 @@
   display: block;
   padding: 0.35rem 1.25rem;
   font-size: 0.875rem;
-  color: var(--cs50-text);
+  color: rgba(255, 255, 255, 0.75);
   transition: background 0.12s, color 0.12s;
-  border-radius: 0;
 }
 
 .nav-section ul li a:hover {
-  background: rgba(255,255,255,0.07);
+  background: rgba(255, 255, 255, 0.07);
   color: #fff;
   text-decoration: none;
 }
 
 .nav-section ul li a.active {
   color: #fff;
-  background: rgba(192, 57, 43, 0.25);
+  background: rgba(192, 57, 43, 0.3);
   border-left: 3px solid var(--cs50-red);
   padding-left: calc(1.25rem - 3px);
   font-weight: 600;
@@ -137,7 +135,10 @@
     transition: transform 0.25s ease;
   }
 
-  .sidebar.open { transform: translateX(0); }
+  .sidebar.open {
+    transform: translateX(0);
+    box-shadow: 4px 0 16px rgba(0,0,0,0.5);
+  }
 
   .header-brand .course-name { display: none; }
 }
