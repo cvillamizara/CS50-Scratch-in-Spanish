@@ -1,0 +1,166 @@
+/* ── Reset & base ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --cs50-red:      #c0392b;
+  --cs50-dark:     #1a1a1a;
+  --cs50-mid:      #2d2d2d;
+  --cs50-border:   #3a3a3a;
+  --cs50-text:     #e8e8e8;
+  --cs50-muted:    #aaaaaa;
+  --cs50-link:     #4da3d4;
+  --cs50-link-hover: #76bfe0;
+  --sidebar-w:     280px;
+  --header-h:      56px;
+  --content-max:   860px;
+  font-size: 16px;
+}
+
+body {
+  background: var(--cs50-dark);
+  color: var(--cs50-text);
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  line-height: 1.7;
+  min-height: 100vh;
+}
+
+a { color: var(--cs50-link); text-decoration: none; }
+a:hover { color: var(--cs50-link-hover); text-decoration: underline; }
+
+/* ── Layout shell ── */
+.site-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.body-wrapper {
+  display: flex;
+  flex: 1;
+  padding-top: var(--header-h);
+}
+
+/* ── Main content ── */
+.main-content {
+  flex: 1;
+  margin-left: var(--sidebar-w);
+  padding: 2.5rem 2rem 4rem;
+  max-width: calc(var(--content-max) + 4rem);
+}
+
+/* ── Sections ── */
+.content-section { margin-bottom: 3rem; }
+
+.content-section h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #fff;
+  border-bottom: 2px solid var(--cs50-border);
+  padding-bottom: 0.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.content-section p { margin-bottom: 1rem; color: var(--cs50-text); }
+
+.content-section ul,
+.content-section ol {
+  padding-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.content-section li { margin-bottom: 0.4rem; }
+
+/* ── Video embed ── */
+.video-container {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+  border-radius: 6px;
+  margin: 1.5rem 0;
+  background: #000;
+}
+
+.video-container iframe {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  border: 0;
+}
+
+.video-notice {
+  background: var(--cs50-mid);
+  border-left: 3px solid var(--cs50-red);
+  padding: 0.75rem 1rem;
+  border-radius: 0 4px 4px 0;
+  font-size: 0.875rem;
+  color: var(--cs50-muted);
+  margin-bottom: 1.5rem;
+}
+
+/* ── Workflow diagram ── */
+.workflow {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: var(--cs50-mid);
+  border-radius: 8px;
+  padding: 1.25rem 1.5rem;
+  margin: 1.5rem 0;
+  flex-wrap: wrap;
+}
+
+.workflow-step {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-weight: 600;
+  color: #fff;
+}
+
+.workflow-step .icon {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: var(--cs50-red);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.workflow-arrow { color: var(--cs50-muted); font-size: 1.25rem; }
+
+/* ── Info box ── */
+.info-box {
+  background: var(--cs50-mid);
+  border: 1px solid var(--cs50-border);
+  border-radius: 6px;
+  padding: 1.25rem 1.5rem;
+  margin: 1.25rem 0;
+}
+
+.info-box strong { color: #fff; }
+
+/* ── Footer ── */
+.site-footer {
+  background: var(--cs50-mid);
+  border-top: 1px solid var(--cs50-border);
+  padding: 1.5rem 2rem;
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--cs50-muted);
+  margin-left: var(--sidebar-w);
+}
+
+.site-footer a { color: var(--cs50-muted); }
+.site-footer a:hover { color: var(--cs50-link-hover); }
+
+.attribution {
+  margin-top: 0.5rem;
+  font-style: italic;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .main-content { margin-left: 0; padding: 1.25rem 1rem 3rem; }
+  .site-footer  { margin-left: 0; }
+}

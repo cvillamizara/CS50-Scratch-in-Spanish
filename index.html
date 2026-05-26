@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Introducción a la Programación con Scratch — CS50 en Español</title>
+  <meta name="description" content="Aprende a programar con Scratch. Una adaptación en español del curso CS50 de la Universidad de Harvard, para hablantes de español de todo el mundo." />
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/nav.css" />
+</head>
+<body>
+<div class="site-wrapper">
+
+  <!-- ── Header ── -->
+  <header class="site-header">
+    <a href="index.html" class="header-brand">
+      <span class="cs50-logo">CS50</span>
+      <span class="course-name">Introducción a la Programación con Scratch</span>
+    </a>
+    <div class="header-right">
+      <a class="header-link" href="https://cs50.harvard.edu/scratch/" target="_blank" rel="noopener">
+        Ver en inglés ↗
+      </a>
+      <button id="nav-toggle" class="nav-toggle" aria-label="Abrir menú" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <div class="body-wrapper">
+
+    <!-- ── Sidebar ── -->
+    <nav id="sidebar" class="sidebar" aria-label="Navegación del curso">
+
+      <div class="nav-section">
+        <div class="nav-section-title">Semanas</div>
+        <ul>
+          <li><a href="#bienvenida">Bienvenida</a></li>
+          <li><a href="#semana0">Semana 0 — Sprites</a></li>
+          <li><a href="#semana1">Semana 1 — Funciones</a></li>
+          <li><a href="#semana2">Semana 2 — Eventos</a></li>
+          <li><a href="#semana3">Semana 3 — Valores</a></li>
+          <li><a href="#semana4">Semana 4 — Condiciones</a></li>
+          <li><a href="#semana5">Semana 5 — Bucles</a></li>
+          <li><a href="#semana6">Semana 6 — Variables</a></li>
+          <li><a href="#semana7">Semana 7 — Abstracción</a></li>
+          <li><a href="#semana8">Semana 8 — Construyendo desde Cero</a></li>
+          <li><a href="#proyecto-final">Proyecto Final</a></li>
+        </ul>
+      </div>
+
+      <div class="nav-divider"></div>
+
+      <div class="nav-section">
+        <div class="nav-section-title">Información</div>
+        <ul>
+          <li><a href="#como-tomar">Cómo tomar este curso</a></li>
+          <li><a href="#como-ensenar">Cómo enseñar este curso</a></li>
+          <li><a href="#honestidad">Honestidad académica</a></li>
+          <li><a href="#certificado">Certificado CS50</a></li>
+          <li><a href="#preguntas">Preguntas frecuentes</a></li>
+        </ul>
+      </div>
+
+      <div class="nav-divider"></div>
+
+      <div class="nav-section">
+        <div class="nav-section-title">Comunidad</div>
+        <ul>
+          <li><a href="https://discord.gg/cs50" target="_blank" rel="noopener">Discord</a></li>
+          <li><a href="https://www.reddit.com/r/cs50/" target="_blank" rel="noopener">Reddit</a></li>
+          <li><a href="https://cs50.stackexchange.com/" target="_blank" rel="noopener">Stack Exchange</a></li>
+        </ul>
+      </div>
+
+      <div class="nav-divider"></div>
+
+      <div class="nav-section">
+        <div class="nav-section-title">Otros cursos CS50</div>
+        <ul>
+          <li><a href="https://cs50.harvard.edu/x/" target="_blank" rel="noopener">CS50x — Informática</a></li>
+          <li><a href="https://cs50.harvard.edu/python/" target="_blank" rel="noopener">CS50 Python</a></li>
+          <li><a href="https://cs50.harvard.edu/web/" target="_blank" rel="noopener">CS50 Web</a></li>
+          <li><a href="https://cs50.harvard.edu/ai/" target="_blank" rel="noopener">CS50 IA</a></li>
+          <li><a href="https://cs50.harvard.edu/sql/" target="_blank" rel="noopener">CS50 SQL</a></li>
+        </ul>
+      </div>
+
+    </nav>
+
+    <!-- ── Main content ── -->
+    <main class="main-content">
+
+      <!-- Bienvenida -->
+      <section id="bienvenida" class="content-section">
+        <h2>Bienvenida</h2>
+        <p>
+          Este curso es una introducción a la programación usando
+          <a href="https://scratch.mit.edu/" target="_blank" rel="noopener">Scratch</a>,
+          un lenguaje de programación visual desarrollado en el
+          <a href="https://www.media.mit.edu/" target="_blank" rel="noopener">MIT Media Lab</a>.
+          Usando bloques gráficos que se enlazan como piezas de rompecabezas,
+          aprenderás a crear tus propios programas, juegos y animaciones —
+          sin necesidad de experiencia previa.
+        </p>
+        <p>
+          Los temas que cubriremos incluyen: funciones, valores de retorno,
+          condiciones, bucles, variables y más. Este curso también te preparará
+          para cursos de programación más avanzados como
+          <a href="https://cs50.harvard.edu/x/" target="_blank" rel="noopener">CS50x</a>.
+        </p>
+
+        <div class="video-notice">
+          📹 Los videos en español están en producción. Por ahora puedes ver la versión original en inglés a continuación.
+        </div>
+
+        <div class="video-container">
+          <!-- Lecture 0 — original CS50 Scratch intro video -->
+          <iframe
+            src="https://www.youtube.com/embed/YoXxevp1WRQ"
+            title="CS50 Scratch — Clase introductoria (en inglés)"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+          ></iframe>
+        </div>
+
+        <div class="workflow">
+          <div class="workflow-step">
+            <div class="icon">▶</div>
+            <span>Ver la clase</span>
+          </div>
+          <span class="workflow-arrow">→</span>
+          <div class="workflow-step">
+            <div class="icon">✓</div>
+            <span>Entregar el proyecto</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Semanas / Temario -->
+      <section id="semana0" class="content-section">
+        <h2>Semana 0 — Sprites</h2>
+        <p>
+          Conoce el entorno de Scratch. Aprende qué son los <em>sprites</em>
+          (personajes o elementos visuales), el escenario, y cómo moverlos
+          usando bloques de código.
+        </p>
+      </section>
+
+      <section id="semana1" class="content-section">
+        <h2>Semana 1 — Funciones</h2>
+        <p>
+          Descubre cómo agrupar instrucciones en bloques reutilizables llamados
+          <em>funciones</em>. Aprende a pensar en términos de pasos ordenados
+          para resolver problemas.
+        </p>
+      </section>
+
+      <section id="semana2" class="content-section">
+        <h2>Semana 2 — Eventos</h2>
+        <p>
+          Explora cómo los programas reaccionan a acciones del usuario —
+          clics, teclas presionadas, mensajes— a través de <em>eventos</em>.
+        </p>
+      </section>
+
+      <section id="semana3" class="content-section">
+        <h2>Semana 3 — Valores</h2>
+        <p>
+          Aprende sobre los distintos tipos de datos que maneja un programa:
+          números, texto, y cómo las funciones pueden devolver valores para
+          ser usados en otras partes del código.
+        </p>
+      </section>
+
+      <section id="semana4" class="content-section">
+        <h2>Semana 4 — Condiciones</h2>
+        <p>
+          Usa bloques <em>si / si no</em> para que tus programas tomen
+          decisiones y se comporten de manera distinta según la situación.
+        </p>
+      </section>
+
+      <section id="semana5" class="content-section">
+        <h2>Semana 5 — Bucles</h2>
+        <p>
+          Evita repetir instrucciones una y otra vez usando <em>bucles</em>
+          (repetir, por siempre, repetir hasta que). Haz que tus programas
+          sean más eficientes y poderosos.
+        </p>
+      </section>
+
+      <section id="semana6" class="content-section">
+        <h2>Semana 6 — Variables</h2>
+        <p>
+          Aprende a guardar y actualizar información durante la ejecución
+          de un programa usando <em>variables</em>: contadores, puntajes,
+          nombres y más.
+        </p>
+      </section>
+
+      <section id="semana7" class="content-section">
+        <h2>Semana 7 — Abstracción</h2>
+        <p>
+          Aprende a dividir problemas complejos en partes más pequeñas y
+          manejables. La <em>abstracción</em> es una de las ideas más
+          poderosas de la ciencia de la computación.
+        </p>
+      </section>
+
+      <section id="semana8" class="content-section">
+        <h2>Semana 8 — Construyendo desde Cero</h2>
+        <p>
+          Combina todo lo aprendido para construir un proyecto más ambicioso,
+          aplicando las mejores prácticas de diseño y programación.
+        </p>
+      </section>
+
+      <section id="proyecto-final" class="content-section">
+        <h2>Proyecto Final</h2>
+        <p>
+          El momento de brillar. Crea tu propio proyecto en Scratch —
+          un juego, una historia interactiva, una animación, o cualquier
+          cosa que imagines. Compártelo con la comunidad.
+        </p>
+        <div class="info-box">
+          <strong>¿Cómo se entrega?</strong> Las instrucciones para entregar
+          tu proyecto final se publicarán al llegar a esta semana. Podrás
+          enviarlo a través de la plataforma del curso.
+        </div>
+      </section>
+
+      <!-- Cómo tomar el curso -->
+      <section id="como-tomar" class="content-section">
+        <h2>Cómo tomar este curso</h2>
+        <p>
+          Este curso está disponible de forma completamente gratuita a través
+          de <a href="https://cs50.harvard.edu/scratch/" target="_blank" rel="noopener">OpenCourseWare de CS50</a>.
+          No necesitas inscribirte ni crear una cuenta para seguirlo.
+        </p>
+        <p>El camino recomendado para cada semana es:</p>
+        <ol>
+          <li>Ver la clase de esa semana.</li>
+          <li>Explorar los materiales de práctica.</li>
+          <li>Completar y entregar el proyecto de la semana.</li>
+        </ol>
+        <div class="info-box">
+          <strong>Certificado verificado:</strong> Si deseas obtener un
+          certificado con validez oficial de Harvard, puedes inscribirte a
+          través de
+          <a href="https://www.edx.org/learn/scratch-programming/harvard-university-cs50-s-introduction-to-programming-with-scratch" target="_blank" rel="noopener">edX</a>.
+          El costo puede variar según el país y hay becas disponibles.
+        </div>
+        <p>
+          Si tienes preguntas durante el curso, puedes buscar ayuda en las
+          comunidades listadas en la barra lateral (Discord, Reddit,
+          Stack Exchange).
+        </p>
+      </section>
+
+      <!-- Cómo enseñar el curso -->
+      <section id="como-ensenar" class="content-section">
+        <h2>Cómo enseñar este curso</h2>
+        <p>
+          ¿Eres docente? Puedes usar todos los materiales de este curso
+          libremente en tu escuela o institución, siempre que mantengas
+          la atribución al equipo de CS50 de Harvard.
+        </p>
+        <p>
+          El equipo de CS50 ofrece talleres para educadores interesados en
+          adoptar este currículo. Visita la
+          <a href="https://cs50.harvard.edu/scratch/" target="_blank" rel="noopener">página oficial del curso</a>
+          para conocer las fechas y cómo inscribirte.
+        </p>
+        <div class="info-box">
+          <strong>Licencia:</strong> Este contenido se distribuye bajo una
+          licencia
+          <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">Creative Commons BY-NC-SA 4.0</a>.
+          Puedes compartirlo y adaptarlo para usos no comerciales, siempre
+          que des crédito y uses la misma licencia.
+        </div>
+      </section>
+
+      <!-- Honestidad académica -->
+      <section id="honestidad" class="content-section">
+        <h2>Honestidad académica</h2>
+        <p>
+          CS50 tiene una política clara de honestidad académica. El trabajo
+          que entregues debe ser tuyo. Está bien pedir ayuda y colaborar
+          para entender los conceptos, pero el código y los proyectos deben
+          reflejar tu propio esfuerzo.
+        </p>
+        <p>
+          Cuando tengas dudas sobre qué está permitido, consulta la
+          <a href="https://cs50.harvard.edu/x/honesty/" target="_blank" rel="noopener">política oficial de honestidad académica de CS50</a>.
+        </p>
+      </section>
+
+      <!-- Certificado -->
+      <section id="certificado" class="content-section">
+        <h2>Certificado CS50</h2>
+        <p>
+          Quienes completen todos los proyectos del curso con calificación
+          aprobatoria son elegibles para recibir el certificado de CS50.
+          Puedes verificar los requisitos exactos en la
+          <a href="https://cs50.harvard.edu/scratch/" target="_blank" rel="noopener">página oficial</a>.
+        </p>
+      </section>
+
+      <!-- Preguntas frecuentes -->
+      <section id="preguntas" class="content-section">
+        <h2>Preguntas frecuentes</h2>
+        <p>
+          Para preguntas sobre el contenido del curso, visita el foro
+          oficial de CS50 en
+          <a href="https://cs50.stackexchange.com/" target="_blank" rel="noopener">Stack Exchange</a>
+          o el servidor de
+          <a href="https://discord.gg/cs50" target="_blank" rel="noopener">Discord</a>.
+        </p>
+        <p>
+          Para preguntas sobre esta versión en español, próximamente
+          habilitaremos un canal de soporte dedicado.
+        </p>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- ── Footer ── -->
+  <footer class="site-footer">
+    <p>
+      &copy; 2024–2026 President and Fellows of Harvard College.
+      Distribuido bajo
+      <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">
+        Creative Commons BY-NC-SA 4.0
+      </a>.
+    </p>
+    <p class="attribution">
+      Esta página es una adaptación en español de
+      <a href="https://cs50.harvard.edu/scratch/" target="_blank" rel="noopener">
+        CS50's Introduction to Programming with Scratch
+      </a>
+      de la Universidad de Harvard.
+      Todo el contenido original pertenece al equipo de CS50 —
+      David J. Malan, Brian Yu y colaboradores.
+    </p>
+  </footer>
+
+</div><!-- .site-wrapper -->
+
+<script src="js/main.js"></script>
+</body>
+</html>
