@@ -159,8 +159,116 @@ a:hover { color: var(--cs50-link-hover); text-decoration: underline; }
   font-style: italic;
 }
 
+/* ── Week page title ── */
+.week-title {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 0.4rem;
+  line-height: 1.2;
+}
+
+.week-subtitle {
+  color: var(--cs50-muted);
+  font-size: 1rem;
+  margin-bottom: 1.75rem;
+}
+
+/* ── Recursos section ── */
+.recursos { margin-top: 2.5rem; }
+
+.recursos > h2 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #fff;
+  border-bottom: 2px solid var(--cs50-border);
+  padding-bottom: 0.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.recurso-group {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  background: var(--cs50-mid);
+  border: 1px solid var(--cs50-border);
+  border-radius: 6px;
+  padding: 1rem 1.25rem;
+  margin-bottom: 0.75rem;
+}
+
+.recurso-icon { font-size: 1.4rem; line-height: 1; padding-top: 2px; flex-shrink: 0; }
+
+.recurso-body { flex: 1; }
+
+.recurso-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 0.5rem;
+}
+
+.recurso-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.recurso-list li::before {
+  content: "→ ";
+  color: var(--cs50-muted);
+  font-size: 0.85rem;
+}
+
+.recurso-link { font-size: 0.9rem; }
+
+.recurso-link.placeholder {
+  color: var(--cs50-muted);
+  font-style: italic;
+  pointer-events: none;
+}
+
+/* ── Prev / Next nav ── */
+.week-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--cs50-border);
+  gap: 1rem;
+}
+
+.week-nav-prev,
+.week-nav-next { flex: 1; }
+
+.week-nav-next { text-align: right; }
+
+.week-nav a {
+  display: inline-block;
+  color: var(--cs50-link);
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--cs50-border);
+  border-radius: 4px;
+  transition: background 0.15s, color 0.15s;
+}
+
+.week-nav a:hover {
+  background: var(--cs50-mid);
+  color: var(--cs50-link-hover);
+  text-decoration: none;
+}
+
 /* ── Responsive ── */
 @media (max-width: 768px) {
   .main-content { margin-left: 0; padding: 1.25rem 1rem 3rem; }
   .site-footer  { margin-left: 0; }
+  .week-title   { font-size: 1.5rem; }
+  .week-nav     { flex-direction: column; align-items: stretch; }
+  .week-nav-next { text-align: left; }
 }
