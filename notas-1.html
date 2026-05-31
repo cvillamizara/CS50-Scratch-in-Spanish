@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Semana 1 — Notas de clase | CS50 en Español</title>
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/nav.css" />
+  <style>
+    .notes-img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+      border-radius: 6px;
+      border: 1.5px solid var(--border);
+      margin: 0.9rem 0 0.5rem;
+    }
+    .notes-img-notice {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      font-style: italic;
+      margin-bottom: 0.5rem;
+    }
+    .notes-section { margin-bottom: 2.5rem; }
+    .notes-section hr {
+      border: none;
+      border-top: 1.5px solid var(--border);
+      margin: 2rem 0;
+    }
+    .notes-section ul {
+      list-style: none;
+      padding-left: 0;
+      margin-bottom: 0.5rem;
+    }
+    .notes-section ul li {
+      padding: 0.2rem 0 0.2rem 1.4rem;
+      position: relative;
+      margin-bottom: 0.5rem;
+    }
+    .notes-section ul li::before {
+      content: "•";
+      position: absolute;
+      left: 0.3rem;
+      color: var(--olive);
+      font-weight: bold;
+    }
+    .notes-section ul ul {
+      margin-top: 0.5rem;
+      padding-left: 1.4rem;
+    }
+    .notes-section ul ul li::before {
+      content: "◦";
+      color: var(--text-muted);
+    }
+    .notes-section h1 {
+      font-size: 2.2rem;
+      margin-bottom: 0.25rem;
+    }
+    .notes-section h2 {
+      font-family: 'Nunito', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text);
+      margin: 2rem 0 0.75rem;
+    }
+    .notes-section h3 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--text);
+      margin: 1.5rem 0 0.6rem;
+    }
+  </style>
+</head>
+<body>
+<div class="site-wrapper">
+
+  <div class="body-wrapper">
+    <div id="sidebar-mount"></div>
+
+    <main class="main-content">
+
+      <div class="notes-section">
+
+        <h1>Sprites</h1>
+        <p class="week-subtitle">Notas de clase — Semana 1</p>
+
+        <div class="info-box">
+          Las capturas de pantalla en estas notas muestran la interfaz de Scratch en inglés.
+          Las versiones en español estarán disponibles próximamente.
+        </div>
+
+        <hr>
+
+        <h2>Introducción</h2>
+        <ul>
+          <li>Scratch es un lenguaje de programación visual basado en bloques, desarrollado originalmente por un equipo del <a href="https://www.media.mit.edu/about/overview/" target="_blank" rel="noopener">MIT Media Lab</a> y mantenido actualmente por su propia <a href="https://scratch.mit.edu/credits" target="_blank" rel="noopener">Scratch Foundation</a>.</li>
+          <li>Combinando "piezas de rompecabezas" en Scratch, podemos crear historias visuales, animaciones, juegos y otros programas.</li>
+          <li>Aprenderemos y usaremos conceptos e ideas de programación, como funciones, bucles, condiciones y variables.</li>
+          <li>Aunque Scratch usa bloques visuales en lugar de código textual, sus programas se basan en las mismas ideas fundamentales y usan los mismos principios del pensamiento computacional.</li>
+        </ul>
+
+        <hr>
+
+        <h2>Conceptos básicos de la interfaz</h2>
+        <ul>
+          <li>Podemos ir al <a href="https://scratch.mit.edu" target="_blank" rel="noopener">sitio web de Scratch</a>, hacer clic en "Empezar a crear", donde veremos una interfaz como esta:
+            <img class="notes-img" src="https://cs50.harvard.edu/scratch/notes/1/interface.png" alt="Interfaz web de Scratch con paneles para bloques de código, escenario y sprites" width="1437">
+            <span class="notes-img-notice">Interfaz en inglés — versión en español próximamente.</span>
+            <ul>
+              <li>En el lado izquierdo, tenemos una biblioteca de bloques, donde podemos arrastrar y soltar cualquier combinación de ellos en la sección central, llamada el <em>editor de bloques</em>, donde construiremos nuestro proyecto.</li>
+              <li>En la parte superior derecha, tenemos el <em>escenario</em>, donde nuestro proyecto se ejecutará y será mostrado a quienes lo vean o usen.</li>
+            </ul>
+          </li>
+        </ul>
+
+        <hr>
+
+        <h2>Sprites</h2>
+
+        <h3>Nombres y posicionamiento</h3>
+        <ul>
+          <li>Cuando creamos un nuevo proyecto, vemos el personaje gato de Scratch, llamado <strong>sprite</strong>, que es simplemente un objeto que puede aparecer en el escenario.</li>
+          <li>Debajo del escenario, vemos todos los sprites de nuestro proyecto, y actualmente solo tenemos el gato, llamado "Sprite1".</li>
+          <li>Podemos mover nuestro gato por el escenario simplemente haciendo clic y arrastrándolo. Observamos que los valores de la posición del sprite cambian a medida que lo movemos. Por ejemplo, el valor x es 177 y el valor y es 42 cuando el sprite se mueve hacia la parte superior derecha:
+            <img class="notes-img" src="https://cs50.harvard.edu/scratch/notes/1/position.png" alt="Escenario y panel de sprites mostrando la nueva posición" width="410">
+          </li>
+          <li>Resulta que los sprites se ubican en una cuadrícula de coordenadas x e y en el escenario, donde el valor x representa qué tan a la izquierda o derecha está nuestro sprite, y el valor y representa qué tan arriba o abajo en el escenario se encuentra.</li>
+          <li>El centro exacto del escenario es (0, 0): los valores positivos de x mueven el sprite hacia la derecha, y los negativos hacia la izquierda. De manera similar, los valores positivos de y mueven el sprite hacia arriba, y los negativos hacia abajo.</li>
+          <li>Podemos ver la posición actual del sprite como valores x e y, y también podremos controlarlos con bloques en un momento.</li>
+          <li>También podemos cambiar los valores x e y de nuestro sprite directamente haciendo clic en los valores y escribiendo lo que queremos. Y podemos hacer clic en el nombre del sprite para cambiarlo. Esto nos ayudará a identificar nuestros sprites cuando empecemos a agregar más al proyecto.</li>
+          <li>También podemos mostrar u ocultar cada sprite con el interruptor "Mostrar", cambiar el tamaño (en porcentaje) o la dirección, que gira el gato para que apunte cierto número de grados:
+            <img class="notes-img" src="https://cs50.harvard.edu/scratch/notes/1/sprite_controls.png" alt="Controles del sprite con nombre, posición, mostrar, tamaño y dirección" width="411">
+            <ul>
+              <li>Cuando hacemos clic en el valor de "Dirección", veremos un pequeño dial que podemos girar, lo que también girará nuestro sprite en el escenario.</li>
+            </ul>
+          </li>
+        </ul>
+
+        <h3>Agregar sprites</h3>
+        <ul>
+          <li>Agreguemos un nuevo sprite. Podemos hacer clic en el botón con un símbolo de más en la parte inferior del área de sprites, y ver algunas opciones:
+            <img class="notes-img" src="https://cs50.harvard.edu/scratch/notes/1/add_sprite.png" alt="Botón con símbolo más, etiquetado 'Elige un Sprite'" width="411">
+          </li>
+          <li>Por ahora, usaremos el botón principal "Elige un Sprite", y veremos una lista grande de sprites incluidos en Scratch que podemos usar. Podemos hacer clic en las categorías o usar el cuadro de búsqueda para encontrar algo en particular.</li>
+          <li>Haremos clic en el Pez, y veremos que ambos sprites están ahora en nuestro escenario. Podemos moverlos para que no se superpongan.</li>
+          <li>También tenemos ambos sprites en el área inferior, y el resaltado en azul es el seleccionado, con el que estamos trabajando. Podemos hacer clic en cada uno para cambiar su posición o tamaño.</li>
+          <li>Podemos hacer clic derecho en nuestro pez (o mantener presionada la tecla Control y hacer clic) y ver un menú con opciones. Hacemos clic en "duplicar" y ahora tendremos dos peces en nuestro escenario:
+            <img class="notes-img" src="https://cs50.harvard.edu/scratch/notes/1/duplicate_sprite.png" alt="Pez con menú que muestra la opción duplicar" width="413">
+            <ul>
+              <li>Luego, podemos moverlos para que no se superpongan:
+                <img class="notes-img" src="https://cs50.harvard.edu/scratch/notes/1/duplicate_sprite_after.png" alt="Escenario con gato y dos peces en posiciones diferentes" width="490">
+              </li>
+            </ul>
+          </li>
+          <li>Podemos ver este ejemplo en <a href="https://scratch.mit.edu/projects/507419806/" target="_blank" rel="noopener">Sprites</a>.</li>
+        </ul>
+
+        <h3>Disfraces</h3>
+        <ul>
+          <li>Cada sprite tiene un <strong>disfraz</strong>, que es simplemente la imagen de cómo se ve el sprite.</li>
+          <li>En la parte superior izquierda, podemos usar la pestaña "Disfraces":
+            <img class="notes-img" src="https://cs50.harvard.edu/scratch/notes/1/costumes.png" alt="Pestaña de Disfraces para el pez" width="1436">
+            <ul>
+              <li>Veremos que nuestro pez tiene cuatro disfraces: "fish-a", "fish-b", "fish-c" y "fish-d", y podemos seleccionar diferentes haciendo clic en ellos.</li>
+            </ul>
+          </li>
+          <li>Para el gato, tenemos dos disfraces diferentes, donde sus patas están en posiciones distintas. Al cambiar entre ellos, podemos dar la apariencia de que está caminando.</li>
+          <li>En el editor de disfraces, podemos agregar nuevos disfraces con el botón en la parte inferior izquierda con el símbolo de más. Podemos agregar disfraces de Scratch, o crear los nuestros propios con las herramientas del centro.</li>
+          <li>También podemos editar los disfraces incorporados seleccionándolos y usando las herramientas para cambiarlos según queramos.</li>
+          <li>Podemos ver este ejemplo en <a href="https://scratch.mit.edu/projects/507420136/" target="_blank" rel="noopener">Disfraces</a>.</li>
+          <li>Finalmente, podemos subir nuestra propia foto o imagen desde nuestra computadora para usarla como disfraz.</li>
+        </ul>
+
+        <h3>Sonidos</h3>
+        <ul>
+          <li>Podemos usar la pestaña "Sonidos" en la parte superior para agregar sonidos a los sprites:
+            <img class="notes-img" src="https://cs50.harvard.edu/scratch/notes/1/sounds.png" alt="Pestaña de Sonidos con el sonido de burbujas y sus controles" width="943">
+          </li>
+          <li>Vemos que nuestro pez tiene un sonido de "burbujas" y un sonido de "ola del océano", y si seleccionamos nuestro gato en el panel de sprites, vemos que solo tiene un sonido: el "maullido".</li>
+          <li>Podemos cambiar los sonidos incorporados, o grabar o subir los nuestros propios.</li>
+        </ul>
+
+        <hr>
+
+        <h2>Fondos</h2>
+        <ul>
+          <li>Nuestro escenario tiene un fondo blanco, así que podemos hacer clic en el botón de la parte inferior derecha para elegir un nuevo fondo:
+            <img class="notes-img" src="https://cs50.harvard.edu/scratch/notes/1/stage.png" alt="Botón para elegir un fondo" width="251">
+          </li>
+          <li>Ahora veremos muchos fondos diferentes, y usaremos el submarino para nuestros peces.</li>
+          <li>Pero nuestro gato está fuera de lugar, así que podemos hacer clic en él en el panel de sprites y usar el ícono del basurero para eliminarlo.</li>
+          <li>Podemos voltear nuestros peces amarillo y verde cambiando la rotación a −90 grados, pero esto los pone boca abajo. Resulta que podemos cambiar el estilo de rotación de "en todas direcciones" (el círculo a la izquierda) a "izquierda y derecha" (los triángulos en el centro):
+            <img class="notes-img" src="https://cs50.harvard.edu/scratch/notes/1/flipped_direction.png" alt="Pez mirando a la izquierda con rotación izquierda y derecha seleccionada" width="253">
+            <ul>
+              <li>Ahora nuestro sprite solo apuntará hacia la izquierda o hacia la derecha.</li>
+            </ul>
+          </li>
+          <li>En la parte superior derecha, podemos hacer clic en el ícono de pantalla completa para ver nuestro escenario y sprites en pantalla completa.</li>
+          <li>Podemos ver este ejemplo en <a href="https://scratch.mit.edu/projects/507420944/" target="_blank" rel="noopener">Fondos</a>.</li>
+        </ul>
+
+        <hr>
+
+        <h2>Guardar</h2>
+        <ul>
+          <li>Para guardar nuestro proyecto y poder usarlo más tarde, podemos usar el menú Archivo en la parte superior izquierda:
+            <img class="notes-img" src="https://cs50.harvard.edu/scratch/notes/1/save.png" alt="Menú Archivo con la opción de guardar" width="256">
+            <ul>
+              <li>Después de guardar nuestro proyecto, podemos cargarlo más tarde usando la opción "Cargar desde tu computadora" en el mismo menú.</li>
+            </ul>
+          </li>
+          <li>También podemos crear una cuenta en Scratch con el botón "Unirse a Scratch" en la parte superior derecha, lo que guardará nuestro proyecto en el sitio web de Scratch. Esto también nos permitirá compartir fácilmente nuestro proyecto con otros.</li>
+        </ul>
+
+        <hr>
+
+        <h2>La próxima vez</h2>
+        <ul>
+          <li>La próxima vez, empezaremos a usar estos bloques de código para programar nuestros sprites para que realicen diferentes acciones, e incluso crearemos historias interactivas y juegos basados en las entradas del usuario.</li>
+        </ul>
+
+      </div>
+
+    </main>
+  </div>
+
+  <div id="footer-mount"></div>
+
+</div>
+<script>window.PAGE_DATA = { week: 0 };</script>
+<script src="js/layout.js"></script>
+</body>
+</html>
