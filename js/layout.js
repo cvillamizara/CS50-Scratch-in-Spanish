@@ -11,31 +11,12 @@
     { slug: 'semana-6.html', label: 'Semana 6 — Variables' },
     { slug: 'semana-7.html', label: 'Semana 7 — Abstracción' },
     { slug: 'semana-8.html', label: 'Semana 8 — Construyendo desde Cero' },
-    { slug: 'proyecto-final.html', label: 'Proyecto Final' },
   ];
 
   const pd = window.PAGE_DATA || {};
-  const currentWeek = pd.week;   // 0-9 for week pages, undefined for homepage
+  const currentWeek = pd.week;
 
   // ── Templates ──────────────────────────────────────────────
-
-  function headerHTML() {
-    return `
-      <header class="site-header">
-        <a href="index.html" class="header-brand">
-          <span class="cs50-logo">CS50</span>
-          <span class="course-name">Introducción a la Programación con Scratch</span>
-        </a>
-        <div class="header-right">
-          <a class="header-link" href="https://cs50.harvard.edu/scratch/" target="_blank" rel="noopener">
-            Ver en inglés ↗
-          </a>
-          <button id="nav-toggle" class="nav-toggle" aria-label="Abrir menú" aria-expanded="false">
-            <span></span><span></span><span></span>
-          </button>
-        </div>
-      </header>`;
-  }
 
   function sidebarHTML() {
     const weekLinks = WEEKS.map((w, i) => {
@@ -44,49 +25,29 @@
     }).join('\n          ');
 
     return `
+      <button id="nav-toggle" class="nav-toggle" aria-label="Abrir menú" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
       <nav id="sidebar" class="sidebar" aria-label="Navegación del curso">
-        <div class="nav-section">
-          <div class="nav-section-title">Semanas</div>
+        <div class="sidebar-title">
+          <a href="index.html">
+            Introducción a la Programación con Scratch
+          </a>
+        </div>
+
+        <div class="sidebar-weeks">
           <ul>
           ${weekLinks}
           </ul>
         </div>
 
-        <div class="nav-divider"></div>
-
-        <div class="nav-section">
-          <div class="nav-section-title">Información</div>
-          <ul>
-            <li><a href="index.html#como-tomar">Cómo tomar este curso</a></li>
-            <li><a href="index.html#como-ensenar">Cómo enseñar este curso</a></li>
-            <li><a href="index.html#honestidad">Honestidad académica</a></li>
-            <li><a href="index.html#certificado">Certificado CS50</a></li>
-            <li><a href="index.html#preguntas">Preguntas frecuentes</a></li>
-          </ul>
-        </div>
-
-        <div class="nav-divider"></div>
-
-        <div class="nav-section">
-          <div class="nav-section-title">Comunidad</div>
-          <ul>
-            <li><a href="https://discord.gg/cs50" target="_blank" rel="noopener">Discord</a></li>
-            <li><a href="https://www.reddit.com/r/cs50/" target="_blank" rel="noopener">Reddit</a></li>
-            <li><a href="https://cs50.stackexchange.com/" target="_blank" rel="noopener">Stack Exchange</a></li>
-          </ul>
-        </div>
-
-        <div class="nav-divider"></div>
-
-        <div class="nav-section">
-          <div class="nav-section-title">Otros cursos CS50</div>
-          <ul>
-            <li><a href="https://cs50.harvard.edu/x/" target="_blank" rel="noopener">CS50x — Informática</a></li>
-            <li><a href="https://cs50.harvard.edu/python/" target="_blank" rel="noopener">CS50 Python</a></li>
-            <li><a href="https://cs50.harvard.edu/web/" target="_blank" rel="noopener">CS50 Web</a></li>
-            <li><a href="https://cs50.harvard.edu/ai/" target="_blank" rel="noopener">CS50 IA</a></li>
-            <li><a href="https://cs50.harvard.edu/sql/" target="_blank" rel="noopener">CS50 SQL</a></li>
-          </ul>
+        <div class="sidebar-attribution">
+          Adaptación en español de
+          <a href="https://cs50.harvard.edu/scratch/weeks/1/" target="_blank" rel="noopener">
+            CS50's Introduction to Programming with Scratch
+          </a>
+          de Harvard University. Contenido original del equipo de CS50.
+          Licencia Creative Commons.
         </div>
       </nav>`;
   }
@@ -102,13 +63,11 @@
           </a>.
         </p>
         <p class="attribution">
-          Esta página es una adaptación en español de
+          Adaptación en español de
           <a href="https://cs50.harvard.edu/scratch/" target="_blank" rel="noopener">
             CS50's Introduction to Programming with Scratch
           </a>
-          de la Universidad de Harvard.
-          Todo el contenido original pertenece al equipo de CS50 —
-          David J. Malan, Brian Yu y colaboradores.
+          — Universidad de Harvard.
         </p>
       </footer>`;
   }
@@ -138,7 +97,7 @@
     const fm = get('footer-mount');
     const pm = get('prevnext-mount');
 
-    if (hm) hm.innerHTML = headerHTML();
+    if (hm) hm.remove();
     if (sm) sm.innerHTML = sidebarHTML();
     if (fm) fm.innerHTML = footerHTML();
     if (pm) pm.innerHTML = prevNextHTML();
