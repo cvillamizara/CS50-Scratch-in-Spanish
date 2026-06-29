@@ -56,18 +56,12 @@
     return `
       <footer class="site-footer">
         <p>
-          &copy; 2024–2026 President and Fellows of Harvard College.
-          Distribuido bajo
-          <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">
-            Creative Commons BY-NC-SA 4.0
-          </a>.
-        </p>
-        <p class="attribution">
           Adaptación en español de
-          <a href="https://cs50.harvard.edu/scratch/" target="_blank" rel="noopener">
-            CS50's Introduction to Programming with Scratch
-          </a>
-          — Universidad de Harvard.
+          <a href="https://cs50.harvard.edu/scratch/" target="_blank" rel="noopener">CS50's Introduction to Programming with Scratch</a>
+          de la Universidad de Harvard (&copy; President and Fellows of Harvard College),
+          licenciado bajo
+          <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a>.
+          Esta adaptación incluye cambios al material original y se distribuye bajo la misma licencia.
         </p>
       </footer>`;
   }

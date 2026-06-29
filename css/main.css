@@ -278,6 +278,21 @@ a:hover { text-decoration: underline; }
   text-decoration: none;
 }
 
+/* ── Site footer ── */
+.site-footer {
+  margin-left: var(--sidebar-w);
+  padding: 1.5rem 2.5rem;
+  border-top: 1px solid var(--border);
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.site-footer a { color: var(--text-muted); text-decoration: underline; text-underline-offset: 2px; }
+.site-footer a:hover { color: var(--purple-dark); }
+.site-footer p { margin: 0; }
+.site-footer p + p { margin-top: 0.25rem; }
+
 /* ── Responsive ── */
 @media (max-width: 768px) {
   .main-content { margin-left: 0; padding: 1.5rem 1.1rem 3rem; }
