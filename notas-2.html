@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Semana 2 — Notas de clase | CS50 en Español</title>
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/nav.css" />
+  <style>
+    .notes-img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+      border-radius: 6px;
+      border: 1.5px solid var(--border);
+      margin: 0.9rem 0 0.5rem;
+    }
+    .notes-img-notice {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      font-style: italic;
+      margin-bottom: 0.5rem;
+    }
+    .notes-section { margin-bottom: 2.5rem; }
+    .notes-section hr {
+      border: none;
+      border-top: 1.5px solid var(--border);
+      margin: 2rem 0;
+    }
+    .notes-section ul {
+      list-style: none;
+      padding-left: 0;
+      margin-bottom: 0.5rem;
+    }
+    .notes-section ul li {
+      padding: 0.2rem 0 0.2rem 1.4rem;
+      position: relative;
+      margin-bottom: 0.5rem;
+    }
+    .notes-section ul li::before {
+      content: "•";
+      position: absolute;
+      left: 0.3rem;
+      color: var(--olive);
+      font-weight: bold;
+    }
+    .notes-section ul ul {
+      margin-top: 0.4rem;
+      padding-left: 0.5rem;
+    }
+    .notes-section ul ul li::before {
+      content: "◦";
+      color: var(--text-muted);
+    }
+    .notes-section h1 {
+      font-size: 2.2rem;
+      margin-bottom: 0.25rem;
+    }
+    .notes-section h2 {
+      font-family: 'Nunito', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text);
+      margin: 2rem 0 0.75rem;
+    }
+    .notes-section h3 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--text);
+      margin: 1.5rem 0 0.6rem;
+    }
+  </style>
+</head>
+<body>
+<div class="site-wrapper">
+
+  <div class="body-wrapper">
+    <div id="sidebar-mount"></div>
+
+    <main class="main-content">
+
+      <div class="notes-section">
+
+        <h1>Funciones</h1>
+        <p class="week-subtitle">Notas de clase — Semana 2</p>
+
+        <hr>
+
+        <h2>Introducción</h2>
+        <ul>
+          <li>Cuando programamos, muchas veces nos encontramos repitiendo la misma secuencia de instrucciones varias veces. Las <strong>funciones</strong> nos permiten agrupar esas instrucciones una sola vez y reutilizarlas cuando las necesitemos.</li>
+          <li>En Scratch, las funciones se llaman <strong>bloques personalizados</strong> y los encontramos en la sección <em>Mis Bloques</em> de la biblioteca.</li>
+          <li>Usar funciones hace que nuestro código sea más corto, más organizado y más fácil de entender.</li>
+        </ul>
+
+        <hr>
+
+        <h2>Funciones en Scratch</h2>
+
+        <h3>¿Qué es una función?</h3>
+        <ul>
+          <li>Una función es un bloque de código con nombre que realiza una tarea específica.</li>
+          <li>En lugar de repetir el mismo código, lo definimos una vez dentro de la función y lo llamamos cuantas veces queramos.</li>
+          <li>Podemos pensar en una función como una receta: la escribimos una vez y la seguimos cada vez que la necesitamos, sin tener que reescribirla.</li>
+        </ul>
+
+        <h3>Crear un bloque personalizado</h3>
+        <ul>
+          <li>Para crear nuestro propio bloque, vamos a <strong>Mis Bloques</strong> en la biblioteca y hacemos clic en <strong>Crear un bloque</strong>:
+            <img class="notes-img" src="assets/notas-2/crear-bloque-es.png" alt="Panel Mis Bloques con el botón Crear un bloque" width="411">
+          </li>
+          <li>Le damos al bloque un nombre que describa lo que hace, por ejemplo: "bailar".</li>
+          <li>Esto crea un bloque <em>"definir [nombre]"</em> en el editor de bloques, donde podemos colocar cualquier secuencia de instrucciones:
+            <img class="notes-img" src="assets/notas-2/definir-bloque-es.png" alt="Bloque definir bailar con instrucciones dentro" width="411">
+          </li>
+          <li>Una vez definido, nuestro bloque personalizado aparece en la sección <em>Mis Bloques</em> y podemos usarlo igual que cualquier otro bloque.</li>
+          <li>Podemos ver este ejemplo en <a href="https://scratch.mit.edu/" target="_blank" rel="noopener">Mi primer bloque personalizado</a>.</li>
+        </ul>
+
+        <h3>Bloques con entradas</h3>
+        <ul>
+          <li>Podemos agregar <strong>entradas</strong> a nuestros bloques para hacerlos más flexibles. Por ejemplo, en lugar de un bloque que siempre mueve 10 pasos, podemos crear uno que mueva cualquier cantidad.</li>
+          <li>Al crear el bloque, hacemos clic en <strong>Añadir una entrada (número o texto)</strong>:
+            <img class="notes-img" src="assets/notas-2/bloque-con-entrada-es.png" alt="Ventana de creación de bloque con opción de añadir una entrada" width="411">
+          </li>
+          <li>La entrada se convierte en una variable que podemos usar dentro de la definición del bloque.</li>
+          <li>Cuando usamos el bloque en nuestro programa, especificamos el valor de la entrada:
+            <img class="notes-img" src="assets/notas-2/usar-bloque-con-entrada-es.png" alt="Bloque personalizado con entrada usándose en el programa" width="411">
+          </li>
+          <li>Podemos ver este ejemplo en <a href="https://scratch.mit.edu/" target="_blank" rel="noopener">Funciones con parámetros</a>.</li>
+        </ul>
+
+        <h3>Funciones dentro de funciones</h3>
+        <ul>
+          <li>Podemos llamar a una función desde dentro de otra función. Esto se llama <strong>anidamiento</strong>.</li>
+          <li>Por ejemplo, podemos tener una función "mover brazo" y otra función "bailar" que llama a "mover brazo" varias veces:
+            <img class="notes-img" src="assets/notas-2/funciones-anidadas-es.png" alt="Función bailar que llama a la función mover brazo" width="411">
+          </li>
+          <li>Esto nos permite construir comportamientos complejos combinando funciones simples.</li>
+          <li>Podemos ver este ejemplo en <a href="https://scratch.mit.edu/" target="_blank" rel="noopener">Funciones anidadas</a>.</li>
+        </ul>
+
+        <hr>
+
+        <h2>Abstracción</h2>
+        <ul>
+          <li>La <strong>abstracción</strong> significa ocultar los detalles de cómo funciona algo para poder concentrarnos en qué hace.</li>
+          <li>Los bloques personalizados son una forma de abstracción: una vez definidos, no necesitamos pensar en los pasos que contienen — simplemente llamamos al bloque.</li>
+          <li>Esto nos ayuda a construir programas más complejos pensando a un nivel más alto, como cuando usamos bloques de Scratch sin saber exactamente cómo están programados por dentro.</li>
+        </ul>
+
+        <hr>
+
+        <h2>Descomposición</h2>
+        <ul>
+          <li>La <strong>descomposición</strong> consiste en dividir un problema grande en partes más pequeñas y simples.</li>
+          <li>Cada parte puede convertirse en una función. Por ejemplo, hacer que un personaje baile se puede descomponer en:
+            <ul>
+              <li>Mover el brazo izquierdo.</li>
+              <li>Mover el brazo derecho.</li>
+              <li>Girar el cuerpo.</li>
+            </ul>
+          </li>
+          <li>Cada uno de esos pasos puede ser una función separada, y luego los combinamos en una función "bailar" principal.</li>
+          <li>La descomposición hace que los problemas grandes sean más fáciles de resolver porque trabajamos con piezas más manejables.</li>
+        </ul>
+
+        <hr>
+
+        <h2>Sonidos con funciones</h2>
+        <ul>
+          <li>También podemos usar funciones para organizar los sonidos de nuestro proyecto.</li>
+          <li>Por ejemplo, podemos crear una función "reproducir melodía" que ejecute una secuencia de notas, y llamarla varias veces sin repetir los bloques:
+            <img class="notes-img" src="assets/notas-2/sonidos-funcion-es.png" alt="Función reproducir melodía con bloques de sonido" width="411">
+          </li>
+          <li>Podemos ver este ejemplo en <a href="https://scratch.mit.edu/" target="_blank" rel="noopener">Sonidos con funciones</a>.</li>
+        </ul>
+
+        <hr>
+
+        <h2>La próxima vez</h2>
+        <ul>
+          <li>La próxima vez, aprenderemos sobre <strong>eventos</strong> — cómo hacer que nuestros programas respondan a clics, teclas presionadas y mensajes entre objetos.</li>
+        </ul>
+
+      </div>
+
+    </main>
+  </div>
+
+  <div id="footer-mount"></div>
+
+</div>
+<script>window.PAGE_DATA = { week: 1 };</script>
+<script src="js/layout.js"></script>
+</body>
+</html>
