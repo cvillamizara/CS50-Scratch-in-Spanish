@@ -15,12 +15,6 @@
       border: 1.5px solid var(--border);
       margin: 0.9rem 0 0.5rem;
     }
-    .notes-img-notice {
-      font-size: 0.78rem;
-      color: var(--text-muted);
-      font-style: italic;
-      margin-bottom: 0.5rem;
-    }
     .notes-section { margin-bottom: 2.5rem; }
     .notes-section hr {
       border: none;
@@ -70,6 +64,28 @@
       color: var(--text);
       margin: 1.5rem 0 0.6rem;
     }
+    /* Scratchblocks rendering */
+    pre.scratch-block {
+      background: transparent;
+      border: none;
+      padding: 0.4rem 0;
+      margin: 0.5rem 0 0.25rem;
+      overflow-x: auto;
+    }
+    pre.scratch-block code {
+      font-family: monospace;
+      font-size: 0.9rem;
+    }
+    /* SVG output from scratchblocks */
+    .notes-section svg.scratchblocks {
+      display: block;
+      margin: 0.5rem 0;
+      max-width: 100%;
+    }
+    /* Comment text sits on a light bubble — override the global white label rule */
+    svg .sb3-comment-label {
+      fill: #575E75 !important;
+    }
   </style>
 </head>
 <body>
@@ -87,101 +103,314 @@
 
         <hr>
 
-        <h2>Introducción</h2>
+        <!-- ── La última vez ───────────────────────────────────── -->
+        <h2>La última vez</h2>
         <ul>
-          <li>Cuando programamos, muchas veces nos encontramos repitiendo la misma secuencia de instrucciones varias veces. Las <strong>funciones</strong> nos permiten agrupar esas instrucciones una sola vez y reutilizarlas cuando las necesitemos.</li>
-          <li>En Scratch, las funciones se llaman <strong>bloques personalizados</strong> y los encontramos en la sección <em>Mis Bloques</em> de la biblioteca.</li>
-          <li>Usar funciones hace que nuestro código sea más corto, más organizado y más fácil de entender.</li>
+          <li>La última vez, presentamos el escenario y los objetos, con disfraces, sonidos y fondos. Pero hicimos todos los cambios manualmente, haciendo clic y arrastrando, por ejemplo.</li>
+          <li>Abriremos un nuevo proyecto en Scratch y recordamos que podemos mover nuestro gato por el escenario haciendo clic y arrastrándolo, o cambiando el valor de sus coordenadas x e y.</li>
         </ul>
 
         <hr>
 
-        <h2>Funciones en Scratch</h2>
-
-        <h3>¿Qué es una función?</h3>
+        <!-- ── Funciones ───────────────────────────────────────── -->
+        <h2>Funciones</h2>
         <ul>
-          <li>Una función es un bloque de código con nombre que realiza una tarea específica.</li>
-          <li>En lugar de repetir el mismo código, lo definimos una vez dentro de la función y lo llamamos cuantas veces queramos.</li>
-          <li>Podemos pensar en una función como una receta: la escribimos una vez y la seguimos cada vez que la necesitamos, sin tener que reescribirla.</li>
+          <li>A la izquierda de la interfaz de Scratch, veremos los bloques.</li>
+          <li>Una <strong>función</strong>, en el contexto de Scratch, es un bloque que realiza alguna tarea.</li>
+          <li>El primer bloque, por ejemplo, dice "mover 10 pasos", y podemos usarlo arrastrándolo desde la biblioteca de bloques a la izquierda, hacia el editor de nuestro proyecto en el centro.<br>
+            <img class="notes-img" src="https://cs50.harvard.edu/scratch/notes/2/added_block.png" alt="Bloque 'mover 10 pasos' en el editor de bloques" width="526">
+          </li>
+          <li>Ahora hemos agregado nuestra primera función, y si hacemos clic en el bloque, vemos que nuestro gato se moverá ligeramente hacia la derecha, y el valor x de su posición también se habrá actualizado.</li>
+          <li>Podemos ver este ejemplo en <a href="https://scratch.mit.edu/projects/507421820/" target="_blank" rel="noopener">Mover</a>.</li>
         </ul>
 
-        <h3>Crear un bloque personalizado</h3>
+        <h3>Entradas</h3>
         <ul>
-          <li>Para crear nuestro propio bloque, vamos a <strong>Mis Bloques</strong> en la biblioteca y hacemos clic en <strong>Crear un bloque</strong>:
-            <img class="notes-img" src="assets/notas-2/crear-bloque-es.png" alt="Panel Mis Bloques con el botón Crear un bloque" width="411">
+          <li>Observemos que hay un área en el bloque con un valor de 10, que podemos cambiar. Este valor se llama <strong>entrada</strong> de una función, o información que una función puede usar para cambiar cómo se comporta.</li>
+          <li>Para el bloque de mover, la entrada es un número que indica la cantidad de pasos a mover. Podemos cambiarlo para mover nuestro gato 30 pasos, por ejemplo:
+            <pre class="scratch-block"><code class="language-scratch">mover (30) pasos
+</code></pre>
           </li>
-          <li>Le damos al bloque un nombre que describa lo que hace, por ejemplo: "bailar".</li>
-          <li>Esto crea un bloque <em>"definir [nombre]"</em> en el editor de bloques, donde podemos colocar cualquier secuencia de instrucciones:
-            <img class="notes-img" src="assets/notas-2/definir-bloque-es.png" alt="Bloque definir bailar con instrucciones dentro" width="411">
+          <li>También podemos agregar otros bloques, como:
+            <pre class="scratch-block"><code class="language-scratch">girar @turnRight (15) grados
+</code></pre>
           </li>
-          <li>Una vez definido, nuestro bloque personalizado aparece en la sección <em>Mis Bloques</em> y podemos usarlo igual que cualquier otro bloque.</li>
-          <li>Podemos ver este ejemplo en <a href="https://scratch.mit.edu/" target="_blank" rel="noopener">Mi primer bloque personalizado</a>.</li>
-        </ul>
-
-        <h3>Bloques con entradas</h3>
-        <ul>
-          <li>Podemos agregar <strong>entradas</strong> a nuestros bloques para hacerlos más flexibles. Por ejemplo, en lugar de un bloque que siempre mueve 10 pasos, podemos crear uno que mueva cualquier cantidad.</li>
-          <li>Al crear el bloque, hacemos clic en <strong>Añadir una entrada (número o texto)</strong>:
-            <img class="notes-img" src="assets/notas-2/bloque-con-entrada-es.png" alt="Ventana de creación de bloque con opción de añadir una entrada" width="411">
-          </li>
-          <li>La entrada se convierte en una variable que podemos usar dentro de la definición del bloque.</li>
-          <li>Cuando usamos el bloque en nuestro programa, especificamos el valor de la entrada:
-            <img class="notes-img" src="assets/notas-2/usar-bloque-con-entrada-es.png" alt="Bloque personalizado con entrada usándose en el programa" width="411">
-          </li>
-          <li>Podemos ver este ejemplo en <a href="https://scratch.mit.edu/" target="_blank" rel="noopener">Funciones con parámetros</a>.</li>
-        </ul>
-
-        <h3>Funciones dentro de funciones</h3>
-        <ul>
-          <li>Podemos llamar a una función desde dentro de otra función. Esto se llama <strong>anidamiento</strong>.</li>
-          <li>Por ejemplo, podemos tener una función "mover brazo" y otra función "bailar" que llama a "mover brazo" varias veces:
-            <img class="notes-img" src="assets/notas-2/funciones-anidadas-es.png" alt="Función bailar que llama a la función mover brazo" width="411">
-          </li>
-          <li>Esto nos permite construir comportamientos complejos combinando funciones simples.</li>
-          <li>Podemos ver este ejemplo en <a href="https://scratch.mit.edu/" target="_blank" rel="noopener">Funciones anidadas</a>.</li>
+          <li>Podemos ver este ejemplo en <a href="https://scratch.mit.edu/projects/507422307/" target="_blank" rel="noopener">Mover y Girar</a>.</li>
         </ul>
 
         <hr>
 
-        <h2>Abstracción</h2>
+        <!-- ── Scripts ────────────────────────────────────────── -->
+        <h2>Scripts</h2>
         <ul>
-          <li>La <strong>abstracción</strong> significa ocultar los detalles de cómo funciona algo para poder concentrarnos en qué hace.</li>
-          <li>Los bloques personalizados son una forma de abstracción: una vez definidos, no necesitamos pensar en los pasos que contienen — simplemente llamamos al bloque.</li>
-          <li>Esto nos ayuda a construir programas más complejos pensando a un nivel más alto, como cuando usamos bloques de Scratch sin saber exactamente cómo están programados por dentro.</li>
-        </ul>
-
-        <hr>
-
-        <h2>Descomposición</h2>
-        <ul>
-          <li>La <strong>descomposición</strong> consiste en dividir un problema grande en partes más pequeñas y simples.</li>
-          <li>Cada parte puede convertirse en una función. Por ejemplo, hacer que un personaje baile se puede descomponer en:
+          <li>Puede que queramos combinar bloques para que se pueda seguir una secuencia de múltiples instrucciones.</li>
+          <li>Podemos unir nuestros dos bloques arrastrando uno hacia el otro, y veremos un área resaltada cuando estén cerca:<br>
+            <img class="notes-img" src="https://cs50.harvard.edu/scratch/notes/2/drag.png" alt="Dos bloques con área resaltada cuando se acercan" width="185">
             <ul>
-              <li>Mover el brazo izquierdo.</li>
-              <li>Mover el brazo derecho.</li>
-              <li>Girar el cuerpo.</li>
+              <li>Después de soltar el ratón, vemos que se unen.</li>
             </ul>
           </li>
-          <li>Cada uno de esos pasos puede ser una función separada, y luego los combinamos en una función "bailar" principal.</li>
-          <li>La descomposición hace que los problemas grandes sean más fáciles de resolver porque trabajamos con piezas más manejables.</li>
-        </ul>
-
-        <hr>
-
-        <h2>Sonidos con funciones</h2>
-        <ul>
-          <li>También podemos usar funciones para organizar los sonidos de nuestro proyecto.</li>
-          <li>Por ejemplo, podemos crear una función "reproducir melodía" que ejecute una secuencia de notas, y llamarla varias veces sin repetir los bloques:
-            <img class="notes-img" src="assets/notas-2/sonidos-funcion-es.png" alt="Función reproducir melodía con bloques de sonido" width="411">
+          <li>Ahora nuestra pila de bloques puede llamarse un <strong>script</strong>, donde todos los bloques se ejecutarán en orden, de arriba hacia abajo, cuando hacemos clic en uno de ellos:
+            <pre class="scratch-block"><code class="language-scratch">mover (30) pasos
+girar @turnRight (15) grados
+</code></pre>
+            <ul>
+              <li>Podemos hacer clic en esta pila de bloques una y otra vez, y harán que nuestro gato se mueva en círculo.</li>
+            </ul>
           </li>
-          <li>Podemos ver este ejemplo en <a href="https://scratch.mit.edu/" target="_blank" rel="noopener">Sonidos con funciones</a>.</li>
+          <li>Hay muchos bloques que podemos usar en nuestros scripts, en múltiples categorías. También podemos probar este bloque:
+            <pre class="scratch-block"><code class="language-scratch">ir a (posición aleatoria v)
+</code></pre>
+          </li>
+          <li>Si queremos eliminar un bloque, podemos mantener presionada la tecla Control y hacer clic, o hacer clic derecho, y elegir la opción "Eliminar bloque". También podemos arrastrarlo de vuelta hacia la biblioteca de bloques.</li>
+        </ul>
+
+        <h3>Moverse por el escenario</h3>
+        <ul>
+          <li>Eliminaremos nuestro gato y elegiremos un nuevo objeto para nuestro siguiente programa, <a href="https://scratch.mit.edu/projects/507422729/" target="_blank" rel="noopener">Deslizar</a>, donde haremos que nuestro objeto se mueva por el escenario.</li>
+          <li>Usaremos el erizo, y comenzaremos usando el bloque "ir a" para asegurarnos de empezar en la parte superior izquierda:
+            <pre class="scratch-block"><code class="language-scratch">ir a x: (-180) y: (120)
+</code></pre>
+          </li>
+          <li>Usaremos otro bloque para mover nuestro erizo a la parte superior derecha:
+            <pre class="scratch-block"><code class="language-scratch">ir a x: (-180) y: (120)
+ir a x: (180) y: (120)
+</code></pre>
+          </li>
+          <li>Luego queremos movernos a la parte inferior derecha:
+            <pre class="scratch-block"><code class="language-scratch">ir a x: (-180) y: (120)
+ir a x: (180) y: (120)
+ir a x: (180) y: (-120)
+</code></pre>
+          </li>
+          <li>Y finalmente, la parte inferior izquierda, con ambos valores negativos:
+            <pre class="scratch-block"><code class="language-scratch">ir a x: (-180) y: (120)
+ir a x: (180) y: (120)
+ir a x: (180) y: (-120)
+ir a x: (-180) y: (-120)
+</code></pre>
+          </li>
+          <li>Cuando hagamos clic en esta pila de bloques, nuestro erizo pareció saltar inmediatamente a la parte inferior izquierda. Resulta que nuestra computadora ejecuta los programas muy rápidamente, por lo que el erizo se movió tan rápido que solo vimos la posición final.</li>
+          <li>Podemos usar un bloque diferente llamado "deslizar", para moverse durante cierta cantidad de tiempo. Sacaremos los tres bloques "ir a" del fondo de nuestro script y agregaremos bloques "deslizar" para cada una de las otras tres posiciones:
+            <pre class="scratch-block"><code class="language-scratch">ir a x: (-180) y: (120)
+desplazar en (1) segs a x: (180) y: (120)
+desplazar en (1) segs a x: (180) y: (-120)
+desplazar en (1) segs a x: (-180) y: (-120)
+</code></pre>
+          </li>
+          <li>Ahora, cuando ejecutemos nuestro script de nuevo haciendo clic en la pila de bloques, vemos que nuestro erizo se mueve como esperábamos. Podemos agregar un deslizamiento más para que regrese a la posición original:
+            <pre class="scratch-block"><code class="language-scratch">ir a x: (-180) y: (120)
+desplazar en (1) segs a x: (180) y: (120)
+desplazar en (1) segs a x: (180) y: (-120)
+desplazar en (1) segs a x: (-180) y: (-120)
+desplazar en (1) segs a x: (-180) y: (120)
+</code></pre>
+          </li>
         </ul>
 
         <hr>
 
+        <!-- ── Comentarios ─────────────────────────────────────── -->
+        <h2>Comentarios</h2>
+        <ul>
+          <li>Nuestro programa se está volviendo un poco complicado, por lo que podemos usar <strong>comentarios</strong>, o descripciones breves de lo que intentamos hacer, como recordatorio para nosotros mismos o guía para que otros entiendan nuestro programa.</li>
+          <li>Podemos hacer clic derecho en nuestra pila de bloques y usar "Agregar comentario" para escribir un comentario — una nota para nosotros que no afectará cómo se ejecuta nuestro programa:
+            <pre class="scratch-block"><code class="language-scratch">ir a x: (-180) y: (120) // Estos bloques mueven el objeto en un rectángulo.
+desplazar en (1) segs a x: (180) y: (120)
+desplazar en (1) segs a x: (180) y: (-120)
+desplazar en (1) segs a x: (-180) y: (-120)
+desplazar en (1) segs a x: (-180) y: (120)
+</code></pre>
+          </li>
+          <li>También podemos usar otros bloques de movimiento para cambiar la dirección de nuestro objeto y moverse de otras maneras.</li>
+        </ul>
+
+        <hr>
+
+        <!-- ── Apariencia ──────────────────────────────────────── -->
+        <h2>Apariencia</h2>
+        <ul>
+          <li>Iremos a la categoría "Apariencia" de bloques haciendo clic en ella a la izquierda. Arrastraremos un bloque "decir ¡Hola!" para el ejemplo <a href="https://scratch.mit.edu/projects/507423170/" target="_blank" rel="noopener">Decir</a>:
+            <pre class="scratch-block"><code class="language-scratch">decir [Hola!]
+</code></pre>
+          </li>
+          <li>Cuando hagamos clic en este bloque, aparecerá un globo de texto junto a nuestro objeto.</li>
+          <li>Agreguemos otro bloque para decir adiós:
+            <pre class="scratch-block"><code class="language-scratch">decir [Hola!]
+decir [Chao!]
+</code></pre>
+          </li>
+          <li>Pero cuando hacemos clic en esta pila de bloques, tenemos un error similar: Scratch ejecuta estos bloques tan rápidamente que no tenemos tiempo de ver el "¡Hola!", ya que inmediatamente cambia a "¡Chao!".</li>
+          <li>Reemplazaremos nuestros bloques con otro tipo de bloque que muestra el mensaje durante un tiempo determinado:
+            <pre class="scratch-block"><code class="language-scratch">decir [Hola!] durante (2) segundos
+decir [Chao!] durante (2) segundos
+</code></pre>
+            <ul>
+              <li>Ahora tenemos tiempo de ver cada mensaje de nuestro erizo.</li>
+            </ul>
+          </li>
+        </ul>
+
+        <h3>Disfraces</h3>
+        <ul>
+          <li>Los bloques de "Apariencia" también pueden cambiar el disfraz de nuestros objetos. Eliminaremos nuestro erizo y crearemos uno nuevo: un oso esta vez en <a href="https://scratch.mit.edu/projects/507423557/" target="_blank" rel="noopener">Oso 1</a>.</li>
+          <li>Resulta que el oso ya tiene dos disfraces disponibles: "bear-a" y "bear-b".</li>
+          <li>Podemos comenzar usando bloques para elegir el primer disfraz para nuestro oso y colocarlo hacia la izquierda del escenario:
+            <pre class="scratch-block"><code class="language-scratch">cambiar disfraz a (bear-a v)
+ir a x: (-120) y: (-50)
+</code></pre>
+          </li>
+          <li>Agregaremos bloques para hacer que nuestro oso se mueva por el escenario y que se ponga de pie al final:
+            <pre class="scratch-block"><code class="language-scratch">desplazar en (2) segs a x: (120) y: (-50)
+cambiar disfraz a (bear-b v)
+</code></pre>
+          </li>
+          <li>Podemos intentar hacer clic en nuestra pila de cuatro bloques para ver que esto sucede.</li>
+          <li>Ahora, agreguemos nuevos fondos seleccionando "Forest" y "Woods and Bench" después de hacer clic en el botón "Elige un fondo" en el panel de escenario en la parte inferior derecha.</li>
+          <li>Podemos usar un bloque para asegurarnos de que nuestra historia siempre comience con el fondo "Forest":
+            <pre class="scratch-block"><code class="language-scratch">cambiar fondo a (Forest v)
+ir a x: (-120) y: (-50)
+cambiar disfraz a (bear-a v)
+</code></pre>
+            <ul>
+              <li>También le diremos a nuestro oso que comience a la izquierda y cambie su disfraz para no estar de pie.</li>
+              <li>Estos tres bloques se ejecutarán muy rápidamente, por lo que parece que sucedieron al mismo tiempo, pero en realidad aún se ejecutan uno a la vez.</li>
+            </ul>
+          </li>
+          <li>Ahora le diremos a nuestro oso que "camine" por el escenario con el bloque "deslizar" como antes:
+            <pre class="scratch-block"><code class="language-scratch">desplazar en (3) segs a x: (300) y: (-50)
+cambiar fondo a (Woods And Bench v)
+</code></pre>
+            <ul>
+              <li>Con un valor x grande, nuestro oso caminará fuera del escenario por la derecha.</li>
+              <li>Una vez que lo haga, nuestro fondo cambiará a uno diferente, como si nuestro oso hubiera llegado a una nueva área.</li>
+            </ul>
+          </li>
+          <li>Luego, haremos que nuestro oso "entre caminando", comenzando desde el lado izquierdo del escenario y deteniéndose en el centro:
+            <pre class="scratch-block"><code class="language-scratch">ir a x: (-300) y: (-50)
+desplazar en (3) segs a x: (0) y: (-50)
+</code></pre>
+          </li>
+          <li>Ahora tenemos una pila de siete bloques que, al hacer clic, cuentan una historia con nuestro oso.</li>
+          <li>Hay dos bloques más que pueden ser útiles: "mostrar" y "ocultar", que hacen que nuestro objeto aparezca o desaparezca:
+            <pre class="scratch-block"><code class="language-scratch">mostrar
+
+esconder
+</code></pre>
+          </li>
+        </ul>
+
+        <hr>
+
+        <!-- ── Sonido y Control ────────────────────────────────── -->
+        <h2>Sonido y Control</h2>
+        <ul>
+          <li>La categoría "Sonido" de bloques puede reproducir sonidos:
+            <pre class="scratch-block"><code class="language-scratch">tocar sonido (pop v) hasta que termine
+</code></pre>
+          </li>
+          <li>Otro bloque útil está en la categoría Control, llamado "esperar":
+            <pre class="scratch-block"><code class="language-scratch">esperar (1) segundos
+</code></pre>
+            <ul>
+              <li>Esto le dirá a nuestro objeto que haga una pausa y no haga nada, para que podamos controlar el momento de nuestro proyecto.</li>
+            </ul>
+          </li>
+          <li>Eliminaremos nuestro oso y cambiaremos el fondo al fondo blanco predeterminado.</li>
+          <li>Agregaremos un nuevo objeto, el <a href="https://scratch.mit.edu/projects/507424907/" target="_blank" rel="noopener">Pato</a>, y usaremos los bloques que hemos visto para jugar a las escondidas:
+            <pre class="scratch-block"><code class="language-scratch">esconder
+esperar (1) segundos
+mostrar
+tocar sonido (duck v) hasta que termine
+</code></pre>
+            <ul>
+              <li>Ahora, nuestro pato desaparecerá, luego volverá a aparecer y reproducirá un sonido.</li>
+            </ul>
+          </li>
+          <li>Resulta que podemos grabar nuestros propios sonidos, subir sonidos desde nuestra computadora, o incluso tocar notas musicales.</li>
+        </ul>
+
+        <hr>
+
+        <!-- ── Extensiones ─────────────────────────────────────── -->
+        <h2>Extensiones</h2>
+        <ul>
+          <li>Eliminaremos nuestro objeto pato y elegiremos el gato de nuevo. En la parte inferior izquierda de la interfaz de Scratch, tenemos este ícono azul con bloques y un signo de más, para agregar <strong>extensiones</strong>, o más categorías de bloques:<br>
+            <img class="notes-img" src="https://cs50.harvard.edu/scratch/notes/2/extensions.png" alt="Ícono azul con bloques y un signo de más para agregar extensiones" width="58">
+          </li>
+        </ul>
+
+        <h3>Música</h3>
+        <ul>
+          <li>Comenzaremos con <a href="https://scratch.mit.edu/projects/507425280/" target="_blank" rel="noopener">Música</a> intentando tocar una nota con este bloque:
+            <pre class="scratch-block"><code class="language-scratch">tocar nota (60) durante (0.25) tiempos
+</code></pre>
+            <ul>
+              <li>El número 60 corresponde a alguna nota o sonido, y 0.25 tiempos indica cuánto tiempo se tocará.</li>
+              <li>Podemos hacer clic en el número 60, que mostrará un teclado de piano, y a medida que hagamos clic en cada tecla, podemos ver cómo cambia el número de nota y escuchar cómo sonará.</li>
+            </ul>
+          </li>
+          <li>Usaremos ocho de estos bloques y tocaremos todas las teclas blancas del teclado en secuencia:
+            <pre class="scratch-block"><code class="language-scratch">tocar nota (60) durante (0.25) tiempos
+tocar nota (62) durante (0.25) tiempos
+tocar nota (64) durante (0.25) tiempos
+tocar nota (65) durante (0.25) tiempos
+tocar nota (67) durante (0.25) tiempos
+tocar nota (69) durante (0.25) tiempos
+tocar nota (71) durante (0.25) tiempos
+tocar nota (72) durante (0.25) tiempos
+</code></pre>
+            <ul>
+              <li>Ahora, cuando hagamos clic en esta pila de bloques, escucharemos una escala musical.</li>
+            </ul>
+          </li>
+          <li>También podemos cambiar el instrumento para que las notas suenen diferente:
+            <pre class="scratch-block"><code class="language-scratch">fijar instrumento a (\(4\) Guitar v)
+</code></pre>
+            <ul>
+              <li>Arrastramos este bloque a la parte superior de nuestra pila para que se ejecute antes de que se toquen las notas.</li>
+            </ul>
+          </li>
+          <li>También podemos tocar nuestras notas más rápido o más lento cambiando el tempo:
+            <pre class="scratch-block"><code class="language-scratch">fijar tempo a (80)
+</code></pre>
+            <ul>
+              <li>Un número más grande, como 80, hará que nuestras notas se toquen más rápidamente, mientras que un número más pequeño, como 40, las hará más lentamente.</li>
+            </ul>
+          </li>
+        </ul>
+
+        <h3>Lápiz</h3>
+        <ul>
+          <li>Probaremos otra extensión: la extensión Lápiz. Con esta, podemos mover nuestro objeto por el escenario y poner virtualmente un lápiz para "dibujar" en el escenario. Veamos el ejemplo <a href="https://scratch.mit.edu/projects/507425660/" target="_blank" rel="noopener">Lápiz</a>.</li>
+          <li>Comenzaremos bajando el lápiz, moviéndonos 30 pasos y levantando el lápiz:
+            <pre class="scratch-block"><code class="language-scratch">bajar lápiz
+mover (30) pasos
+subir lápiz
+</code></pre>
+            <ul>
+              <li>Podemos hacer clic en esta pila de bloques, y nuestro gato continuará moviéndose 30 pasos y dibujando una línea mientras se mueve.</li>
+            </ul>
+          </li>
+          <li>Cuando "levantamos" el lápiz, nuestro objeto ya no dibujará cuando se mueva. Podemos mover nuestro gato en un círculo:
+            <pre class="scratch-block"><code class="language-scratch">bajar lápiz
+mover (30) pasos
+girar @turnRight (15) grados
+subir lápiz
+</code></pre>
+            <ul>
+              <li>Ahora nuestro gato se moverá un poco, rotará y dibujará un círculo a medida que sigamos haciendo clic en esta pila de bloques.</li>
+            </ul>
+          </li>
+        </ul>
+
+        <hr>
+
+        <!-- ── La próxima vez ──────────────────────────────────── -->
         <h2>La próxima vez</h2>
         <ul>
-          <li>La próxima vez, aprenderemos sobre <strong>eventos</strong> — cómo hacer que nuestros programas respondan a clics, teclas presionadas y mensajes entre objetos.</li>
+          <li>Con bloques en las categorías Movimiento, Apariencia, Sonido y Control, así como otros tipos de extensiones, podemos crear todo tipo de historias y programas con Scratch.</li>
+          <li>La próxima vez, veremos cómo podemos usar aún más tipos de bloques, combinados con lo que hemos visto, para llevar nuestros proyectos aún más lejos.</li>
         </ul>
 
       </div>
@@ -194,5 +423,16 @@
 </div>
 <script>window.PAGE_DATA = { week: 1 };</script>
 <script src="js/layout.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/scratchblocks@3.6.4/build/scratchblocks.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/scratchblocks@3.6.4/build/translations-all.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    scratchblocks.renderMatching('pre.scratch-block code', {
+      style: 'scratch3',
+      languages: ['es_419'],
+      scale: 0.75
+    });
+  });
+</script>
 </body>
 </html>
