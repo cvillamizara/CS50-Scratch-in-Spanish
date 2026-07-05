@@ -2,8 +2,8 @@
   'use strict';
 
   const WEEKS = [
-    { slug: 'semana-1.html', label: 'Semana 1 — Objetos' },
-    { slug: 'semana-2.html', label: 'Semana 2 — Funciones' },
+    { slug: 'semana-1.html', label: 'Semana 1: Objetos' },
+    { slug: 'semana-2.html', label: 'Semana 2: Funciones' },
     { slug: 'semana-3.html', label: 'Semana 3 — Eventos' },
     { slug: 'semana-4.html', label: 'Semana 4 — Valores' },
     { slug: 'semana-5.html', label: 'Semana 5 — Condiciones' },
