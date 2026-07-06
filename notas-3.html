@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Semana 3: Notas de clase | CS50 en Español</title>
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/nav.css" />
+  <style>
+    .notes-img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+      border-radius: 6px;
+      border: 1.5px solid var(--border);
+      margin: 0.9rem 0 0.5rem;
+    }
+    .notes-section { margin-bottom: 2.5rem; }
+    .notes-section hr {
+      border: none;
+      border-top: 1.5px solid var(--border);
+      margin: 2rem 0;
+    }
+    .notes-section ul {
+      list-style: none;
+      padding-left: 0;
+      margin-bottom: 0.5rem;
+    }
+    .notes-section ul li {
+      padding: 0.2rem 0 0.2rem 1.4rem;
+      position: relative;
+      margin-bottom: 0.5rem;
+    }
+    .notes-section ul li::before {
+      content: "•";
+      position: absolute;
+      left: 0.3rem;
+      color: var(--olive);
+      font-weight: bold;
+    }
+    .notes-section ul ul {
+      margin-top: 0.4rem;
+      padding-left: 0.5rem;
+    }
+    .notes-section ul ul li::before {
+      content: "◦";
+      color: var(--text-muted);
+    }
+    .notes-section h1 {
+      font-size: 2.2rem;
+      margin-bottom: 0.25rem;
+    }
+    .notes-section h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text);
+      margin: 2rem 0 0.75rem;
+    }
+    .notes-section h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin: 1.5rem 0 0.6rem;
+    }
+    /* Scratchblocks rendering */
+    pre.scratch-block {
+      background: transparent;
+      border: none;
+      padding: 0.4rem 0;
+      margin: 0.5rem 0 0.25rem;
+      overflow-x: auto;
+    }
+    pre.scratch-block code {
+      font-family: inherit;
+      font-size: 0.9rem;
+      background: none;
+      color: inherit;
+      padding: 0;
+    }
+    /* SVG output from scratchblocks */
+    .notes-section svg.scratchblocks {
+      display: block;
+      margin: 0.5rem 0;
+      max-width: 100%;
+    }
+    /* Comment text sits on a light bubble — override the global white label rule */
+    svg .sb3-comment-label {
+      fill: #575E75 !important;
+    }
+  </style>
+</head>
+<body>
+<div class="site-wrapper">
+
+  <div class="body-wrapper">
+    <div id="sidebar-mount"></div>
+
+    <main class="main-content">
+
+      <div class="notes-section">
+
+        <h1>Eventos</h1>
+        <p class="week-subtitle">Notas de clase, Semana 3</p>
+
+        <hr>
+
+        <!-- ── La última vez ───────────────────────────────────── -->
+        <h2>La última vez</h2>
+        <ul>
+          <li>La última vez, ensamblamos secuencias de instrucciones, o funciones, apilando bloques.</li>
+          <li>Usamos funciones para mover nuestros personajes, u objetos, por el escenario, dibujar, reproducir sonidos y más.</li>
+        </ul>
+
+        <hr>
+
+        <!-- ── Eventos ─────────────────────────────────────────── -->
+        <h2>Eventos</h2>
+        <ul>
+          <li>Comenzaremos con un nuevo programa con un gato, usando un bloque que ya hemos visto:
+            <pre class="scratch-block"><code class="language-scratch">decir [Hola!] durante (2) segundos
+</code></pre>
+          </li>
+          <li>Podemos hacer que nuestro gato haga esto cada vez que hagamos clic en el bloque.</li>
+          <li>Pero puede que queramos que nuestro gato haga algo en respuesta a nosotros, o a otro objeto. Agregaremos un objeto dinosaurio y lo giraremos para que nuestros dos objetos queden frente a frente:
+            <img class="notes-img" src="https://cs50.harvard.edu/scratch/notes/3/dinosaur.png" alt="Dinosaurio girado hacia la izquierda, junto al gato" width="494">
+          </li>
+          <li>También agregaremos el mismo bloque para el dinosaurio, pero ahora, si queremos que tanto el gato como el dinosaurio saluden, tendríamos que hacer clic muy rápido en el bloque de cada uno.</li>
+          <li>Con varios scripts y objetos, no podríamos hacerlo por nuestra cuenta con suficiente rapidez. Sería mejor poder hacer clic en un solo botón para iniciar nuestro proyecto y que todos nuestros scripts se ejecuten automáticamente.</li>
+          <li>Resulta que Scratch tiene un botón, con forma de bandera verde, en la parte superior izquierda del escenario, que inicia nuestro proyecto. Pero por ahora no pasa nada cuando hacemos clic en él.</li>
+          <li>Necesitaremos una nueva categoría de bloques: Eventos. Y en programación, un evento es simplemente algo que sucede en nuestro programa y a lo que nuestro código puede responder.</li>
+          <li>Así que arrastraremos un bloque de evento llamado "al presionar bandera verde" y le uniremos nuestro bloque de "decir hola":
+            <pre class="scratch-block"><code class="language-scratch">al presionar @greenFlag
+decir [Hola!] durante (2) segundos
+</code></pre>
+          </li>
+          <li>Ahora nuestro código está unido al evento de hacer clic en la bandera. Y cuando hacemos clic en la bandera verde, nuestro dinosaurio saluda.</li>
+          <li>No podemos unir nada al comienzo de este script, ya que el evento es lo que hace que el resto de nuestro código se ejecute.</li>
+          <li>Podemos seleccionar el objeto gato y hacer lo mismo, agregando un bloque "al presionar bandera verde" al comienzo de su script también. Ahora, cuando hacemos clic en la bandera verde, ambos objetos saludan.</li>
+          <li>De hecho, ahora otra persona puede ejecutar nuestro proyecto, <a href="https://scratch.mit.edu/projects/507426433/" target="_blank" rel="noopener">Al presionar bandera verde</a>, simplemente haciendo clic en la bandera verde, sin tener que saber cómo son los bloques ni en cuál hacer clic.</li>
+        </ul>
+
+        <h3>Al hacer clic en un objeto</h3>
+        <ul>
+          <li>Eliminaremos nuestro gato y dinosaurio, y agregaremos un pato para nuestro siguiente ejemplo, <a href="https://scratch.mit.edu/projects/507426938/" target="_blank" rel="noopener">Al hacer clic en el objeto</a>.</li>
+          <li>Ahora usaremos un bloque llamado "al hacer clic en este objeto", que hará que el código de abajo se ejecute cuando hagamos clic en nuestro objeto:
+            <pre class="scratch-block"><code class="language-scratch">al hacer clic en este objeto
+ir a (posición aleatoria v)
+</code></pre>
+          </li>
+          <li>Ahora, cuando hagamos clic en el pato en el escenario, irá a una posición aleatoria. También podríamos reemplazar el bloque "ir a" por un bloque "desplazar" para que se mueva de forma más suave.</li>
+          <li>Observa que, cuando hacemos clic en el objeto en el escenario, el script también se ilumina mientras se ejecuta:
+            <img class="notes-img" src="https://cs50.harvard.edu/scratch/notes/3/event.png" alt="Bloques del pato resaltados con un brillo amarillo" width="247">
+          </li>
+        </ul>
+
+        <hr>
+
+        <!-- ── Selector de fondos ──────────────────────────────── -->
+        <h2>Selector de fondos</h2>
+        <ul>
+          <li>Ahora podemos construir algo que funcione como un botón en un programa de computadora, donde algo sucede cuando se presiona ese botón, en <a href="https://scratch.mit.edu/projects/507427209/" target="_blank" rel="noopener">Selector de fondos</a>.</li>
+          <li>Agregaremos algunos fondos a nuestro proyecto y un objeto llamado Button2. Arrastraremos el botón hacia el lado izquierdo de la pantalla y agregaremos algo de texto en su disfraz:
+            <img class="notes-img" src="https://cs50.harvard.edu/scratch/notes/3/arctic_button.png" alt="Botón con el texto Arctic" width="1138">
+          </li>
+          <li>Ahora volveremos a la pestaña Código y combinaremos bloques de las categorías Eventos y Apariencia:
+            <pre class="scratch-block"><code class="language-scratch">al hacer clic en este objeto
+cambiar fondo a (Arctic v)
+</code></pre>
+          </li>
+          <li>Luego, cuando hagamos clic en este botón, el fondo cambiará.</li>
+          <li>Podemos hacer clic derecho, o mantener presionada la tecla Control y hacer clic en el objeto, y seleccionar la opción "duplicar" para hacer una copia. Renombraremos uno como "Arctic Button" y el otro como "Jungle Button". Luego, podemos cambiar el texto del disfraz del "Jungle Button" para que diga "Jungle".</li>
+          <li>Observa que la parte superior derecha del editor de código tendrá una versión ligeramente transparente del objeto actual, para que sepamos qué script estamos modificando. Cambiaremos el código para que este botón cambie el fondo a "Jungle":
+            <pre class="scratch-block"><code class="language-scratch">al hacer clic en este objeto
+cambiar fondo a (Jungle v)
+</code></pre>
+          </li>
+          <li>Arrastraremos nuestro "Jungle Button" a la izquierda, debajo del "Arctic Button", y repetiremos este proceso para un botón llamado "Underwater Button". Los bloques para ese botón serán:
+            <pre class="scratch-block"><code class="language-scratch">al hacer clic en este objeto
+cambiar fondo a (Underwater 1 v)
+</code></pre>
+          </li>
+          <li>Y apilaremos nuestros botones en el escenario así:
+            <img class="notes-img" src="https://cs50.harvard.edu/scratch/notes/3/buttons.png" alt="Botones apilados en el escenario, etiquetados Arctic, Jungle, Underwater" width="493">
+          </li>
+          <li>Ahora, quien use nuestro proyecto puede interactuar con él, cambiando el escenario a lo que prefiera.</li>
+        </ul>
+
+        <hr>
+
+        <!-- ── Batería ─────────────────────────────────────────── -->
+        <h2>Batería</h2>
+        <ul>
+          <li>Cambiaremos nuestro fondo de vuelta al fondo blanco simple y agregaremos algunos objetos nuevos.</li>
+          <li>Elegiremos algunos instrumentos, "Drum-snare", "Drums Conga" y "Drum-cymbal", y los acomodaremos en nuestro escenario para <a href="https://scratch.mit.edu/projects/507447260/" target="_blank" rel="noopener">Batería</a>.</li>
+          <li>Para cada uno de ellos, agregaremos el bloque "al hacer clic en este objeto" de la categoría Eventos, y un bloque "tocar sonido" de la categoría Sonido:
+            <pre class="scratch-block"><code class="language-scratch">al hacer clic en este objeto
+tocar sonido (tap snare v) hasta que termine
+</code></pre>
+          </li>
+          <li>Haremos esto para cada instrumento, con un sonido diferente que corresponda a cada uno.</li>
+          <li>Ahora tenemos una "batería" que podemos tocar haciendo clic en cualquiera de estos objetos.</li>
+          <li>Recuerda que un clic es un evento, y nuestro código está respondiendo a estos eventos.</li>
+        </ul>
+
+        <hr>
+
+        <!-- ── Pez nadador ─────────────────────────────────────── -->
+        <h2>Pez nadador</h2>
+        <ul>
+          <li>Eliminaremos nuestros tambores y agregaremos un pez. Usaremos el bloque "al presionar tecla" para iniciar un nuevo script para él en <a href="https://scratch.mit.edu/projects/507447918/" target="_blank" rel="noopener">Pez nadador</a>:
+            <pre class="scratch-block"><code class="language-scratch">al presionar tecla (espacio v)
+tocar sonido (bubbles v) hasta que termine
+</code></pre>
+          </li>
+          <li>Ahora, cuando presionemos la barra espaciadora en nuestro teclado, nuestro pez reproducirá un sonido.</li>
+          <li>Y podemos hacer clic en el menú desplegable para personalizar el bloque "al presionar tecla" para que responda a otras teclas. Lo cambiaremos a:
+            <pre class="scratch-block"><code class="language-scratch">al presionar tecla (flecha derecha v)
+cambiar x en (10)
+</code></pre>
+          </li>
+          <li>Usaremos un bloque de Movimiento para mover el valor x de la posición de nuestro objeto en 10 pasos cuando se presione la tecla de flecha derecha.</li>
+          <li>Haremos clic derecho, o mantendremos presionada la tecla Control y haremos clic en este script, y seleccionaremos la opción "Duplicar" para hacer una copia de estos dos bloques. Lo colocaremos en el editor de código de nuestro objeto pez y cambiaremos el nuevo script para que responda a la flecha izquierda:
+            <pre class="scratch-block"><code class="language-scratch">al presionar tecla (flecha izquierda v)
+cambiar x en (-10)
+</code></pre>
+          </li>
+          <li>Pero nuestro pez se mueve hacia atrás, así que primero agregaremos bloques para asegurarnos de que mire hacia la derecha cuando se presione la tecla de flecha derecha:
+            <pre class="scratch-block"><code class="language-scratch">al presionar tecla (flecha derecha v)
+apuntar en dirección (90)
+cambiar x en (10)
+</code></pre>
+          </li>
+          <li>Recuerda que podemos usar el dial en el panel de objetos para verificar qué número usar como valor de la dirección.</li>
+          <li>Luego, nos aseguraremos de que mire hacia la izquierda cuando se presione la tecla de flecha izquierda:
+            <pre class="scratch-block"><code class="language-scratch">al presionar tecla (flecha izquierda v)
+apuntar en dirección (-90)
+cambiar x en (-10)
+</code></pre>
+          </li>
+          <li>Nuestro pez está boca abajo al principio, así que necesitaremos fijar el estilo de rotación en "izquierda y derecha" en el panel de objetos. También podemos usar un bloque, "fijar estilo de rotación", para hacerlo por nosotros.</li>
+          <li>Repetiremos esto para que nuestro pez pueda moverse hacia arriba…
+            <pre class="scratch-block"><code class="language-scratch">al presionar tecla (flecha arriba v)
+cambiar y en (10)
+</code></pre>
+          </li>
+          <li>… y hacia abajo:
+            <pre class="scratch-block"><code class="language-scratch">al presionar tecla (flecha abajo v)
+cambiar y en (-10)
+</code></pre>
+          </li>
+          <li>Ahora tenemos la capacidad de programar objetos para que se muevan por todo el escenario, en respuesta a las teclas que se presionan.</li>
+        </ul>
+
+        <hr>
+
+        <!-- ── Cambiar el tamaño ───────────────────────────────── -->
+        <h2>Cambiar el tamaño</h2>
+        <ul>
+          <li>Agregaremos algunos scripts más para cambiar el tamaño de nuestro pez cuando se presionen números:
+            <pre class="scratch-block"><code class="language-scratch">al presionar tecla (1 v)
+fijar tamaño a (50) %
+
+al presionar tecla (2 v)
+fijar tamaño a (100) %
+
+al presionar tecla (3 v)
+fijar tamaño a (200) %
+</code></pre>
+          </li>
+          <li>Con estos, podemos mover nuestro pez por el escenario como antes, pero también cambiar qué tan grande o pequeño es presionando las teclas 1, 2 o 3.</li>
+        </ul>
+
+        <hr>
+
+        <!-- ── Volumen ─────────────────────────────────────────── -->
+        <h2>Volumen</h2>
+        <ul>
+          <li>Eliminaremos nuestro pez, cambiaremos el fondo de vuelta a un fondo blanco simple y agregaremos un nuevo objeto globo para <a href="https://scratch.mit.edu/projects/507448632/" target="_blank" rel="noopener">Globo</a>.</li>
+          <li>Probemos usar otro bloque de la categoría Eventos: "cuando el volumen sea mayor que". Puede que nuestro navegador nos pida permiso para usar el micrófono, ya que Scratch estará escuchando nuestro micrófono.</li>
+          <li>Arrastraremos este bloque y agregaremos uno para cambiar el tamaño de nuestro globo cuando el volumen que escuche Scratch sea mayor que 30:
+            <pre class="scratch-block"><code class="language-scratch">cuando [volumen v] > (30)
+cambiar tamaño en (10)
+</code></pre>
+          </li>
+          <li>Un valor de volumen de 0 es como el silencio, y 100 será muy, muy fuerte, así que podemos probar diferentes números para el nivel de volumen que queremos que Scratch escuche.</li>
+          <li>Luego, el código de abajo responderá. Ahora, cuando hagamos ruido para que nuestro micrófono lo escuche, nuestro globo se hará cada vez más grande.</li>
+        </ul>
+
+        <hr>
+
+        <!-- ── Cronómetros ─────────────────────────────────────── -->
+        <h2>Cronómetros</h2>
+        <ul>
+          <li>También podemos cambiar el valor del menú desplegable del bloque, de "volumen" a "cronómetro":
+            <pre class="scratch-block"><code class="language-scratch">cuando [cronómetro v] > (30)
+</code></pre>
+          </li>
+          <li>Resulta que, cuando iniciamos nuestro proyecto haciendo clic en la bandera, hay un cronómetro que lleva la cuenta de cuánto tiempo ha pasado.</li>
+          <li>Así que este bloque hará que se ejecute cierto código cuando el cronómetro llegue a un número en particular.</li>
+          <li>Agregaremos de nuevo nuestro gato y dinosaurio en <a href="https://scratch.mit.edu/projects/507449066/" target="_blank" rel="noopener">Cronómetro</a>, y para nuestro gato usaremos el mismo script de antes:
+            <pre class="scratch-block"><code class="language-scratch">al presionar @greenFlag
+decir [Hola!] durante (2) segundos
+</code></pre>
+          </li>
+          <li>En cuanto a nuestro dinosaurio, haremos que espere dos segundos después de que se haga clic en la bandera:
+            <pre class="scratch-block"><code class="language-scratch">cuando [cronómetro v] > (2)
+decir [Hola!] durante (2) segundos
+</code></pre>
+          </li>
+          <li>Ahora, cuando hagamos clic en la bandera verde, nuestro gato saludará primero, y nuestro dinosaurio esperará antes de devolver el saludo.</li>
+          <li>Cada vez que iniciamos nuestro proyecto haciendo clic en la bandera verde, el cronómetro se reinicia a 0 y contará los segundos hasta que nuestro proyecto se inicie o se detenga de nuevo.</li>
+        </ul>
+
+        <hr>
+
+        <!-- ── Cuando el fondo cambia ──────────────────────────── -->
+        <h2>Cuando el fondo cambia</h2>
+        <ul>
+          <li>También hay otros eventos, como este bloque:
+            <pre class="scratch-block"><code class="language-scratch">cuando el fondo cambie a ( v)
+</code></pre>
+          </li>
+          <li>Ahora, si el fondo cambia, podemos hacer que un objeto realice algunas acciones.</li>
+          <li>Al usar estos bloques de Eventos, podemos hacer que nuestros proyectos de Scratch sean interactivos y respondan a distintos eventos, como clics o pulsaciones de teclas.</li>
+        </ul>
+
+      </div>
+
+    </main>
+  </div>
+
+  <div id="footer-mount"></div>
+
+</div>
+<script>window.PAGE_DATA = { week: 2 };</script>
+<script src="js/layout.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/scratchblocks@3.6.4/build/scratchblocks.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/scratchblocks@3.6.4/build/translations-all.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    scratchblocks.renderMatching('pre.scratch-block code', {
+      style: 'scratch3',
+      languages: ['es_419'],
+      scale: 0.75
+    });
+  });
+</script>
+</body>
+</html>
