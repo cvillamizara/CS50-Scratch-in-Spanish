@@ -4,13 +4,13 @@
   const WEEKS = [
     { slug: 'semana-1.html', label: 'Semana 1: Objetos' },
     { slug: 'semana-2.html', label: 'Semana 2: Funciones' },
-    { slug: 'semana-3.html', label: 'Semana 3 — Eventos' },
-    { slug: 'semana-4.html', label: 'Semana 4 — Valores' },
-    { slug: 'semana-5.html', label: 'Semana 5 — Condiciones' },
-    { slug: 'semana-6.html', label: 'Semana 6 — Bucles' },
-    { slug: 'semana-7.html', label: 'Semana 7 — Variables' },
-    { slug: 'semana-8.html', label: 'Semana 8 — Abstracción' },
-    { slug: 'semana-9.html', label: 'Semana 9 — Construyendo desde Cero' },
+    { slug: 'semana-3.html', label: 'Semana 3: Eventos' },
+    { slug: 'semana-4.html', label: 'Semana 4: Valores' },
+    { slug: 'semana-5.html', label: 'Semana 5: Condiciones' },
+    { slug: 'semana-6.html', label: 'Semana 6: Bucles' },
+    { slug: 'semana-7.html', label: 'Semana 7: Variables' },
+    { slug: 'semana-8.html', label: 'Semana 8: Abstracción' },
+    { slug: 'semana-9.html', label: 'Semana 9: Construyendo desde Cero' },
   ];
 
   const pd = window.PAGE_DATA || {};
