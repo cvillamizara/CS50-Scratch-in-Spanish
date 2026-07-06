@@ -97,7 +97,8 @@ code {
   margin: 1.25rem 0 0.4rem;
 }
 
-.content-section p { margin-bottom: 1rem; }
+.content-section p,
+.project-section p { margin-bottom: 1rem; }
 
 .content-section ul,
 .content-section ol,
