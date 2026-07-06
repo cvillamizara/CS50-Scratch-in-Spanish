@@ -1,5 +1,7 @@
-/* ── Google Fonts ── */
-@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=Nunito:wght@600;700&family=Poppins:wght@500;600&family=Quicksand:wght@500;600&family=Lora:ital,wght@0,400;1,400&family=Inter:wght@400;500&display=swap');
+/* ── Google Fonts ──
+   One family (Nunito) across the whole site. Hierarchy is built from
+   weight and italics only, never from a second typeface. */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap');
 
 /* ── Reset & base ── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -23,21 +25,34 @@
 body {
   background: var(--bg);
   color: var(--text);
-  font-family: 'Inter', sans-serif;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 400;
   line-height: 1.75;
   min-height: 100vh;
 }
 
-/* ── Typography ── */
-h1 { font-family: 'Baloo 2', cursive; font-weight: 800; }
-h2 { font-family: 'Nunito', sans-serif; font-weight: 700; }
-h3 { font-family: 'Poppins', sans-serif; font-weight: 600; }
-h4 { font-family: 'Quicksand', sans-serif; font-weight: 600; }
-em { font-family: 'Lora', serif; font-style: italic; }
-strong { font-family: 'Lora', serif; font-weight: 400; font-style: normal; }
+/* ── Typography ──
+   Single family (Nunito). Distinction comes from weight and italics. */
+h1 { font-weight: 800; }
+h2 { font-weight: 700; }
+h3 { font-weight: 700; }
+h4 { font-weight: 600; }
+em { font-style: italic; }
+strong { font-weight: 700; }
 
 a { color: var(--purple-dark); text-decoration: none; }
 a:hover { text-decoration: underline; }
+
+/* Inline code — same font, highlighted like a chip (not monospace) */
+code {
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 0.9em;
+  background: rgba(193, 191, 255, 0.28);
+  color: var(--purple-dark);
+  padding: 0.1em 0.4em;
+  border-radius: 4px;
+}
 
 /* ── Layout shell ── */
 .site-wrapper {
@@ -142,7 +157,6 @@ a:hover { text-decoration: underline; }
   align-items: center;
   gap: 0.6rem;
   font-weight: 600;
-  font-family: 'Nunito', sans-serif;
   color: var(--text);
 }
 
@@ -174,7 +188,6 @@ a:hover { text-decoration: underline; }
 
 /* ── Week page title ── */
 .week-title {
-  font-family: 'Baloo 2', cursive;
   font-size: 2.2rem;
   font-weight: 800;
   color: var(--text);
@@ -214,9 +227,8 @@ a:hover { text-decoration: underline; }
 .recurso-body { flex: 1; }
 
 .recurso-title {
-  font-family: 'Poppins', sans-serif;
   font-size: 0.9rem;
-  font-weight: 600;
+  font-weight: 700;
   color: var(--text);
   margin-bottom: 0.5rem;
 }
@@ -263,7 +275,6 @@ a:hover { text-decoration: underline; }
   display: inline-block;
   color: var(--purple-dark);
   font-size: 0.9rem;
-  font-family: 'Nunito', sans-serif;
   font-weight: 700;
   padding: 0.5rem 0.85rem;
   border: 1.5px solid var(--lavender);
