@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Semana 5: Notas de clase | CS50 en Español</title>
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/nav.css" />
+  <style>
+    .notes-img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+      border-radius: 6px;
+      border: 1.5px solid var(--border);
+      margin: 0.9rem 0 0.5rem;
+    }
+    .notes-section { margin-bottom: 2.5rem; }
+    .notes-section hr {
+      border: none;
+      border-top: 1.5px solid var(--border);
+      margin: 2rem 0;
+    }
+    .notes-section ul {
+      list-style: none;
+      padding-left: 0;
+      margin-bottom: 0.5rem;
+    }
+    .notes-section ul li {
+      padding: 0.2rem 0 0.2rem 1.4rem;
+      position: relative;
+      margin-bottom: 0.5rem;
+    }
+    .notes-section ul li::before {
+      content: "•";
+      position: absolute;
+      left: 0.3rem;
+      color: var(--olive);
+      font-weight: bold;
+    }
+    .notes-section ul ul {
+      margin-top: 0.4rem;
+      padding-left: 0.5rem;
+    }
+    .notes-section ul ul li::before {
+      content: "◦";
+      color: var(--text-muted);
+    }
+    .notes-section h1 {
+      font-size: 2.2rem;
+      margin-bottom: 0.25rem;
+    }
+    .notes-section h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text);
+      margin: 2rem 0 0.75rem;
+    }
+    .notes-section h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin: 1.5rem 0 0.6rem;
+    }
+    /* Scratchblocks rendering */
+    pre.scratch-block {
+      background: transparent;
+      border: none;
+      padding: 0.4rem 0;
+      margin: 0.5rem 0 0.25rem;
+      overflow-x: auto;
+    }
+    pre.scratch-block code {
+      font-family: inherit;
+      font-size: 0.9rem;
+      background: none;
+      color: inherit;
+      padding: 0;
+    }
+    /* SVG output from scratchblocks */
+    .notes-section svg.scratchblocks {
+      display: block;
+      margin: 0.5rem 0;
+      max-width: 100%;
+    }
+    /* Comment text sits on a light bubble — override the global white label rule */
+    svg .sb3-comment-label {
+      fill: #575E75 !important;
+    }
+  </style>
+</head>
+<body>
+<div class="site-wrapper">
+
+  <div class="body-wrapper">
+    <div id="sidebar-mount"></div>
+
+    <main class="main-content">
+
+      <div class="notes-section">
+
+        <h1>Condiciones</h1>
+        <p class="week-subtitle">Notas de clase, Semana 5</p>
+
+        <hr>
+
+        <!-- ── La última vez ───────────────────────────────────── -->
+        <h2>La última vez</h2>
+        <ul>
+          <li>La última vez vimos los valores, piezas de información que podíamos usar en nuestros programas de Scratch.</li>
+          <li>Hoy usaremos valores para tomar decisiones haciendo preguntas y decidiendo qué hacer según las respuestas. Por ejemplo, antes de salir podríamos preguntar: "¿hace frío afuera?". Y si la respuesta es sí, quizás nos pongamos un abrigo.</li>
+        </ul>
+
+        <hr>
+
+        <!-- ── Tocar el puntero del ratón ──────────────────────── -->
+        <h2>Tocar el puntero del ratón</h2>
+        <ul>
+          <li>Comenzaremos con un script que le indica a nuestro gato que reproduzca un sonido cuando se presiona la tecla de espacio, en <a href="https://scratch.mit.edu/projects/507453025/" target="_blank" rel="noopener">Miau</a>:
+            <pre class="scratch-block"><code class="language-scratch">al presionar tecla (espacio v)
+tocar sonido (Meow v) hasta que termine
+</code></pre>
+          </li>
+          <li>En la sección de bloques de Control, tenemos un bloque llamado el bloque "si", que podemos usar, donde hay una región con forma de hexágono y otro lugar dentro para anidar bloques adicionales:
+            <pre class="scratch-block"><code class="language-scratch">si &lt;&gt; entonces
+</code></pre>
+          </li>
+          <li>El hexágono representa la pregunta que queremos hacer, que se puede responder con un "sí" o un "no", o de forma equivalente, "verdadero" o "falso".</li>
+          <li>En la sección de bloques de Sensores, vemos algunos bloques con forma de hexágono. Resulta que estas preguntas que podemos hacer se llaman <strong>expresiones booleanas</strong>, una forma de describir algo que puede ser verdadero (respondido con un "sí") o falso (respondido con un "no").</li>
+          <li>Arrastraremos la expresión booleana "¿tocando el puntero del ratón?" dentro del hexágono del bloque "si":
+            <pre class="scratch-block"><code class="language-scratch">al presionar tecla (espacio v)
+si &lt;¿tocando (puntero del ratón v)?&gt; entonces
+tocar sonido (Meow v) hasta que termine
+</code></pre>
+            <ul>
+              <li>También colocaremos nuestro bloque "tocar sonido" dentro.</li>
+              <li>Ahora, cuando presionemos la tecla de espacio en nuestro teclado, nuestro gato solo reproducirá un sonido si nuestro puntero del ratón, o el cursor en la pantalla, está tocando al objeto en el escenario.</li>
+            </ul>
+          </li>
+          <li>También podemos comprobar si nuestro objeto está tocando otro objeto en <a href="https://scratch.mit.edu/projects/507454098/" target="_blank" rel="noopener">Gato y globo</a>. Agregaremos un objeto globo y, en el menú desplegable del bloque "¿tocando el puntero del ratón?", ahora podemos cambiar el valor a:
+            <pre class="scratch-block"><code class="language-scratch">al presionar tecla (espacio v)
+si &lt;¿tocando (Balloon1 v)?&gt; entonces
+tocar sonido (Meow v) hasta que termine
+</code></pre>
+            <ul>
+              <li>Ahora, nuestro gato solo reproducirá el sonido si arrastramos el globo hacia él en el escenario.</li>
+            </ul>
+          </li>
+        </ul>
+
+        <hr>
+
+        <!-- ── Tocar un color ──────────────────────────────────── -->
+        <h2>Tocar un color</h2>
+        <ul>
+          <li>El bloque "¿tocando el color?" nos permitirá comprobar si nuestro objeto está tocando algo de un color en particular.</li>
+          <li>Conservaremos a nuestro gato y usaremos el fondo "Winter". Crearemos este script en un programa llamado <a href="https://scratch.mit.edu/projects/507454297/" target="_blank" rel="noopener">Gato y árboles</a>:
+            <pre class="scratch-block"><code class="language-scratch">al presionar tecla (flecha derecha v)
+cambiar x en (10)
+si &lt;¿tocando el color [#165e0f]?&gt; entonces
+decir [¡Encontré un árbol!] durante (2) segundos
+</code></pre>
+          </li>
+          <li>Arrastraremos cada uno de estos bloques y, para el bloque "¿tocando el color?", podemos hacer clic en el color para elegir uno con los distintos deslizadores:
+            <img class="notes-img" src="https://cs50.harvard.edu/scratch/notes/5/color_slider.png" alt="Deslizadores de color en el bloque tocando el color" width="252">
+          </li>
+          <li>Pero será difícil acertar exactamente con el color de los árboles, así que podemos hacer clic en el ícono del gotero en la parte inferior de los deslizadores de color, y usarlo para seleccionar un color en el escenario con nuestro ratón:
+            <img class="notes-img" src="https://cs50.harvard.edu/scratch/notes/5/color_selector.png" alt="Escenario con el selector de color sobre el verde de un árbol" width="486">
+          </li>
+          <li>Ahora, cuando se presione la tecla de flecha derecha, nuestro gato se moverá hacia la derecha. Cada vez que se mueve, también se pregunta si está tocando el verde. Con el tiempo, cuando llegue al árbol verde, la respuesta a esa pregunta será "sí", y dirá "¡Encontré un árbol!".</li>
+        </ul>
+
+        <hr>
+
+        <!-- ── Tamaño ──────────────────────────────────────────── -->
+        <h2>Tamaño</h2>
+        <ul>
+          <li>Fijaremos nuestro escenario en el fondo simple y traeremos de vuelta el globo. Usaremos este script para que el globo crezca en <a href="https://scratch.mit.edu/projects/507454552/" target="_blank" rel="noopener">Globo</a>:
+            <pre class="scratch-block"><code class="language-scratch">al presionar tecla (espacio v)
+cambiar tamaño en (10)
+</code></pre>
+          </li>
+          <li>Pero queremos que nuestro globo finalmente explote, y resulta que podemos usar el operador "=" para comparar dos números. Usaremos un bloque "si" y, dentro, arrastraremos estos bloques:
+            <pre class="scratch-block"><code class="language-scratch">al presionar tecla (espacio v)
+cambiar tamaño en (10)
+si &lt;(tamaño) = (200)&gt; entonces
+</code></pre>
+            <ul>
+              <li>Observa que el operador "=" tiene forma de hexágono, así que también es una expresión booleana que podemos usar, con una respuesta de "sí" o "no".</li>
+              <li>Ahora, cada vez que se presione la tecla de espacio, comprobaremos si el tamaño es igual a 200.</li>
+            </ul>
+          </li>
+          <li>Si el tamaño es 200, podemos hacer que nuestro objeto globo se esconda y reproduzca el sonido de explosión:
+            <pre class="scratch-block"><code class="language-scratch">al presionar tecla (espacio v)
+cambiar tamaño en (10)
+si &lt;(tamaño) = (200)&gt; entonces
+esconder
+tocar sonido (Pop v) hasta que termine
+</code></pre>
+            <ul>
+              <li>Ahora, cuando nuestro globo alcance un tamaño de 200, desaparecerá y reproducirá un sonido, como si hubiera explotado.</li>
+            </ul>
+          </li>
+        </ul>
+
+        <hr>
+
+        <!-- ── Si… entonces… si no ─────────────────────────────── -->
+        <h2>Si… entonces… si no</h2>
+        <ul>
+          <li>También tenemos operadores para comprobar si un número es mayor o menor que otro.</li>
+          <li>Usaremos el objeto pato en <a href="https://scratch.mit.edu/projects/507454942/" target="_blank" rel="noopener">Números</a>, y comenzaremos preguntando por un número:
+            <pre class="scratch-block"><code class="language-scratch">al presionar @greenFlag
+preguntar [Número:] y esperar
+si &lt;(respuesta) > (0)&gt; entonces
+decir [Positivo] durante (2) segundos
+</code></pre>
+            <ul>
+              <li>Luego, podemos comprobar si la respuesta a esa pregunta es mayor que 0. Si es verdadero, entonces el número será positivo, y podemos decirle al usuario que es positivo.</li>
+            </ul>
+          </li>
+          <li>Ahora podemos ejecutar cierto código cuando la respuesta a una pregunta es sí. Pero si la respuesta es no, quizás también queramos hacer algo distinto. Resulta que hay otro bloque en la sección de Control, llamado el bloque "si entonces si no":
+            <pre class="scratch-block"><code class="language-scratch">al presionar @greenFlag
+preguntar [Número:] y esperar
+si &lt;(respuesta) > (0)&gt; entonces
+decir [Positivo] durante (2) segundos
+si no
+decir [Negativo] durante (2) segundos
+</code></pre>
+            <ul>
+              <li>La nueva sección de la parte inferior, llamada "si no", incluirá otra pila de bloques para lo que queremos ejecutar cuando la respuesta a la pregunta es "no". Así que, sin importar cuál sea la respuesta, ejecutaremos una de dos pilas de bloques.</li>
+              <li>Cuando la respuesta a la pregunta es "no", tenemos un número negativo, así que nuestro pato dirá "Negativo".</li>
+            </ul>
+          </li>
+          <li>Pero ahora hay un error en nuestro programa, donde el 0 hace que nuestro pato también diga "Negativo", ya que 0 no es mayor que 0. Podemos agregar aún otro bloque "si entonces si no" dentro de la sección "si no":
+            <pre class="scratch-block"><code class="language-scratch">al presionar @greenFlag
+preguntar [Número:] y esperar
+si &lt;(respuesta) > (0)&gt; entonces
+decir [Positivo] durante (2) segundos
+si no
+si &lt;(respuesta) < (0)&gt; entonces
+decir [Negativo] durante (2) segundos
+si no
+decir [Cero] durante (2) segundos
+</code></pre>
+            <ul>
+              <li>Así que ahora, si el número no es mayor que cero, hacemos otra pregunta: si es menor que cero. Y si eso es verdadero, podemos decir "Negativo". De lo contrario, el número debe ser 0.</li>
+            </ul>
+          </li>
+        </ul>
+
+        <hr>
+
+        <!-- ── Carreras del erizo ──────────────────────────────── -->
+        <h2>Carreras del erizo</h2>
+        <ul>
+          <li>Agreguemos el erizo a nuestro escenario y construyamos un programa que nos diga qué tan rápido lo movimos a través del escenario, <a href="https://scratch.mit.edu/projects/507456004/" target="_blank" rel="noopener">Carrera del erizo 1</a>.</li>
+          <li>Comenzaremos con una pila de bloques que lleva a nuestro erizo a la izquierda del escenario:
+            <pre class="scratch-block"><code class="language-scratch">al presionar @greenFlag
+ir a x: (-150) y: (-25)
+</code></pre>
+          </li>
+          <li>Cuando se presione la tecla de flecha derecha, también queremos que nuestro erizo se mueva 10 pasos:
+            <pre class="scratch-block"><code class="language-scratch">al presionar tecla (flecha derecha v)
+mover (10) pasos
+</code></pre>
+          </li>
+          <li>Y cuando nuestro erizo llegue al borde del escenario, queremos que diga el valor del cronómetro, es decir, cuántos segundos han pasado desde que iniciamos nuestro programa:
+            <pre class="scratch-block"><code class="language-scratch">al presionar tecla (flecha derecha v)
+mover (10) pasos
+si &lt;¿tocando (borde v)?&gt; entonces
+decir (redondear (cronómetro)) durante (2) segundos
+</code></pre>
+            <ul>
+              <li>Cada vez que se presione la tecla de flecha derecha, nuestro erizo se moverá 10 pasos, pero también comprobará si está tocando el borde del escenario.</li>
+              <li>Si es así, redondearemos el valor del cronómetro, ya que no nos importa realmente el valor decimal, y solo queremos la cantidad de segundos en números enteros. Luego usaremos ese valor en nuestro bloque "decir", para que nuestro erizo lo diga una vez que llegue al borde.</li>
+            </ul>
+          </li>
+          <li>También podemos agregar más preguntas, en <a href="https://scratch.mit.edu/projects/507455734/" target="_blank" rel="noopener">Carrera del erizo 2</a>:
+            <pre class="scratch-block"><code class="language-scratch">al presionar tecla (flecha derecha v)
+mover (10) pasos
+si &lt;¿tocando (borde v)?&gt; entonces
+si &lt;(cronómetro) < (5)&gt; entonces
+decir [¡Rápido!] durante (2) segundos
+si no
+decir [¡Lento!] durante (2) segundos
+</code></pre>
+            <ul>
+              <li>Ahora tenemos un bloque que pregunta si el valor de "cronómetro" es menor que 5, y si la respuesta es sí, diremos "¡Rápido!". De lo contrario, diremos "¡Lento!".</li>
+            </ul>
+          </li>
+        </ul>
+
+        <hr>
+
+        <!-- ── Laberinto del erizo ─────────────────────────────── -->
+        <h2>Laberinto del erizo</h2>
+        <ul>
+          <li>Agregaremos el erizo a nuestro programa y construiremos un juego con un laberinto para él con <a href="https://scratch.mit.edu/projects/507456120/" target="_blank" rel="noopener">Laberinto del erizo</a>.</li>
+          <li>Haremos clic en el panel del Escenario en la parte inferior derecha, y usaremos la sección Fondos para dibujar líneas en el fondo, como un laberinto:
+            <img class="notes-img" src="https://cs50.harvard.edu/scratch/notes/5/maze.png" alt="Editor de fondos con líneas rojas" width="944">
+            <ul>
+              <li>Seleccionaremos la herramienta de línea, cambiaremos el contorno a rojo y usaremos el ratón para dibujar algunas líneas alrededor del fondo.</li>
+            </ul>
+          </li>
+          <li>Ahora, cambiaremos el tamaño de nuestro erizo a 40 y agregaremos bloques para que se mueva a la derecha cuando se presione la tecla de flecha derecha:
+            <pre class="scratch-block"><code class="language-scratch">al presionar tecla (flecha derecha v)
+cambiar x en (5)
+</code></pre>
+          </li>
+          <li>También querremos comprobar si el erizo está tocando una pared de nuestro laberinto. Así que usaremos el bloque "¿tocando el color?":
+            <pre class="scratch-block"><code class="language-scratch">al presionar tecla (flecha derecha v)
+cambiar x en (5)
+si &lt;¿tocando el color [#ff0000]?&gt; entonces
+ir a (posición aleatoria v)
+</code></pre>
+            <ul>
+              <li>Ahora, cada vez que nuestro erizo se mueva, comprobará si está tocando el color rojo. Si la respuesta es "sí", haremos que vaya a una posición aleatoria en el escenario.</li>
+            </ul>
+          </li>
+          <li>Haremos clic derecho, o mantendremos presionada la tecla Control y haremos clic en esta pila de bloques, y elegiremos la opción "Duplicar", para hacer una pila similar para la tecla de flecha izquierda:
+            <pre class="scratch-block"><code class="language-scratch">al presionar tecla (flecha izquierda v)
+cambiar x en (-5)
+si &lt;¿tocando el color [#ff0000]?&gt; entonces
+ir a (posición aleatoria v)
+</code></pre>
+            <ul>
+              <li>Observa que nos movemos a la izquierda cambiando el valor de x en menos 5.</li>
+            </ul>
+          </li>
+          <li>Repetiremos esto para las flechas hacia arriba y hacia abajo, usando los bloques "cambiar y" para movernos hacia arriba y hacia abajo:
+            <pre class="scratch-block"><code class="language-scratch">al presionar tecla (flecha arriba v)
+cambiar y en (5)
+si &lt;¿tocando el color [#ff0000]?&gt; entonces
+ir a (posición aleatoria v)
+
+al presionar tecla (flecha abajo v)
+cambiar y en (-5)
+si &lt;¿tocando el color [#ff0000]?&gt; entonces
+ir a (posición aleatoria v)
+</code></pre>
+          </li>
+          <li>Ahora podemos probarlo presionando las teclas de flecha, y cada vez que nuestro erizo toque una pared, desaparecerá y reaparecerá.</li>
+          <li>Con estos bloques de condiciones y expresiones booleanas, podemos hacer preguntas y tomar decisiones dentro de nuestro programa según las respuestas a esas preguntas.</li>
+        </ul>
+
+      </div>
+
+    </main>
+  </div>
+
+  <div id="footer-mount"></div>
+
+</div>
+<script>window.PAGE_DATA = { week: 4 };</script>
+<script src="js/layout.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/scratchblocks@3.6.4/build/scratchblocks.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/scratchblocks@3.6.4/build/translations-all.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    scratchblocks.renderMatching('pre.scratch-block code', {
+      style: 'scratch3',
+      languages: ['es_419', 'en'],
+      scale: 0.75
+    });
+  });
+</script>
+</body>
+</html>

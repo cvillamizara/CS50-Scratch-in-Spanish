@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Semana 4: Notas de clase | CS50 en Español</title>
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/nav.css" />
+  <style>
+    .notes-img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+      border-radius: 6px;
+      border: 1.5px solid var(--border);
+      margin: 0.9rem 0 0.5rem;
+    }
+    .notes-section { margin-bottom: 2.5rem; }
+    .notes-section hr {
+      border: none;
+      border-top: 1.5px solid var(--border);
+      margin: 2rem 0;
+    }
+    .notes-section ul {
+      list-style: none;
+      padding-left: 0;
+      margin-bottom: 0.5rem;
+    }
+    .notes-section ul li {
+      padding: 0.2rem 0 0.2rem 1.4rem;
+      position: relative;
+      margin-bottom: 0.5rem;
+    }
+    .notes-section ul li::before {
+      content: "•";
+      position: absolute;
+      left: 0.3rem;
+      color: var(--olive);
+      font-weight: bold;
+    }
+    .notes-section ul ul {
+      margin-top: 0.4rem;
+      padding-left: 0.5rem;
+    }
+    .notes-section ul ul li::before {
+      content: "◦";
+      color: var(--text-muted);
+    }
+    .notes-section h1 {
+      font-size: 2.2rem;
+      margin-bottom: 0.25rem;
+    }
+    .notes-section h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text);
+      margin: 2rem 0 0.75rem;
+    }
+    .notes-section h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin: 1.5rem 0 0.6rem;
+    }
+    /* Scratchblocks rendering */
+    pre.scratch-block {
+      background: transparent;
+      border: none;
+      padding: 0.4rem 0;
+      margin: 0.5rem 0 0.25rem;
+      overflow-x: auto;
+    }
+    pre.scratch-block code {
+      font-family: inherit;
+      font-size: 0.9rem;
+      background: none;
+      color: inherit;
+      padding: 0;
+    }
+    /* SVG output from scratchblocks */
+    .notes-section svg.scratchblocks {
+      display: block;
+      margin: 0.5rem 0;
+      max-width: 100%;
+    }
+    /* Comment text sits on a light bubble — override the global white label rule */
+    svg .sb3-comment-label {
+      fill: #575E75 !important;
+    }
+  </style>
+</head>
+<body>
+<div class="site-wrapper">
+
+  <div class="body-wrapper">
+    <div id="sidebar-mount"></div>
+
+    <main class="main-content">
+
+      <div class="notes-section">
+
+        <h1>Valores</h1>
+        <p class="week-subtitle">Notas de clase, Semana 4</p>
+
+        <hr>
+
+        <!-- ── La última vez ───────────────────────────────────── -->
+        <h2>La última vez</h2>
+        <ul>
+          <li>La última vez vimos los eventos, con los que nuestro código puede responder a algo que sucede, como hacer clic en la bandera verde.</li>
+          <li>Esta vez veremos más de cerca las funciones, o nuestro código, que responden a esos eventos.</li>
+        </ul>
+
+        <hr>
+
+        <!-- ── Valores ─────────────────────────────────────────── -->
+        <h2>Valores</h2>
+        <ul>
+          <li>Recuerda que algunas de nuestras funciones pueden recibir una o más entradas, o algún tipo de información, que va dentro de los óvalos:
+            <pre class="scratch-block"><code class="language-scratch">mover (10) pasos
+</code></pre>
+            <ul>
+              <li>Este bloque "mover", por ejemplo, tiene un óvalo con el valor 10, que le indica a nuestro objeto que se mueva 10 pasos.</li>
+              <li>Podemos cambiar este valor, el número en sí, por uno más grande o más pequeño.</li>
+            </ul>
+          </li>
+          <li>Con otros bloques, como el bloque "decir", también podemos usar palabras como entrada.</li>
+          <li>Resulta que Scratch tiene bloques que son en sí mismos valores, y que podemos usar. En la parte inferior de la categoría de bloques de Movimiento, vemos algunos bloques ovalados:
+            <pre class="scratch-block"><code class="language-scratch">posición en x
+posición en y
+dirección
+</code></pre>
+            <ul>
+              <li>Como no son rectangulares, no podemos apilarlos con los bloques rectangulares que hemos usado hasta ahora.</li>
+              <li>En cambio, podemos colocar estos bloques dentro de los óvalos de otros bloques, usándolos como valores para las entradas.</li>
+            </ul>
+          </li>
+        </ul>
+
+        <hr>
+
+        <!-- ── Posición ────────────────────────────────────────── -->
+        <h2>Posición</h2>
+        <ul>
+          <li>Le diremos a nuestro objeto que diga su posición en x, es decir, qué tan a la izquierda o a la derecha está del escenario, durante dos segundos:
+            <pre class="scratch-block"><code class="language-scratch">al presionar @greenFlag
+decir (posición en x) durante (2) segundos
+</code></pre>
+            <ul>
+              <li>Ahora, cuando hacemos clic en la bandera, nuestro gato dice su posición en x actual. Si movemos al gato por el escenario, veremos que dice un número diferente cuando volvemos a hacer clic en la bandera.</li>
+            </ul>
+          </li>
+          <li>Agregaremos otro bloque para poder ver la posición en x y la posición en y de nuestro gato:
+            <pre class="scratch-block"><code class="language-scratch">al presionar @greenFlag
+decir (posición en x) durante (2) segundos
+decir (posición en y) durante (2) segundos
+</code></pre>
+          </li>
+        </ul>
+
+        <hr>
+
+        <!-- ── Operadores ──────────────────────────────────────── -->
+        <h2>Operadores</h2>
+        <ul>
+          <li>Los <strong>operadores</strong> son otra categoría de bloques, y también un concepto de la programación en general. Un operador recibe valores como entrada y produce un nuevo valor.</li>
+          <li>Por ejemplo, un operador es el bloque "+":
+            <pre class="scratch-block"><code class="language-scratch">() + ()
+</code></pre>
+            <ul>
+              <li>Este operador toma dos valores, como 1 y 2, y los suma.</li>
+            </ul>
+          </li>
+          <li>Podemos verlo con:
+            <pre class="scratch-block"><code class="language-scratch">al presionar @greenFlag
+decir ((1) + (2)) durante (2) segundos
+</code></pre>
+            <ul>
+              <li>Observa que nuestro bloque operador verde "+" calculará un valor a partir de sus propias entradas, 3, y ese valor se usará a su vez como el valor del bloque "decir" de nuestro gato.</li>
+            </ul>
+          </li>
+          <li>Podemos usar otro bloque, "unir", para juntar dos palabras o caracteres:
+            <pre class="scratch-block"><code class="language-scratch">al presionar @greenFlag
+decir (unir (posición en x) (posición en y)) durante (2) segundos
+</code></pre>
+            <ul>
+              <li>Ahora podemos decir tanto la posición en x como la posición en y en el mismo bloque "decir", ya que el bloque "unir" las juntará por nosotros.</li>
+            </ul>
+          </li>
+          <li>Pero cuando hacemos clic en la bandera, las posiciones aparecen pegadas, como "-161-13".</li>
+          <li>Cambiaremos el fondo a "Xy-grid", solo para visualizar la posición de nuestro gato, y en efecto el gato está en menos 161 y menos 13. Pero queremos separar nuestros valores con una coma, para verlos más fácilmente.</li>
+          <li>Necesitaremos otro bloque "unir", donde uniremos la posición en x con la posición en y unida a una coma y un espacio:
+            <pre class="scratch-block"><code class="language-scratch">al presionar @greenFlag
+decir (unir (posición en x) (unir [, ] (posición en y))) durante (2) segundos
+</code></pre>
+            <ul>
+              <li>Así, en conjunto, estos bloques combinan la posición en x con una coma, un espacio y luego la posición en y.</li>
+            </ul>
+          </li>
+          <li>Podemos agregar aún otro bloque "unir" para formar una oración completa:
+            <pre class="scratch-block"><code class="language-scratch">al presionar @greenFlag
+decir (unir [Estoy en ] (unir (posición en x) (unir [, ] (posición en y)))) durante (2) segundos
+</code></pre>
+          </li>
+          <li>Así hemos creado el ejemplo <a href="https://scratch.mit.edu/projects/507449365/" target="_blank" rel="noopener">Posición</a>.</li>
+          <li>También podemos usar el bloque "dirección" para que nuestro gato diga hacia qué dirección está mirando.</li>
+        </ul>
+
+        <hr>
+
+        <!-- ── Moverse según el tamaño ─────────────────────────── -->
+        <h2>Moverse según el tamaño</h2>
+        <ul>
+          <li>En la parte inferior de la categoría de bloques de Apariencia, vemos algunos bloques ovalados más, lo que significa que también podemos usarlos como entradas.</li>
+          <li>Hay uno llamado "tamaño", que simplemente representa qué tan grande o pequeño es nuestro objeto.</li>
+          <li>Usemos el erizo como nuestro objeto, y usaremos bloques para que se mueva 10 pasos cada vez que se presione la tecla de flecha derecha en <a href="https://scratch.mit.edu/projects/507450683/" target="_blank" rel="noopener">Erizo que camina</a>:
+            <pre class="scratch-block"><code class="language-scratch">al presionar tecla (flecha derecha v)
+mover (10) pasos
+</code></pre>
+          </li>
+          <li>Pero si cambiamos el tamaño del erizo, queremos que se mueva más o menos cada vez, según sea más grande o más pequeño.</li>
+          <li>Arrastraremos el bloque "tamaño" como el valor:
+            <pre class="scratch-block"><code class="language-scratch">al presionar tecla (flecha derecha v)
+mover (tamaño) pasos
+</code></pre>
+            <ul>
+              <li>Pero como nuestro erizo empieza con un tamaño del 100 %, se mueve 100 pasos a la vez.</li>
+            </ul>
+          </li>
+          <li>Podemos usar el bloque "/" de la categoría de Operadores, que realiza una división. Así que lo arrastraremos, y también arrastraremos nuestro bloque "tamaño" dentro de él:
+            <pre class="scratch-block"><code class="language-scratch">al presionar tecla (flecha derecha v)
+mover ((tamaño) / (10)) pasos
+</code></pre>
+            <ul>
+              <li>Dividiremos el tamaño entre 10, de modo que con un tamaño del 100 % nuestro erizo se moverá 10 pasos, pero con un tamaño del 50 % solo se moverá 5 pasos.</li>
+            </ul>
+          </li>
+        </ul>
+
+        <hr>
+
+        <!-- ── Número al azar ──────────────────────────────────── -->
+        <h2>Número al azar</h2>
+        <ul>
+          <li>Otro bloque de la categoría de Operadores, "elegir número al azar", elegirá un número al azar por nosotros.</li>
+          <li>Lo probaremos indicándole a nuestro erizo que apunte en una dirección al azar cada vez que se hace clic en la bandera, en <a href="https://scratch.mit.edu/projects/507451010/" target="_blank" rel="noopener">Erizo que gira</a>:
+            <pre class="scratch-block"><code class="language-scratch">al presionar @greenFlag
+apuntar en dirección (elegir número al azar entre (0) y (90))
+</code></pre>
+            <ul>
+              <li>Ahora, cada vez que presionamos la bandera verde, nuestro erizo hará algo sorprendente, y no necesariamente hará lo mismo cada vez.</li>
+            </ul>
+          </li>
+        </ul>
+
+        <hr>
+
+        <!-- ── Cronómetro y redondeo ───────────────────────────── -->
+        <h2>Cronómetro y redondeo</h2>
+        <ul>
+          <li>Otro valor que vemos, en la categoría de bloques de Sensores, se llama "cronómetro". El valor de "cronómetro" será la cantidad de segundos desde que iniciamos nuestro proyecto, así que haremos que el erizo lo diga cada vez que se hace clic en él, en <a href="https://scratch.mit.edu/projects/507451281/" target="_blank" rel="noopener">Erizo con cronómetro</a>:
+            <pre class="scratch-block"><code class="language-scratch">al hacer clic en este objeto
+decir (cronómetro) durante (2) segundos
+</code></pre>
+            <ul>
+              <li>Ahora, después de hacer clic en la bandera verde, podemos hacer clic en el erizo para ver la cantidad de segundos, como 4.45 o 9.90.</li>
+            </ul>
+          </li>
+          <li>No queremos ver la cantidad de segundos con tanto detalle, así que buscaremos el bloque "redondear" en la categoría de Operadores. El bloque "redondear" toma un número como entrada y lo redondea a un número entero.</li>
+          <li>Así que podemos arrastrar nuestro bloque "cronómetro" dentro de un bloque "redondear", y ahora nuestro erizo dirá una cantidad entera de segundos:
+            <pre class="scratch-block"><code class="language-scratch">al hacer clic en este objeto
+decir (redondear (cronómetro)) durante (2) segundos
+</code></pre>
+          </li>
+        </ul>
+
+        <hr>
+
+        <!-- ── Sensores ────────────────────────────────────────── -->
+        <h2>Sensores</h2>
+        <ul>
+          <li>En la sección de Sensores, vemos otro bloque, "preguntar ¿cómo te llamas? y esperar". El óvalo indica una entrada para el bloque de función y, en este caso, "¿Cómo te llamas?" le indica al bloque que use eso como la pregunta.</li>
+          <li>Resulta que este bloque también tiene una salida, o valor de retorno, que aparece después de ejecutarlo.</li>
+          <li>Vemos que, debajo de este bloque, hay un bloque ovalado "respuesta" que será el valor de lo que sea que el usuario escriba como respuesta a esta pregunta:
+            <img class="notes-img" src="https://cs50.harvard.edu/scratch/notes/4/sensing.png" alt="Bloque preguntar y bloque respuesta en la categoría de Sensores" width="318">
+          </li>
+          <li>Veámoslo construyendo un programa llamado <a href="https://scratch.mit.edu/projects/507451522/" target="_blank" rel="noopener">Hola</a>:
+            <pre class="scratch-block"><code class="language-scratch">al presionar @greenFlag
+preguntar [¿Cómo te llamas?] y esperar
+decir (respuesta) durante (2) segundos
+</code></pre>
+            <ul>
+              <li>Ahora, cuando ejecutamos nuestro programa, nuestro gato hará la pregunta y esperará a que escribamos una respuesta antes de continuar:
+                <img class="notes-img" src="https://cs50.harvard.edu/scratch/notes/4/ask_and_wait.png" alt="Gato preguntando cómo te llamas con un cuadro de texto en el escenario" width="491">
+              </li>
+            </ul>
+          </li>
+          <li>Podemos hacer que nuestro gato sea un poco más amable con el bloque "unir":
+            <pre class="scratch-block"><code class="language-scratch">al presionar @greenFlag
+preguntar [¿Cómo te llamas?] y esperar
+decir (unir [Hola, ] (respuesta)) durante (2) segundos
+</code></pre>
+          </li>
+          <li>Cambiemos la pregunta a "<a href="https://scratch.mit.edu/projects/507451753/" target="_blank" rel="noopener">¿Cuántos pasos?</a>":
+            <pre class="scratch-block"><code class="language-scratch">al presionar @greenFlag
+preguntar [¿Cuántos pasos?] y esperar
+mover (respuesta) pasos
+</code></pre>
+            <ul>
+              <li>También usaremos un bloque "mover" y, dentro de él, usaremos el bloque "respuesta" como entrada. Así, nuestro gato se moverá la cantidad de pasos que escribamos como respuesta a la pregunta.</li>
+            </ul>
+          </li>
+          <li>También podemos indicarle a nuestro gato que vaya a una posición específica, preguntando por el valor de x y el valor de y en <a href="https://scratch.mit.edu/projects/507451963/" target="_blank" rel="noopener">¿A dónde ir?</a>:
+            <pre class="scratch-block"><code class="language-scratch">al presionar @greenFlag
+preguntar [Elige x] y esperar
+fijar x a (respuesta)
+preguntar [Elige y] y esperar
+fijar y a (respuesta)
+</code></pre>
+            <ul>
+              <li>Observa que podemos hacer varias preguntas, y el bloque "respuesta" tendrá el valor de lo que hayamos escrito para la pregunta más reciente.</li>
+            </ul>
+          </li>
+        </ul>
+
+        <hr>
+
+        <!-- ── Cambiar disfraces ───────────────────────────────── -->
+        <h2>Cambiar disfraces</h2>
+        <ul>
+          <li>Quitaremos a nuestro gato por ahora y agregaremos de nuevo al oso. Podemos renombrar sus disfraces en la pestaña Disfraces:
+            <img class="notes-img" src="https://cs50.harvard.edu/scratch/notes/4/renamed_costume.png" alt="Pestaña Disfraces del oso con disfraces llamados 4 y 2" width="344">
+            <ul>
+              <li>Llamaremos "4" al disfraz con el oso sobre sus cuatro patas, y "2" al otro disfraz sobre dos patas.</li>
+            </ul>
+          </li>
+          <li>Ahora podemos construir un programa, <a href="https://scratch.mit.edu/projects/507452267/" target="_blank" rel="noopener">¿Cuántas patas?</a>, que nos pregunta qué disfraz usar:
+            <pre class="scratch-block"><code class="language-scratch">al presionar @greenFlag
+preguntar [¿Cuántas patas?] y esperar
+cambiar disfraz a (respuesta)
+</code></pre>
+            <ul>
+              <li>Resulta que el bloque "cambiar disfraz a" también puede recibir un bloque ovalado como entrada, así que ahora nuestra respuesta se usará como el valor del nombre del disfraz al que cambiará nuestro oso.</li>
+            </ul>
+          </li>
+        </ul>
+
+        <hr>
+
+        <!-- ── Cambiar fondos ──────────────────────────────────── -->
+        <h2>Cambiar fondos</h2>
+        <ul>
+          <li>Podemos probar esto con los fondos. Agregaremos "Colorful City" y "Night City" como nuestros fondos y, al hacer clic en el panel del Escenario en la parte inferior derecha, podemos abrir la pestaña Fondos para renombrarlos:
+            <img class="notes-img" src="https://cs50.harvard.edu/scratch/notes/4/backdrops.png" alt="Pestaña Fondos con los fondos renombrados a día y noche" width="1434">
+            <ul>
+              <li>Llamaremos "día" al fondo con la ciudad de día, y "noche" al fondo de noche.</li>
+            </ul>
+          </li>
+          <li>En <a href="https://scratch.mit.edu/projects/507452523/" target="_blank" rel="noopener">¿Qué hora?</a>, crearemos el script del oso:
+            <pre class="scratch-block"><code class="language-scratch">al presionar @greenFlag
+preguntar [¿Qué hora?] y esperar
+cambiar fondo a (respuesta)
+</code></pre>
+            <ul>
+              <li>Ahora, cuando respondemos con "día" o "noche", el fondo cambiará.</li>
+            </ul>
+          </li>
+          <li>Con estos bloques, que permiten al usuario responder preguntas y que nuestro código use sus respuestas como entradas para las funciones, podemos darle al usuario aún más control y hacer que nuestro proyecto sea mucho más interesante.</li>
+        </ul>
+
+      </div>
+
+    </main>
+  </div>
+
+  <div id="footer-mount"></div>
+
+</div>
+<script>window.PAGE_DATA = { week: 3 };</script>
+<script src="js/layout.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/scratchblocks@3.6.4/build/scratchblocks.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/scratchblocks@3.6.4/build/translations-all.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    scratchblocks.renderMatching('pre.scratch-block code', {
+      style: 'scratch3',
+      languages: ['es_419', 'en'],
+      scale: 0.75
+    });
+  });
+</script>
+</body>
+</html>

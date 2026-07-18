@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Semana 9: Notas de clase | CS50 en Español</title>
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/nav.css" />
+  <style>
+    .notes-img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+      border-radius: 6px;
+      border: 1.5px solid var(--border);
+      margin: 0.9rem 0 0.5rem;
+    }
+    .notes-section { margin-bottom: 2.5rem; }
+    .notes-section hr {
+      border: none;
+      border-top: 1.5px solid var(--border);
+      margin: 2rem 0;
+    }
+    .notes-section ul {
+      list-style: none;
+      padding-left: 0;
+      margin-bottom: 0.5rem;
+    }
+    .notes-section ul li {
+      padding: 0.2rem 0 0.2rem 1.4rem;
+      position: relative;
+      margin-bottom: 0.5rem;
+    }
+    .notes-section ul li::before {
+      content: "•";
+      position: absolute;
+      left: 0.3rem;
+      color: var(--olive);
+      font-weight: bold;
+    }
+    .notes-section ul ul {
+      margin-top: 0.4rem;
+      padding-left: 0.5rem;
+    }
+    .notes-section ul ul li::before {
+      content: "◦";
+      color: var(--text-muted);
+    }
+    .notes-section h1 {
+      font-size: 2.2rem;
+      margin-bottom: 0.25rem;
+    }
+    .notes-section h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text);
+      margin: 2rem 0 0.75rem;
+    }
+    .notes-section h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin: 1.5rem 0 0.6rem;
+    }
+    /* Scratchblocks rendering */
+    pre.scratch-block {
+      background: transparent;
+      border: none;
+      padding: 0.4rem 0;
+      margin: 0.5rem 0 0.25rem;
+      overflow-x: auto;
+    }
+    pre.scratch-block code {
+      font-family: inherit;
+      font-size: 0.9rem;
+      background: none;
+      color: inherit;
+      padding: 0;
+    }
+    /* SVG output from scratchblocks */
+    .notes-section svg.scratchblocks {
+      display: block;
+      margin: 0.5rem 0;
+      max-width: 100%;
+    }
+    /* Comment text sits on a light bubble — override the global white label rule */
+    svg .sb3-comment-label {
+      fill: #575E75 !important;
+    }
+  </style>
+</head>
+<body>
+<div class="site-wrapper">
+
+  <div class="body-wrapper">
+    <div id="sidebar-mount"></div>
+
+    <main class="main-content">
+
+      <div class="notes-section">
+
+        <h1>Construyendo desde Cero</h1>
+        <p class="week-subtitle">Notas de clase, Semana 9</p>
+
+        <hr>
+
+        <!-- ── Mensajes ────────────────────────────────────────── -->
+        <h2>Mensajes</h2>
+        <ul>
+          <li>Una función útil de Scratch permitirá que nuestros objetos se comuniquen entre sí.</li>
+          <li>Agregaremos nuestros objetos gato y dinosaurio, y giraremos el dinosaurio para que quede frente al gato.</li>
+          <li>Ahora, haremos que el gato salude al dinosaurio:
+            <pre class="scratch-block"><code class="language-scratch">al presionar @greenFlag
+decir [¡Hola, dinosaurio!] durante (2) segundos
+</code></pre>
+          </li>
+          <li>También haremos que nuestro dinosaurio devuelva el saludo, pero debe esperar dos segundos:
+            <pre class="scratch-block"><code class="language-scratch">al presionar @greenFlag
+esperar (2) segundos
+decir [¡Hola, gato!] durante (2) segundos
+</code></pre>
+          </li>
+          <li>Pero ahora, si queremos que el gato salude durante solo un segundo, tenemos que acordarnos de cambiar cuánto espera el dinosaurio. Y esto se volverá más complejo a medida que tengamos más interacciones, o incluso más objetos en el escenario.</li>
+          <li>Resulta que nuestro objeto gato puede usar los <strong>mensajes</strong>, o la capacidad de enviar un mensaje o señal. Y nuestro objeto dinosaurio puede responder cuando recibe ese mensaje.</li>
+          <li>En la categoría de bloques de Eventos, usaremos el bloque "enviar". Usaremos el menú desplegable para elegir "Nuevo mensaje", y simplemente lo llamaremos "saludar":
+            <pre class="scratch-block"><code class="language-scratch">enviar (saludar v)
+</code></pre>
+          </li>
+          <li>Cambiaremos el script de nuestro gato para usar ese bloque y enviar un mensaje cuando termine:
+            <pre class="scratch-block"><code class="language-scratch">al presionar @greenFlag
+decir [¡Hola, dinosaurio!] durante (2) segundos
+enviar (saludar v)
+</code></pre>
+          </li>
+          <li>Y para nuestro dinosaurio, podemos usar el bloque "al recibir":
+            <pre class="scratch-block"><code class="language-scratch">al recibir (saludar v)
+decir [¡Hola, gato!] durante (2) segundos
+</code></pre>
+            <ul>
+              <li>Ahora, nuestro dinosaurio siempre responderá cuando nuestro gato termine de saludar.</li>
+            </ul>
+          </li>
+        </ul>
+
+        <hr>
+
+        <!-- ── Controla al pato ────────────────────────────────── -->
+        <h2>Controla al pato</h2>
+        <ul>
+          <li>Agreguemos un pato a nuestro escenario para <a href="https://scratch.mit.edu/projects/507464954/" target="_blank" rel="noopener">Controla al pato</a>.</li>
+          <li>Podemos usar las teclas de flecha para controlarlo, pero agreguemos dos objetos de flecha al escenario, y giremos uno para que apunte hacia arriba, y el otro para que apunte hacia abajo:
+            <img class="notes-img" src="https://cs50.harvard.edu/scratch/notes/9/arrows.png" alt="Escenario con flechas y un pato" width="486">
+          </li>
+          <li>Para la flecha que apunta hacia arriba, le indicaremos que envíe un mensaje "arriba" cada vez que se haga clic en ella:
+            <pre class="scratch-block"><code class="language-scratch">al hacer clic en este objeto
+enviar (arriba v)
+</code></pre>
+          </li>
+          <li>Y para la flecha que apunta hacia abajo, enviaremos otro mensaje, "abajo":
+            <pre class="scratch-block"><code class="language-scratch">al hacer clic en este objeto
+enviar (abajo v)
+</code></pre>
+          </li>
+          <li>Para nuestro pato, le indicaremos que se mueva hacia arriba o hacia abajo según el mensaje que reciba:
+            <pre class="scratch-block"><code class="language-scratch">al recibir (arriba v)
+cambiar y en (10)
+
+al recibir (abajo v)
+cambiar y en (-10)
+</code></pre>
+          </li>
+          <li>Ahora, cada uno de los objetos de flecha enviará un mensaje cuando se haga clic en ellos, y nuestro pato se moverá cuando reciba un mensaje.</li>
+        </ul>
+
+        <hr>
+
+        <!-- ── El pez visitante ────────────────────────────────── -->
+        <h2>El pez visitante</h2>
+        <ul>
+          <li>El escenario también puede enviar mensajes, como veremos en <a href="https://scratch.mit.edu/projects/507465389/" target="_blank" rel="noopener">El pez visitante</a>.</li>
+          <li>Cambiaremos nuestro fondo a "Underwater 1", y agregaremos un objeto pez.</li>
+          <li>Ahora, podemos hacer clic en el fondo en la parte inferior derecha y, en la pestaña Código, agregar el bloque "al hacer clic en el escenario" de la sección de Eventos:
+            <pre class="scratch-block"><code class="language-scratch">al hacer clic en el escenario
+enviar (visitar v)
+</code></pre>
+            <ul>
+              <li>Luego, enviaremos un mensaje nuevo que llamaremos "visitar".</li>
+            </ul>
+          </li>
+          <li>Le indicaremos a nuestro pez que vaya hacia el puntero del ratón cuando reciba el mensaje "visitar":
+            <pre class="scratch-block"><code class="language-scratch">al recibir (visitar v)
+apuntar hacia (puntero del ratón v)
+desplazar en (1) segs a (puntero del ratón v)
+</code></pre>
+            <ul>
+              <li>Ahora, después de hacer clic en la bandera, podemos hacer clic en cualquier parte del escenario y nuestro pez se moverá hacia allí.</li>
+            </ul>
+          </li>
+        </ul>
+
+        <hr>
+
+        <!-- ── Estrellas ───────────────────────────────────────── -->
+        <h2>Estrellas</h2>
+        <ul>
+          <li>Veamos cómo podríamos clonar, o copiar, un objeto con <a href="https://scratch.mit.edu/projects/507465575/" target="_blank" rel="noopener">Estrellas</a>.</li>
+          <li>Con nuestro fondo blanco simple y un objeto estrella, agregaremos los siguientes bloques:
+            <pre class="scratch-block"><code class="language-scratch">al hacer clic en este objeto
+crear clon de (mí mismo v)
+
+al comenzar como clon
+desplazar en (1) segs a (posición aleatoria v)
+</code></pre>
+            <ul>
+              <li>Los bloques "crear clon" y "al comenzar como clon" están en la sección de bloques de Control.</li>
+              <li>Ahora, cada vez que se haga clic en nuestra estrella, hará una copia de sí misma. Luego, la copia ejecutará el script que esté bajo "al comenzar como clon", moviéndose a una posición aleatoria en el escenario.</li>
+            </ul>
+          </li>
+        </ul>
+
+        <hr>
+
+        <!-- ── Atrapa cristales ────────────────────────────────── -->
+        <h2>Atrapa cristales</h2>
+        <ul>
+          <li>Quitemos nuestras estrellas, y construyamos un juego completamente terminado con <a href="https://scratch.mit.edu/projects/507465773/" target="_blank" rel="noopener">Atrapa cristales</a>.</li>
+          <li>Comenzaremos usando nuestro gato, e intentaremos construir un juego en el que atrapamos el objeto "Crystal". En última instancia, querremos que los cristales caigan del cielo, y que el gato los atrape antes de que lleguen al suelo.</li>
+          <li>Primero, agregaremos bloques para que nuestro gato se mueva a la izquierda y a la derecha con las teclas de flecha:
+            <pre class="scratch-block"><code class="language-scratch">al presionar tecla (flecha izquierda v)
+cambiar x en (-10)
+
+al presionar tecla (flecha derecha v)
+cambiar x en (10)
+</code></pre>
+          </li>
+          <li>Luego, querremos que nuestro gato comience en el centro del escenario cuando se haga clic en la bandera verde:
+            <pre class="scratch-block"><code class="language-scratch">al presionar @greenFlag
+ir a x: (0) y: (-125)
+decir (¡Atrapa los cristales antes de que toquen el suelo!) durante (4) segundos
+enviar (comenzar v)
+</code></pre>
+            <ul>
+              <li>También diremos algunas instrucciones para nuestro usuario.</li>
+              <li>Deberíamos esconder el cristal antes de que empiece el juego, y luego hacer clones de sí mismo, ya que querremos que aparezcan muchos cristales. Antes de eso, necesitaremos que nuestro gato envíe un mensaje, "comenzar".</li>
+            </ul>
+          </li>
+          <li>Ahora podemos indicarle a nuestro cristal que se esconda al principio, y que haga clones de sí mismo cuando el juego haya comenzado:
+            <pre class="scratch-block"><code class="language-scratch">al presionar @greenFlag
+esconder
+
+al recibir (comenzar v)
+crear clon de (mí mismo v)
+</code></pre>
+          </li>
+          <li>Luego, cuando el cristal comience como clon, debería mostrarse:
+            <pre class="scratch-block"><code class="language-scratch">al comenzar como clon
+mostrar
+ir a x: (0) y: (160)
+por siempre
+cambiar y en (-2)
+</code></pre>
+            <ul>
+              <li>Después de que aparezca nuestro cristal, comenzará en el centro superior del escenario, y se moverá hacia abajo una y otra vez en un bucle "por siempre".</li>
+            </ul>
+          </li>
+          <li>Observa que estamos construyendo nuestro juego un componente a la vez, y siempre podemos iniciar nuestro programa para asegurarnos de que todo lo que hemos hecho está funcionando hasta ahora.</li>
+          <li>A continuación, nuestro cristal necesitará comprobar si está tocando al gato:
+            <pre class="scratch-block"><code class="language-scratch">al comenzar como clon
+mostrar
+ir a x: (0) y: (160)
+por siempre
+cambiar y en (-2)
+si &lt;¿tocando (Cat v)?&gt; entonces
+</code></pre>
+          </li>
+          <li>Crearemos una nueva variable llamada "atrapadas" para representar el puntaje, y la reiniciaremos en el script de nuestro gato, ya que ahí también hacemos otros reinicios:
+            <pre class="scratch-block"><code class="language-scratch">al presionar @greenFlag
+ir a x: (0) y: (-125)
+fijar [atrapadas v] a (0)
+decir (¡Atrapa los cristales antes de que toquen el suelo!) durante (4) segundos
+enviar (comenzar v)
+</code></pre>
+          </li>
+          <li>Ahora podemos volver al script de nuestro cristal, y agregar bloques para lo que necesitamos hacer cuando toca a nuestro gato:
+            <pre class="scratch-block"><code class="language-scratch">al comenzar como clon
+mostrar
+ir a x: (0) y: (160)
+por siempre
+cambiar y en (-2)
+si &lt;¿tocando (Cat v)?&gt; entonces
+cambiar [atrapadas v] en (1)
+crear clon de (mí mismo v)
+eliminar este clon
+</code></pre>
+            <ul>
+              <li>Necesitaremos aumentar nuestra variable "atrapadas" en 1, para llevar la cuenta de nuestro puntaje.</li>
+              <li>Luego, necesitamos crear un nuevo cristal, y hacer que nuestro cristal original se elimine a sí mismo.</li>
+              <li>El nuevo cristal comenzará en la parte superior de la pantalla, ya que es un clon nuevo.</li>
+            </ul>
+          </li>
+          <li>Cambiemos el valor de x de la posición del cristal por algo aleatorio, para que nuestro juego tenga algo de imprevisibilidad. El extremo izquierdo y el extremo derecho del escenario serán números grandes, así que usaremos menos 200 y 200:
+            <pre class="scratch-block"><code class="language-scratch">al comenzar como clon
+mostrar
+ir a x: (elegir número al azar entre (-200) y (200)) y: (160)
+</code></pre>
+            <ul>
+              <li>Ahora, nuestros cristales aparecerán en lugares diferentes cada vez.</li>
+            </ul>
+          </li>
+          <li>Si no atrapamos el cristal, quizás queramos contar la cantidad de fallos que ha habido hasta ahora.</li>
+          <li>Crearemos una nueva variable llamada "fallos", que llevará la cuenta de la cantidad de veces que nuestro gato no ha atrapado el cristal. También reiniciaremos esta en 0 cada vez que empiece el juego:
+            <pre class="scratch-block"><code class="language-scratch">al presionar @greenFlag
+ir a x: (0) y: (-125)
+fijar [atrapadas v] a (0)
+fijar [fallos v] a (0)
+decir (¡Atrapa los cristales antes de que toquen el suelo!) durante (4) segundos
+enviar (comenzar v)
+</code></pre>
+          </li>
+          <li>Ahora, podemos indicarle a nuestro cristal que compruebe si está tocando el suelo (o el borde):
+            <pre class="scratch-block"><code class="language-scratch">al comenzar como clon
+mostrar
+ir a x: (0) y: (160)
+por siempre
+cambiar y en (-2)
+si &lt;¿tocando (Cat v)?&gt; entonces
+cambiar [atrapadas v] en (1)
+crear clon de (mí mismo v)
+eliminar este clon
+end
+si &lt;¿tocando (borde v)?&gt; entonces
+cambiar [fallos v] en (1)
+crear clon de (mí mismo v)
+eliminar este clon
+end
+</code></pre>
+            <ul>
+              <li>Si nuestro cristal llega al borde, aumentaremos el valor de "fallos", y luego crearemos un nuevo clon, y eliminaremos este clon.</li>
+            </ul>
+          </li>
+          <li>Quizás queramos un límite en la cantidad de fallos que podemos tener, así que podemos poner una condición para comprobar eso:
+            <pre class="scratch-block"><code class="language-scratch">si &lt;¿tocando (borde v)?&gt; entonces
+cambiar [fallos v] en (1)
+si &lt;(fallos) = (3)&gt; entonces
+enviar (fin del juego v)
+eliminar este clon
+end
+crear clon de (mí mismo v)
+eliminar este clon
+end
+</code></pre>
+            <ul>
+              <li>Después de fallar, comprobaremos si el número es tres. Si es así, enviaremos un mensaje para nuestro gato, y luego eliminaremos este clon.</li>
+            </ul>
+          </li>
+          <li>Por último, en el script de nuestro gato, podemos decir nuestro puntaje cuando recibamos ese mensaje:
+            <pre class="scratch-block"><code class="language-scratch">al recibir (fin del juego v)
+decir (unir (Tu puntaje es ) (atrapadas)) durante (5) segundos
+</code></pre>
+          </li>
+          <li>Podemos probar esto, y ver que nuestro programa funciona como queríamos. Podemos crear más cristales a la vez, haciendo que nuestro cristal se clone una y otra vez:
+            <pre class="scratch-block"><code class="language-scratch">al recibir (comenzar v)
+por siempre
+crear clon de (mí mismo v)
+esperar (15) segundos
+</code></pre>
+            <ul>
+              <li>Ahora, cada 15 segundos, se creará un nuevo cristal.</li>
+            </ul>
+          </li>
+          <li>Pero vemos que, cuando el juego termina, se seguirán creando nuevos cristales. Así que necesitaremos que nuestro gato detenga todo en nuestro programa:
+            <pre class="scratch-block"><code class="language-scratch">al recibir (fin del juego v)
+decir (unir (Tu puntaje es ) (atrapadas)) durante (5) segundos
+detener [todos v]
+</code></pre>
+          </li>
+          <li>Con estos ejemplos, esperamos que puedas ver cómo todos estos componentes, herramientas y conceptos pueden usarse para construir proyectos interesantes y emocionantes en Scratch.</li>
+          <li>Te animamos a crear algo propio, y a compartirlo con tus amigos, tu familia y con nosotros. ¡Gracias por acompañarnos en Introducción a la Programación con Scratch!</li>
+        </ul>
+
+      </div>
+
+    </main>
+  </div>
+
+  <div id="footer-mount"></div>
+
+</div>
+<script>window.PAGE_DATA = { week: 8 };</script>
+<script src="js/layout.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/scratchblocks@3.6.4/build/scratchblocks.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/scratchblocks@3.6.4/build/translations-all.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    scratchblocks.renderMatching('pre.scratch-block code', {
+      style: 'scratch3',
+      languages: ['es_419', 'en'],
+      scale: 0.75
+    });
+  });
+</script>
+</body>
+</html>

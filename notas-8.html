@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Semana 8: Notas de clase | CS50 en Español</title>
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/nav.css" />
+  <style>
+    .notes-img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+      border-radius: 6px;
+      border: 1.5px solid var(--border);
+      margin: 0.9rem 0 0.5rem;
+    }
+    .notes-section { margin-bottom: 2.5rem; }
+    .notes-section hr {
+      border: none;
+      border-top: 1.5px solid var(--border);
+      margin: 2rem 0;
+    }
+    .notes-section ul {
+      list-style: none;
+      padding-left: 0;
+      margin-bottom: 0.5rem;
+    }
+    .notes-section ul li {
+      padding: 0.2rem 0 0.2rem 1.4rem;
+      position: relative;
+      margin-bottom: 0.5rem;
+    }
+    .notes-section ul li::before {
+      content: "•";
+      position: absolute;
+      left: 0.3rem;
+      color: var(--olive);
+      font-weight: bold;
+    }
+    .notes-section ul ul {
+      margin-top: 0.4rem;
+      padding-left: 0.5rem;
+    }
+    .notes-section ul ul li::before {
+      content: "◦";
+      color: var(--text-muted);
+    }
+    .notes-section h1 {
+      font-size: 2.2rem;
+      margin-bottom: 0.25rem;
+    }
+    .notes-section h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text);
+      margin: 2rem 0 0.75rem;
+    }
+    .notes-section h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin: 1.5rem 0 0.6rem;
+    }
+    /* Scratchblocks rendering */
+    pre.scratch-block {
+      background: transparent;
+      border: none;
+      padding: 0.4rem 0;
+      margin: 0.5rem 0 0.25rem;
+      overflow-x: auto;
+    }
+    pre.scratch-block code {
+      font-family: inherit;
+      font-size: 0.9rem;
+      background: none;
+      color: inherit;
+      padding: 0;
+    }
+    /* SVG output from scratchblocks */
+    .notes-section svg.scratchblocks {
+      display: block;
+      margin: 0.5rem 0;
+      max-width: 100%;
+    }
+    /* Comment text sits on a light bubble — override the global white label rule */
+    svg .sb3-comment-label {
+      fill: #575E75 !important;
+    }
+  </style>
+</head>
+<body>
+<div class="site-wrapper">
+
+  <div class="body-wrapper">
+    <div id="sidebar-mount"></div>
+
+    <main class="main-content">
+
+      <div class="notes-section">
+
+        <h1>Abstracción</h1>
+        <p class="week-subtitle">Notas de clase, Semana 8</p>
+
+        <hr>
+
+        <!-- ── Introducción ────────────────────────────────────── -->
+        <ul>
+          <li>Hasta ahora, hemos visto muchas funciones de Scratch, con bloques que nos permiten agregar bucles, variables y condiciones a nuestros proyectos.</li>
+          <li>Ahora, pensemos en cómo podríamos mejorar la manera en que hemos diseñado los bloques dentro de nuestros proyectos de Scratch.</li>
+        </ul>
+
+        <hr>
+
+        <!-- ── Juego del dinosaurio ────────────────────────────── -->
+        <h2>Juego del dinosaurio</h2>
+        <ul>
+          <li>Comencemos agregando un objeto dinosaurio para empezar a construir nuestro ejemplo <a href="https://scratch.mit.edu/projects/507462509/" target="_blank" rel="noopener">Juego del dinosaurio</a>.</li>
+          <li>Agregaremos bloques para que pueda moverse cuando se presionan las teclas de flecha:
+            <pre class="scratch-block"><code class="language-scratch">al presionar tecla (flecha arriba v)
+cambiar y en (10)
+
+al presionar tecla (flecha abajo v)
+cambiar y en (-10)
+
+al presionar tecla (flecha derecha v)
+cambiar x en (10)
+
+al presionar tecla (flecha izquierda v)
+cambiar x en (-10)
+</code></pre>
+          </li>
+          <li>Agregaremos otro objeto, la estrella, y podemos decir que hemos ganado el juego cuando nuestro dinosaurio toca la estrella.</li>
+          <li>Indiquémosle a nuestro dinosaurio que compruebe si está tocando la estrella después de habernos movido hacia arriba:
+            <pre class="scratch-block"><code class="language-scratch">al presionar tecla (flecha arriba v)
+cambiar y en (10)
+si &lt;¿tocando (Star v)?&gt; entonces
+decir (cronómetro) durante (2) segundos
+</code></pre>
+            <ul>
+              <li>Recuerda que el bloque "si" está en la sección de Control, y el bloque "¿tocando?" está en la sección de Sensores.</li>
+              <li>También agregaremos un bloque "decir" junto con la variable "cronómetro", para que nuestro dinosaurio pueda decirnos cuánto tardó en encontrar la estrella.</li>
+            </ul>
+          </li>
+          <li>Pero esto no funciona si llegamos a la estrella después de haber presionado la flecha derecha para alcanzarla.</li>
+          <li>Queremos que nuestro dinosaurio compruebe si hemos alcanzado la estrella sin importar qué tecla usamos, así que necesitamos hacer clic derecho, o mantener presionada la tecla Control y hacer clic en el bloque "si", y elegir "Duplicar" para hacer una copia para cada tecla:
+            <pre class="scratch-block"><code class="language-scratch">al presionar tecla (flecha arriba v)
+cambiar y en (10)
+si &lt;¿tocando (Star v)?&gt; entonces
+decir (cronómetro) durante (2) segundos
+
+al presionar tecla (flecha abajo v)
+cambiar y en (-10)
+si &lt;¿tocando (Star v)?&gt; entonces
+decir (cronómetro) durante (2) segundos
+
+al presionar tecla (flecha derecha v)
+cambiar x en (10)
+si &lt;¿tocando (Star v)?&gt; entonces
+decir (cronómetro) durante (2) segundos
+
+al presionar tecla (flecha izquierda v)
+cambiar x en (-10)
+si &lt;¿tocando (Star v)?&gt; entonces
+decir (cronómetro) durante (2) segundos
+</code></pre>
+          </li>
+          <li>También agregaremos algo de código a nuestra estrella para que se mueva a una posición aleatoria cada vez que se inicia el programa:
+            <pre class="scratch-block"><code class="language-scratch">al presionar @greenFlag
+ir a (posición aleatoria v)
+</code></pre>
+          </li>
+          <li>Ahora, podemos usar las teclas de flecha para mover nuestro dinosaurio hacia la estrella, y cada vez nos dirá cuánto tardamos.</li>
+          <li>Parece que el tiempo se muestra con decimales, como 9.70. Así que podemos redondear este tiempo al número de segundos más cercano, con el bloque "redondear" en la sección de Operadores.</li>
+          <li>Pero ahora tendríamos que arrastrar el bloque "redondear" a los scripts de cada una de las cuatro direcciones.</li>
+          <li>Cuando estamos copiando mucho código en nuestros proyectos, a menudo es señal de que hay una mejor solución.</li>
+          <li>En este caso, resulta que podemos crear un bloque propio, y referirnos a él cada vez que lo necesitemos.</li>
+          <li>Miraremos en la sección de bloques llamada "Mis bloques", y haremos clic en "Crear un bloque" para hacer un bloque nuevo. Lo llamaremos "verificar victoria", ya que eso es lo que intentamos hacer. Luego, veremos aparecer este bloque:
+            <pre class="scratch-block"><code class="language-scratch">definir verificar victoria
+</code></pre>
+            <ul>
+              <li>Ahora, podemos agregar bloques debajo, que se ejecutarán cada vez que usemos el bloque "verificar victoria".</li>
+            </ul>
+          </li>
+          <li>Así que tomaremos la condición y el bloque "decir", y los moveremos allí:
+            <pre class="scratch-block"><code class="language-scratch">definir verificar victoria
+si &lt;¿tocando (Star v)?&gt; entonces
+decir (cronómetro) durante (2) segundos
+</code></pre>
+          </li>
+          <li>Y para nuestros otros scripts, arrastraremos nuestro propio bloque "verificar victoria":
+            <pre class="scratch-block"><code class="language-scratch">al presionar tecla (flecha arriba v)
+cambiar y en (10)
+verificar victoria
+
+al presionar tecla (flecha abajo v)
+cambiar y en (-10)
+verificar victoria
+
+al presionar tecla (flecha derecha v)
+cambiar x en (10)
+verificar victoria
+
+al presionar tecla (flecha izquierda v)
+cambiar x en (-10)
+verificar victoria
+</code></pre>
+            <ul>
+              <li>Ahora, estamos usando menos bloques para lograr el mismo efecto.</li>
+            </ul>
+          </li>
+          <li>Si quisiéramos redondear el valor del cronómetro, ahora podemos cambiarlo en un solo lugar, en lugar de en cuatro:
+            <pre class="scratch-block"><code class="language-scratch">definir verificar victoria
+si &lt;¿tocando (Star v)?&gt; entonces
+decir (redondear (cronómetro)) durante (2) segundos
+</code></pre>
+          </li>
+          <li>La capacidad de crear nuestros propios bloques nos permitirá mejorar el diseño general y la legibilidad de nuestros proyectos.</li>
+        </ul>
+
+        <hr>
+
+        <!-- ── Globo ───────────────────────────────────────────── -->
+        <h2>Globo</h2>
+        <ul>
+          <li>Agreguemos un objeto globo para <a href="https://scratch.mit.edu/projects/507463302/" target="_blank" rel="noopener">Globo 1</a>, y agreguemos bloques para que se infle y se desinfle:
+            <pre class="scratch-block"><code class="language-scratch">al presionar @greenFlag
+fijar tamaño a (50) %
+repetir (10)
+cambiar tamaño en (10)
+end
+esperar (1) segundos
+repetir (10)
+cambiar tamaño en (-10)
+end
+</code></pre>
+            <ul>
+              <li>Nuestro globo comenzará con un tamaño del 50 %, aumentará su tamaño en 10 diez veces, esperará un segundo, y luego disminuirá su tamaño en 10 (cambiándolo en menos 10) diez veces.</li>
+            </ul>
+          </li>
+          <li>Pero este código requeriría que otra persona pensara en lo que hacen los números y los bucles, para entender qué sucederá. Podemos hacer que nuestro código sea más fácil de leer agregando más bloques.</li>
+          <li>Podemos crear un bloque nuevo llamado "inflar", que aumentará el tamaño de nuestro globo en 10 diez veces:
+            <pre class="scratch-block"><code class="language-scratch">definir inflar
+repetir (10)
+cambiar tamaño en (10)
+end
+</code></pre>
+          </li>
+          <li>Y crearemos otro bloque llamado "desinflar", que disminuirá el tamaño de nuestro globo:
+            <pre class="scratch-block"><code class="language-scratch">definir desinflar
+repetir (10)
+cambiar tamaño en (-10)
+end
+</code></pre>
+          </li>
+          <li>Para el script principal, usaremos nuestros bloques nuevos:
+            <pre class="scratch-block"><code class="language-scratch">al presionar @greenFlag
+fijar tamaño a (50) %
+inflar
+esperar (1) segundos
+desinflar
+</code></pre>
+            <ul>
+              <li>Ten en cuenta que nuestro programa hace exactamente lo mismo, pero el script bajo "al presionar bandera" es más fácil de leer.</li>
+            </ul>
+          </li>
+          <li>Podemos llamar a estos bloques personalizados <strong>abstracciones</strong>, es decir, tomar ideas o acciones más complejas y darles un nombre al que podemos referirnos y usar una y otra vez.</li>
+          <li>Podemos darnos aún más control en <a href="https://scratch.mit.edu/projects/507463768/" target="_blank" rel="noopener">Globo 2</a>. Hagamos clic derecho, o mantengamos presionada la tecla Control y hagamos clic en el bloque "inflar" que tenemos, y elijamos "Editar". Luego, haremos clic en "Agregar una entrada" para darle a este bloque la capacidad de aceptar alguna entrada, y la llamaremos "n":
+            <img class="notes-img" src="https://cs50.harvard.edu/scratch/notes/8/block_input.png" alt="Crear un bloque con inflar y n como entrada" width="717">
+            <ul>
+              <li>"n" será el nombre de la entrada y, como será algún número, podemos usar "n" por convención.</li>
+            </ul>
+          </li>
+          <li>También haremos clic en "Agregar una etiqueta", y la cambiaremos para que diga "veces", de modo que nuestro bloque se verá así:
+            <img class="notes-img" src="https://cs50.harvard.edu/scratch/notes/8/inflate_n_times.png" alt="Bloque con inflar n veces" width="272">
+            <ul>
+              <li>La etiqueta nos permite agregar más palabras para describir lo que hará el bloque.</li>
+            </ul>
+          </li>
+          <li>Observa que nuestro bloque "definir" para "inflar" mostrará una "n" en un óvalo que podemos usar en nuestro bloque de abajo, así que lo arrastraremos dentro del bloque "repetir":
+            <pre class="scratch-block"><code class="language-scratch">definir inflar (n) veces
+repetir (n)
+cambiar tamaño en (10)
+</code></pre>
+            <ul>
+              <li>Ahora, "inflar" aumentará el tamaño del globo en 10 "n" veces.</li>
+            </ul>
+          </li>
+          <li>Haremos esto también con "desinflar". Luego, en nuestro script para "al presionar bandera", necesitaremos escribir un número en cada uno de nuestros bloques personalizados:
+            <pre class="scratch-block"><code class="language-scratch">al presionar @greenFlag
+fijar tamaño a (50) %
+inflar () veces
+esperar (1) segundos
+desinflar () veces
+</code></pre>
+            <ul>
+              <li>Podemos escribir 10 para que el globo se infle 10 veces, o podemos cambiar eso a 20, o cualquier otro valor.</li>
+            </ul>
+          </li>
+          <li>Al darles a nuestras funciones la capacidad de recibir entradas, podemos hacerlas más flexibles.</li>
+        </ul>
+
+        <hr>
+
+        <!-- ── Oso que camina ──────────────────────────────────── -->
+        <h2>Oso que camina</h2>
+        <ul>
+          <li>Veamos una función que puede recibir múltiples entradas en <a href="https://scratch.mit.edu/projects/507464163/" target="_blank" rel="noopener">Oso que camina</a>.</li>
+          <li>Agregaremos nuestro objeto oso, y renombraremos los disfraces: "4" para el oso sobre cuatro patas, y "2" para el disfraz del oso sobre dos patas.</li>
+          <li>Creemos un bloque nuevo llamado "caminar", y démosle una entrada llamada "m". Agregaremos una etiqueta "pasos en", y luego otra entrada, "n". Por último, agregaremos otra etiqueta, "patas":
+            <img class="notes-img" src="https://cs50.harvard.edu/scratch/notes/8/walk_m_steps.png" alt="Bloque etiquetado caminar m pasos en n patas" width="349">
+            <ul>
+              <li>Podríamos llamar a las entradas como quisiéramos, pero usaremos "m" y "n".</li>
+            </ul>
+          </li>
+          <li>Lo que queremos que haga este bloque es que nuestro oso camine "m" pasos sobre "n" patas, así que lo definiremos como:
+            <pre class="scratch-block"><code class="language-scratch">definir caminar (m) pasos en (n) patas
+cambiar disfraz a (n)
+repetir (m)
+mover (1) pasos
+</code></pre>
+            <ul>
+              <li>Primero cambiaremos nuestro disfraz a "n", y luego moveremos 1 paso "m" veces.</li>
+            </ul>
+          </li>
+          <li>Ahora, en nuestro script principal, podemos indicarle a nuestro oso que camine cualquier cantidad de pasos, sobre dos o cuatro patas:
+            <pre class="scratch-block"><code class="language-scratch">al presionar @greenFlag
+caminar (30) pasos en (4) patas
+caminar (30) pasos en (2) patas
+</code></pre>
+            <ul>
+              <li>Observa que es más fácil entender qué hará nuestro oso cuando se hace clic en la bandera. Y nos hemos ahorrado tener que repetir varios bloques una y otra vez.</li>
+            </ul>
+          </li>
+          <li>Con nuestros propios bloques personalizados, podemos definir comportamientos complejos que podemos reutilizar y mantener nuestro proyecto mejor organizado.</li>
+        </ul>
+
+      </div>
+
+    </main>
+  </div>
+
+  <div id="footer-mount"></div>
+
+</div>
+<script>window.PAGE_DATA = { week: 7 };</script>
+<script src="js/layout.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/scratchblocks@3.6.4/build/scratchblocks.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/scratchblocks@3.6.4/build/translations-all.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    scratchblocks.renderMatching('pre.scratch-block code', {
+      style: 'scratch3',
+      languages: ['es_419', 'en'],
+      scale: 0.75
+    });
+  });
+</script>
+</body>
+</html>

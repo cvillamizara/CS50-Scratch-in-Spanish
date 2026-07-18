@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Semana 7: Notas de clase | CS50 en Español</title>
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/nav.css" />
+  <style>
+    .notes-img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+      border-radius: 6px;
+      border: 1.5px solid var(--border);
+      margin: 0.9rem 0 0.5rem;
+    }
+    .notes-section { margin-bottom: 2.5rem; }
+    .notes-section hr {
+      border: none;
+      border-top: 1.5px solid var(--border);
+      margin: 2rem 0;
+    }
+    .notes-section ul {
+      list-style: none;
+      padding-left: 0;
+      margin-bottom: 0.5rem;
+    }
+    .notes-section ul li {
+      padding: 0.2rem 0 0.2rem 1.4rem;
+      position: relative;
+      margin-bottom: 0.5rem;
+    }
+    .notes-section ul li::before {
+      content: "•";
+      position: absolute;
+      left: 0.3rem;
+      color: var(--olive);
+      font-weight: bold;
+    }
+    .notes-section ul ul {
+      margin-top: 0.4rem;
+      padding-left: 0.5rem;
+    }
+    .notes-section ul ul li::before {
+      content: "◦";
+      color: var(--text-muted);
+    }
+    .notes-section h1 {
+      font-size: 2.2rem;
+      margin-bottom: 0.25rem;
+    }
+    .notes-section h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text);
+      margin: 2rem 0 0.75rem;
+    }
+    .notes-section h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin: 1.5rem 0 0.6rem;
+    }
+    /* Scratchblocks rendering */
+    pre.scratch-block {
+      background: transparent;
+      border: none;
+      padding: 0.4rem 0;
+      margin: 0.5rem 0 0.25rem;
+      overflow-x: auto;
+    }
+    pre.scratch-block code {
+      font-family: inherit;
+      font-size: 0.9rem;
+      background: none;
+      color: inherit;
+      padding: 0;
+    }
+    /* SVG output from scratchblocks */
+    .notes-section svg.scratchblocks {
+      display: block;
+      margin: 0.5rem 0;
+      max-width: 100%;
+    }
+    /* Comment text sits on a light bubble — override the global white label rule */
+    svg .sb3-comment-label {
+      fill: #575E75 !important;
+    }
+  </style>
+</head>
+<body>
+<div class="site-wrapper">
+
+  <div class="body-wrapper">
+    <div id="sidebar-mount"></div>
+
+    <main class="main-content">
+
+      <div class="notes-section">
+
+        <h1>Variables</h1>
+        <p class="week-subtitle">Notas de clase, Semana 7</p>
+
+        <hr>
+
+        <!-- ── Introducción ────────────────────────────────────── -->
+        <ul>
+          <li>Hasta ahora, hemos usado valores que son piezas de información en nuestro programa que podemos usar para tomar decisiones o como entrada para las funciones.</li>
+          <li>Cuando estos valores se almacenan en nuestro programa para poder usarlos más adelante, se les puede llamar <strong>variables</strong>.</li>
+        </ul>
+
+        <hr>
+
+        <!-- ── Gato que cuenta ─────────────────────────────────── -->
+        <h2>Gato que cuenta</h2>
+        <ul>
+          <li>Construyamos el ejemplo <a href="https://scratch.mit.edu/projects/507459074/" target="_blank" rel="noopener">Gato que cuenta</a>.</li>
+          <li>Miraremos en la sección de bloques de Variables, y veremos este botón que dice "Crear una variable":
+            <img class="notes-img" src="https://cs50.harvard.edu/scratch/notes/7/make_a_variable.png" alt="Botón Crear una variable" width="316">
+            <ul>
+              <li>Cuando hacemos clic en él, se nos pide el nombre de la variable, así que escribiremos "contador", ya que queremos usarla para almacenar una cuenta.</li>
+              <li>También podemos decidir si esta variable está disponible para que todos los objetos la usen o la cambien, lo que a menudo se llama <strong>variable global</strong>. O podríamos hacer que esta variable esté disponible solo para este objeto, lo que también se llama <strong>variable local</strong>. Elegiremos "Para todos los objetos" para esta variable "contador".</li>
+            </ul>
+          </li>
+          <li>Ahora, vemos un bloque ovalado "contador" disponible, con una casilla de verificación a su izquierda. La casilla le indicará a Scratch que muestre el valor, o lo que está almacenado dentro de nuestra variable, en la parte superior izquierda del escenario. Podemos desmarcarla para que el valor quede oculto en el escenario.</li>
+          <li>Podemos agregar bloques para que nuestro gato cuente la cantidad de veces que se hace clic en él:
+            <pre class="scratch-block"><code class="language-scratch">al hacer clic en este objeto
+cambiar [contador v] en (1)
+decir (contador) durante (1) segundos
+</code></pre>
+            <ul>
+              <li>El bloque "cambiar" aumentará el valor de la variable "contador" en 1.</li>
+              <li>Luego, nuestro gato dirá el valor de la variable.</li>
+            </ul>
+          </li>
+          <li>Podemos agregar otro objeto, "Button2", que será un botón que podemos usar para devolver la cuenta a 0. Usaremos la pestaña Disfraces para agregar texto a nuestro botón, de modo que diga "Reiniciar":
+            <img class="notes-img" src="https://cs50.harvard.edu/scratch/notes/7/reset_button.png" alt="Disfraz del botón con el texto Reiniciar en negro" width="930">
+          </li>
+          <li>Agregaremos estos bloques para el botón de reinicio:
+            <pre class="scratch-block"><code class="language-scratch">al hacer clic en este objeto
+fijar [contador v] a (0)
+</code></pre>
+            <ul>
+              <li>Ahora, cuando se presione este botón, el valor 0 se colocará dentro de la variable "contador", reemplazando lo que hubiera antes.</li>
+            </ul>
+          </li>
+        </ul>
+
+        <hr>
+
+        <!-- ── Atrapa la estrella ──────────────────────────────── -->
+        <h2>Atrapa la estrella</h2>
+        <ul>
+          <li>Ahora podemos hacer un juego con el erizo que lleve la cuenta de nuestro puntaje, <a href="https://scratch.mit.edu/projects/507459780/" target="_blank" rel="noopener">Atrapa la estrella</a>.</li>
+          <li>Eliminaremos nuestros objetos, haremos clic derecho, o mantendremos presionada la tecla Control y haremos clic en la variable "contador", y elegiremos la opción "Eliminar" para quitarla también.</li>
+          <li>Agregaremos nuestro erizo y le indicaremos que apunte y se mueva hacia el puntero del ratón:
+            <pre class="scratch-block"><code class="language-scratch">al presionar @greenFlag
+por siempre
+apuntar hacia (puntero del ratón v)
+mover (5) pasos
+</code></pre>
+          </li>
+          <li>Agregaremos otro objeto, la estrella, y haremos que aumente nuestro puntaje en uno cada vez que el erizo la toque. También haremos que vaya a una posición aleatoria después de ser tocada:
+            <pre class="scratch-block"><code class="language-scratch">al presionar @greenFlag
+por siempre
+si &lt;¿tocando (Hedgehog v)?&gt; entonces
+cambiar [puntaje v] en (1)
+ir a (posición aleatoria v)
+</code></pre>
+            <ul>
+              <li>Primero, necesitamos crear una nueva variable, y la llamaremos "puntaje".</li>
+              <li>Haremos que la estrella compruebe constantemente si está tocando al erizo con un bucle "por siempre", y cada vez que lo esté, aumentaremos el puntaje en 1.</li>
+              <li>Finalmente, le indicaremos a nuestra estrella que vaya a una posición aleatoria después.</li>
+            </ul>
+          </li>
+          <li>Ahora tenemos un juego en el que podemos intentar recolectar estrellas con nuestro erizo.</li>
+          <li>Cuando el programa comienza, probablemente queramos devolver nuestro puntaje a 0. Haremos eso con el erizo:
+            <pre class="scratch-block"><code class="language-scratch">al presionar @greenFlag
+fijar [puntaje v] a (0)
+por siempre
+apuntar hacia (puntero del ratón v)
+mover (5) pasos
+</code></pre>
+            <ul>
+              <li>Observa que queremos nuestro bloque "fijar" fuera del bucle "por siempre". De esta forma, solo se fija en 0 una vez, y la estrella podrá cambiarlo después.</li>
+            </ul>
+          </li>
+          <li>También podemos hacer que nuestro programa cambie el fondo y se detenga cuando tengamos cierta cantidad de puntos.</li>
+          <li>Primero, haremos clic en el panel del Escenario en la parte inferior derecha, e iremos a la pestaña Fondos. Luego haremos clic en el botón con el signo más en la parte inferior izquierda, y elegiremos "Pintar" para crear nuestro propio fondo:
+            <img class="notes-img" src="https://cs50.harvard.edu/scratch/notes/7/paint_backdrop.png" alt="Botón Pintar en la pestaña Fondos" width="368">
+          </li>
+          <li>Agregaremos un rectángulo verde que cubra el fondo, y algo de texto que diga "¡Ganaste!". Cambiaremos el nombre del fondo a "Ganar".</li>
+          <li>Ahora, queremos asegurarnos de que el fondo comience con el fondo blanco simple, "fondo1", así que lo agregaremos a nuestro erizo:
+            <pre class="scratch-block"><code class="language-scratch">al presionar @greenFlag
+fijar [puntaje v] a (0)
+cambiar fondo a (fondo1 v)
+por siempre
+apuntar hacia (puntero del ratón v)
+mover (5) pasos
+</code></pre>
+          </li>
+          <li>Luego, en los bloques de código de nuestra estrella, queremos cambiar el fondo y detener nuestro programa una vez que hayamos alcanzado un puntaje de 10:
+            <pre class="scratch-block"><code class="language-scratch">al presionar @greenFlag
+por siempre
+si &lt;¿tocando (Hedgehog v)?&gt; entonces
+cambiar [puntaje v] en (1)
+si &lt;(puntaje) = (10)&gt; entonces
+cambiar fondo a (Ganar v)
+detener [todos v]
+end
+ir a (posición aleatoria v)
+</code></pre>
+            <ul>
+              <li>Después de cambiar el puntaje, queremos agregar una condición que compruebe el valor de "puntaje". Si es igual a 10, entonces cambiaremos el fondo. También usaremos el bloque "detener", en la sección de Control, que detendrá todo en nuestro programa.</li>
+              <li>Recuerda que podemos obtener el bloque "=" en la sección de Operadores, y el bloque "puntaje" en la sección de Variables.</li>
+            </ul>
+          </li>
+        </ul>
+
+        <hr>
+
+        <!-- ── Pelota que rebota ───────────────────────────────── -->
+        <h2>Pelota que rebota</h2>
+        <ul>
+          <li>Eliminaremos estos objetos y elegiremos otro fondo, "Blue Sky", para nuestro siguiente ejemplo, <a href="https://scratch.mit.edu/projects/507460802/" target="_blank" rel="noopener">Pelota que rebota</a>.</li>
+          <li>Agregaremos el objeto pelota y le indicaremos que empiece a caer, o a moverse hacia abajo, hasta que llegue al suelo:
+            <pre class="scratch-block"><code class="language-scratch">al presionar @greenFlag
+por siempre
+cambiar y en (-5)
+si &lt;¿tocando el color [#663600]?&gt; entonces
+detener [todos v]
+</code></pre>
+            <ul>
+              <li>Cambiaremos la posición en y en menos 5, lo que hace que nuestra pelota se mueva hacia abajo.</li>
+              <li>Luego, detendremos nuestro programa si la pelota está tocando el color marrón del suelo del fondo. Haremos clic en el color y luego en el gotero para seleccionar el color marrón.</li>
+              <li>Ahora, cuando hagamos clic en la bandera, nuestra pelota cae. Podemos arrastrar la pelota de vuelta a la parte superior del escenario e intentarlo otra vez.</li>
+            </ul>
+          </li>
+          <li>Pero esta caída no es muy realista. Una pelota real empieza cayendo despacio al principio, y luego cada vez más rápido.</li>
+          <li>Hagamos que nuestra pelota se mueva una cantidad variable de pasos cada vez. Crearemos una nueva variable llamada "velocidad", ya que almacenará la velocidad de caída, y podemos hacer que esta variable esté disponible "solo para este objeto", ya que ningún otro objeto necesita usarla.
+            <ul>
+              <li>Ahora, en la parte superior izquierda de nuestro escenario, vemos que la variable aparece como "Ball: velocidad", indicándonos a qué objeto pertenece.</li>
+            </ul>
+          </li>
+          <li>Para el código de nuestra pelota, aumentaremos el valor de la variable "velocidad" a medida que cae:
+            <pre class="scratch-block"><code class="language-scratch">al presionar @greenFlag
+fijar [velocidad v] a (0)
+por siempre
+cambiar y en (velocidad)
+cambiar [velocidad v] en (-1)
+si &lt;¿tocando el color [#663600]?&gt; entonces
+detener [todos v]
+</code></pre>
+            <ul>
+              <li>Primero, fijaremos "velocidad" en 0. Luego, cambiaremos la posición en y de nuestra pelota según ese valor, que al principio será 0.</li>
+              <li>Después, cambiaremos el valor de "velocidad" en menos 1, lo que lo hace más negativo, de modo que nuestra pelota se mueve hacia abajo por el escenario más rápidamente.</li>
+              <li>Nuestro bucle "por siempre" se ejecutará una y otra vez, hasta que el bloque "detener todos" le indique a nuestro programa que se detenga.</li>
+            </ul>
+          </li>
+          <li>También podemos hacer que nuestra pelota se mueva hacia arriba después de tocar el suelo:
+            <pre class="scratch-block"><code class="language-scratch">al presionar @greenFlag
+fijar [velocidad v] a (0)
+por siempre
+cambiar y en (velocidad)
+cambiar [velocidad v] en (-1)
+si &lt;¿tocando el color [#663600]?&gt; entonces
+fijar [velocidad v] a ((velocidad) * (-1))
+</code></pre>
+            <ul>
+              <li>Podemos cambiar el valor de nuestra variable "velocidad" de un número negativo a un número positivo multiplicándolo por menos 1. Luego, nuestra pelota empezará a moverse hacia arriba en el escenario, pero la variable "velocidad" disminuirá en 1 cada vez otra vez.</li>
+              <li>Con el tiempo, la "velocidad" de nuestra pelota será 0, y luego negativa, y entonces empezará a moverse hacia abajo por el escenario de nuevo.</li>
+            </ul>
+          </li>
+          <li>También podemos hacer que nuestra pelota pierda un poco de velocidad cada vez que rebota:
+            <pre class="scratch-block"><code class="language-scratch">si &lt;¿tocando el color [#663600]?&gt; entonces
+fijar [velocidad v] a (((velocidad) * (-1)) - (2))
+</code></pre>
+            <ul>
+              <li>Cuando la velocidad cambia de negativa a positiva, también podemos restarle 2, de modo que la nueva velocidad siempre sea un poco menor que antes.</li>
+              <li>Con el tiempo, querremos que la pelota deje de moverse, así que necesitaremos agregar algo más de código para eso.</li>
+            </ul>
+          </li>
+          <li>Con las variables, podemos aproximar la velocidad de una pelota que rebota, para que su movimiento sea más realista.</li>
+        </ul>
+
+        <hr>
+
+        <!-- ── Globo ───────────────────────────────────────────── -->
+        <h2>Globo</h2>
+        <ul>
+          <li>Veamos un ejemplo en el que el usuario puede controlar el tamaño de un globo en <a href="https://scratch.mit.edu/projects/507461727/editor/" target="_blank" rel="noopener">Globo</a>.</li>
+          <li>Tenemos un objeto globo, y crearemos una nueva variable llamada "aire". En el escenario, podemos hacer clic derecho, o mantener presionada la tecla Control y hacer clic en la variable, y cambiar cómo se ve su indicador:
+            <img class="notes-img" src="https://cs50.harvard.edu/scratch/notes/7/readout.png" alt="Variable con indicador normal, indicador grande y deslizador" width="289">
+            <ul>
+              <li>Podemos elegir mostrar un indicador grande, pero por ahora elegiremos el deslizador.</li>
+            </ul>
+          </li>
+          <li>Ahora, el usuario puede mover el deslizador para cambiar el valor de la variable. Podemos hacer clic derecho, o mantener presionada la tecla Control y hacer clic en el deslizador, y elegir "cambiar el rango del deslizador" para que haya un valor mínimo y uno máximo. Para esto, fijaremos el valor mínimo en 100 y el máximo en 200, ya que el tamaño debería estar entre esos dos valores.</li>
+          <li>Agregaremos bloques de código a nuestro objeto globo que le indiquen que cambie su tamaño:
+            <pre class="scratch-block"><code class="language-scratch">al presionar @greenFlag
+por siempre
+fijar tamaño a (aire) %
+</code></pre>
+            <ul>
+              <li>Ahora, después de hacer clic en la bandera verde, nuestro globo fijará su tamaño en el valor de la variable "aire", una y otra vez, incluso mientras cambiamos el valor con el deslizador en el escenario.</li>
+            </ul>
+          </li>
+          <li>Con estas ideas, podemos permitir que el usuario controle una variable directamente para interactuar con nuestro proyecto u objetos.</li>
+        </ul>
+
+        <hr>
+
+        <!-- ── Espiral ─────────────────────────────────────────── -->
+        <h2>Espiral</h2>
+        <ul>
+          <li>Veamos un ejemplo con la extensión Lápiz, <a href="https://scratch.mit.edu/projects/507462011/editor/" target="_blank" rel="noopener">Espiral</a>.</li>
+          <li>Haremos que nuestro gato se mueva en círculo:
+            <pre class="scratch-block"><code class="language-scratch">al presionar @greenFlag
+ir a x: (0) y: (0)
+apuntar en dirección (90)
+por siempre
+mover (10) pasos
+girar @turnRight (15) grados
+</code></pre>
+            <ul>
+              <li>Comenzaremos en el centro de la pantalla mirando a la derecha, y nos moveremos y giraremos para lograr el efecto de moverse en círculo.</li>
+            </ul>
+          </li>
+          <li>Agregaremos la extensión Lápiz usando el botón azul en la parte inferior izquierda de la interfaz. Luego borraremos todo, y bajaremos el lápiz para empezar a dibujar:
+            <pre class="scratch-block"><code class="language-scratch">al presionar @greenFlag
+ir a x: (0) y: (0)
+apuntar en dirección (90)
+borrar todo
+bajar lápiz
+por siempre
+mover (10) pasos
+girar @turnRight (15) grados
+esperar (0.05) segundos
+</code></pre>
+            <ul>
+              <li>También haremos que nuestro gato espere solo una fracción de segundo entre cada paso, para que podamos ver cómo dibuja un círculo.</li>
+            </ul>
+          </li>
+          <li>Ahora, creemos una nueva variable llamada "pasos". La fijaremos en 0 al principio, y le indicaremos a nuestro gato que se mueva según el valor de la variable:
+            <pre class="scratch-block"><code class="language-scratch">al presionar @greenFlag
+ir a x: (0) y: (0)
+apuntar en dirección (90)
+borrar todo
+bajar lápiz
+fijar [pasos v] a (0)
+por siempre
+mover (pasos) pasos
+cambiar [pasos v] en (0.5)
+girar @turnRight (15) grados
+esperar (0.05) segundos
+</code></pre>
+            <ul>
+              <li>Observa que también estamos aumentando un poco el valor de la variable "pasos", en 0.5, cada vez que nos movemos. Así que cada vez que nos movemos, avanzamos un poco más. Y esto resulta parecerse a una espiral.</li>
+            </ul>
+          </li>
+          <li>Con bucles, variables y el lápiz, podemos dibujar arte interesante en nuestros programas.</li>
+          <li>En términos más generales, con las variables podemos llevar registro de la información en nuestros programas y cambiarla o usarla más adelante, para crear juegos, animaciones e historias aún más poderosos que antes.</li>
+        </ul>
+
+      </div>
+
+    </main>
+  </div>
+
+  <div id="footer-mount"></div>
+
+</div>
+<script>window.PAGE_DATA = { week: 6 };</script>
+<script src="js/layout.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/scratchblocks@3.6.4/build/scratchblocks.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/scratchblocks@3.6.4/build/translations-all.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    scratchblocks.renderMatching('pre.scratch-block code', {
+      style: 'scratch3',
+      languages: ['es_419', 'en'],
+      scale: 0.75
+    });
+  });
+</script>
+</body>
+</html>

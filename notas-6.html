@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Semana 6: Notas de clase | CS50 en Español</title>
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/nav.css" />
+  <style>
+    .notes-img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+      border-radius: 6px;
+      border: 1.5px solid var(--border);
+      margin: 0.9rem 0 0.5rem;
+    }
+    .notes-section { margin-bottom: 2.5rem; }
+    .notes-section hr {
+      border: none;
+      border-top: 1.5px solid var(--border);
+      margin: 2rem 0;
+    }
+    .notes-section ul {
+      list-style: none;
+      padding-left: 0;
+      margin-bottom: 0.5rem;
+    }
+    .notes-section ul li {
+      padding: 0.2rem 0 0.2rem 1.4rem;
+      position: relative;
+      margin-bottom: 0.5rem;
+    }
+    .notes-section ul li::before {
+      content: "•";
+      position: absolute;
+      left: 0.3rem;
+      color: var(--olive);
+      font-weight: bold;
+    }
+    .notes-section ul ul {
+      margin-top: 0.4rem;
+      padding-left: 0.5rem;
+    }
+    .notes-section ul ul li::before {
+      content: "◦";
+      color: var(--text-muted);
+    }
+    .notes-section h1 {
+      font-size: 2.2rem;
+      margin-bottom: 0.25rem;
+    }
+    .notes-section h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text);
+      margin: 2rem 0 0.75rem;
+    }
+    .notes-section h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin: 1.5rem 0 0.6rem;
+    }
+    /* Scratchblocks rendering */
+    pre.scratch-block {
+      background: transparent;
+      border: none;
+      padding: 0.4rem 0;
+      margin: 0.5rem 0 0.25rem;
+      overflow-x: auto;
+    }
+    pre.scratch-block code {
+      font-family: inherit;
+      font-size: 0.9rem;
+      background: none;
+      color: inherit;
+      padding: 0;
+    }
+    /* SVG output from scratchblocks */
+    .notes-section svg.scratchblocks {
+      display: block;
+      margin: 0.5rem 0;
+      max-width: 100%;
+    }
+    /* Comment text sits on a light bubble — override the global white label rule */
+    svg .sb3-comment-label {
+      fill: #575E75 !important;
+    }
+  </style>
+</head>
+<body>
+<div class="site-wrapper">
+
+  <div class="body-wrapper">
+    <div id="sidebar-mount"></div>
+
+    <main class="main-content">
+
+      <div class="notes-section">
+
+        <h1>Bucles</h1>
+        <p class="week-subtitle">Notas de clase, Semana 6</p>
+
+        <hr>
+
+        <!-- ── La última vez ───────────────────────────────────── -->
+        <h2>La última vez</h2>
+        <ul>
+          <li>La última vez combinamos bloques que eran funciones, valores y condiciones para que nuestros programas de Scratch hicieran preguntas y luego tomaran decisiones según las respuestas a esas preguntas.</li>
+          <li>Pero cada vez que ejecutábamos nuestro código, ya sea presionando la bandera verde, presionando una tecla o haciendo clic, cada script solo podía ejecutarse una vez, de arriba abajo.</li>
+        </ul>
+
+        <hr>
+
+        <!-- ── Gato que camina ─────────────────────────────────── -->
+        <h2>Gato que camina</h2>
+        <ul>
+          <li>Ahora le diremos a nuestros programas que hagan un <strong>bucle</strong>, es decir, que repitan algunos bloques varias veces.</li>
+          <li>Comenzaremos con un ejemplo <a href="https://scratch.mit.edu/projects/507456678/" target="_blank" rel="noopener">Gato que camina</a>, en el que nuestro gato se mueve 10 pasos cuando se hace clic en la bandera verde:
+            <pre class="scratch-block"><code class="language-scratch">al presionar @greenFlag
+mover (10) pasos
+</code></pre>
+          </li>
+          <li>Usaremos el bloque "por siempre" de la sección de Control, para que nuestro gato se mueva una y otra vez:
+            <pre class="scratch-block"><code class="language-scratch">al presionar @greenFlag
+por siempre
+mover (10) pasos
+</code></pre>
+            <ul>
+              <li>Ahora, nuestro gato se moverá hasta que llegue al borde, donde no podrá avanzar más. Aun así, seguirá intentando moverse.</li>
+            </ul>
+          </li>
+          <li>Podemos hacer clic en el botón de detener en la parte superior del escenario, junto a la bandera verde, y arrastrar el gato de vuelta al lado izquierdo del escenario.</li>
+          <li>Agregaremos otro bloque que le indicará a nuestro gato que rebote, o se dé la vuelta, si llega al borde:
+            <pre class="scratch-block"><code class="language-scratch">al presionar @greenFlag
+por siempre
+mover (10) pasos
+si toca un borde, rebotar
+</code></pre>
+            <ul>
+              <li>Ahora, nuestro gato queda boca abajo cuando se da la vuelta en el borde, pero podemos cambiar el estilo de rotación haciendo clic en el dial de Dirección en el panel de objetos, y seleccionando la segunda opción:
+                <img class="notes-img" src="https://cs50.harvard.edu/scratch/notes/6/rotation.png" alt="Dial de dirección del objeto con el estilo de rotación izquierda y derecha seleccionado" width="460">
+              </li>
+            </ul>
+          </li>
+          <li>Sin embargo, las patas de nuestro gato no se mueven y, resulta que podemos crear una animación, con imágenes que se mueven lo suficientemente rápido como para dar la ilusión de movimiento.</li>
+          <li>Resulta que nuestro gato tiene dos disfraces, con las patas en posiciones ligeramente diferentes. Así que podemos usar un bloque "siguiente disfraz" para alternar entre los dos:
+            <pre class="scratch-block"><code class="language-scratch">al presionar @greenFlag
+por siempre
+mover (10) pasos
+si toca un borde, rebotar
+siguiente disfraz
+</code></pre>
+          </li>
+          <li>Nuestro gato parece moverse un poco demasiado rápido, así que ralentizaremos su movimiento:
+            <pre class="scratch-block"><code class="language-scratch">al presionar @greenFlag
+por siempre
+mover (10) pasos
+si toca un borde, rebotar
+siguiente disfraz
+esperar (0.1) segundos
+</code></pre>
+            <ul>
+              <li>Ahora, nuestro gato se moverá, rebotando si está en el borde, cambiando al siguiente disfraz, y luego esperará solo una fracción de segundo. Y repetirá todos estos bloques una y otra vez, hasta que presionemos el botón de detener.</li>
+            </ul>
+          </li>
+        </ul>
+
+        <hr>
+
+        <!-- ── Pez que nada ────────────────────────────────────── -->
+        <h2>Pez que nada</h2>
+        <ul>
+          <li>Usaremos el fondo "Underwater 1" con nuestro pez en <a href="https://scratch.mit.edu/projects/507457166/" target="_blank" rel="noopener">Pez que nada</a>, y haremos que apunte hacia el cursor del ratón:
+            <pre class="scratch-block"><code class="language-scratch">al presionar @greenFlag
+por siempre
+apuntar hacia (puntero del ratón v)
+</code></pre>
+            <ul>
+              <li>Al usar el bloque "por siempre", después de hacer clic en la bandera verde, el pez siempre apuntará hacia el ratón, una y otra vez.</li>
+            </ul>
+          </li>
+          <li>También podemos hacer que el pez se mueva 5 pasos cada vez:
+            <pre class="scratch-block"><code class="language-scratch">al presionar @greenFlag
+por siempre
+apuntar hacia (puntero del ratón v)
+mover (5) pasos
+</code></pre>
+          </li>
+          <li>Podemos usar esto también para nuestro fondo. Podemos hacer clic en el fondo en el panel del Escenario, y arrastrar estos bloques:
+            <pre class="scratch-block"><code class="language-scratch">al presionar @greenFlag
+por siempre
+tocar sonido (Ocean Wave v) hasta que termine
+</code></pre>
+            <ul>
+              <li>Al principio, el bloque "tocar sonido" solo tiene un sonido "pop", así que usaremos la pestaña Sonidos para agregar el sonido "Ocean Wave" a nuestro fondo. Luego, podemos usar el menú desplegable del bloque "tocar sonido" para seleccionar "Ocean Wave".</li>
+              <li>Ahora, nuestro fondo reproducirá el sonido de las olas una y otra vez.</li>
+            </ul>
+          </li>
+          <li>Ahora, cuando hagamos clic en la bandera verde para ejecutar nuestro programa, tendremos varios bucles "por siempre" ejecutándose. Nuestro pez seguirá al puntero del ratón, y el fondo reproducirá continuamente el sonido de las olas.</li>
+          <li>Con estos bloques, podemos agregar música a nuestros programas que se reproduce una y otra vez, dándonos la sensación de que algo siempre está sucediendo.</li>
+        </ul>
+
+        <hr>
+
+        <!-- ── Acaricia al gato ────────────────────────────────── -->
+        <h2>Acaricia al gato</h2>
+        <ul>
+          <li>Quitaremos nuestro fondo y el pez, y volveremos a agregar al gato para <a href="https://scratch.mit.edu/projects/507457677/" target="_blank" rel="noopener">Acaricia al gato</a>.</li>
+          <li>Ahora, indiquémosle a nuestro gato que reproduzca un sonido "miau" cuando nuestro ratón se acerque demasiado:
+            <pre class="scratch-block"><code class="language-scratch">al presionar @greenFlag
+si &lt;(distancia a (puntero del ratón v)) < (100)&gt; entonces
+tocar sonido (Meow v) hasta que termine
+</code></pre>
+            <ul>
+              <li>Podemos agregar una condición que comprueba la distancia al puntero del ratón. Si es menor que un valor de 100, nuestro gato reproducirá un sonido.</li>
+              <li>Ten en cuenta que podemos encontrar el bloque "distancia a" en la categoría de bloques de Sensores.</li>
+            </ul>
+          </li>
+          <li>Pero cuando ejecutamos nuestro programa, no pasa nada, incluso cuando movemos el puntero del ratón hacia el gato. Resulta que nuestra pila de bloques se ejecuta solo una vez y, en cuanto hacemos clic en la bandera verde, hace la pregunta y no hace nada, ya que el puntero del ratón está lejos del gato.</li>
+          <li>Al agregar un bloque "por siempre" y colocar nuestra condición dentro de él, podemos hacer esa pregunta una y otra vez, y reproducir un sonido cada vez que el puntero del ratón esté demasiado cerca:
+            <pre class="scratch-block"><code class="language-scratch">al presionar @greenFlag
+por siempre
+si &lt;(distancia a (puntero del ratón v)) < (100)&gt; entonces
+tocar sonido (Meow v) hasta que termine
+</code></pre>
+          </li>
+          <li>Un bucle "por siempre", que se ejecuta una y otra vez hasta el final del programa, también se llama bucle infinito.</li>
+        </ul>
+
+        <hr>
+
+        <!-- ── Miau ────────────────────────────────────────────── -->
+        <h2>Miau</h2>
+        <ul>
+          <li>También podemos usar el bloque "repetir" para ejecutar algunos bloques de código un número específico de veces:
+            <pre class="scratch-block"><code class="language-scratch">repetir (10)
+</code></pre>
+            <ul>
+              <li>Observa que hay una pequeña flecha en la parte inferior derecha de este bloque, que indica que el código de adentro se repetirá.</li>
+            </ul>
+          </li>
+          <li>Si quisiéramos que nuestro gato maullara tres veces, por ejemplo, podríamos usar:
+            <pre class="scratch-block"><code class="language-scratch">al presionar @greenFlag
+tocar sonido (Meow v) hasta que termine
+tocar sonido (Meow v) hasta que termine
+tocar sonido (Meow v) hasta que termine
+</code></pre>
+          </li>
+          <li>Pero podríamos mejorar el diseño de nuestro programa, <a href="https://scratch.mit.edu/projects/507457982/" target="_blank" rel="noopener">Miau</a>, usando un bloque "repetir", en lugar de usar el mismo bloque "tocar sonido" una y otra vez:
+            <pre class="scratch-block"><code class="language-scratch">al presionar @greenFlag
+repetir (3)
+tocar sonido (Meow v) hasta que termine
+</code></pre>
+            <ul>
+              <li>Esto es mejor, ya que usamos solo dos bloques, en lugar de tres como antes. Y si quisiéramos repetir, digamos, 30 veces, solo tendríamos que cambiar el número del óvalo, en lugar de arrastrar 27 bloques "tocar sonido" adicionales.</li>
+            </ul>
+          </li>
+          <li>También podemos usar otros valores dentro del óvalo del bloque "repetir". Por ejemplo, podemos hacer una pregunta y usar la respuesta como entrada:
+            <pre class="scratch-block"><code class="language-scratch">al presionar @greenFlag
+preguntar [Número:] y esperar
+repetir (respuesta)
+tocar sonido (Meow v) hasta que termine
+</code></pre>
+            <ul>
+              <li>Ahora, el usuario de nuestro programa puede controlar cuántas veces maúlla nuestro gato.</li>
+            </ul>
+          </li>
+          <li>Podemos intentar que nuestro gato se mueva en círculo en otro ejemplo, <a href="https://scratch.mit.edu/projects/507458172/" target="_blank" rel="noopener">Círculo</a>:
+            <pre class="scratch-block"><code class="language-scratch">al presionar @greenFlag
+repetir (24)
+mover (30) pasos
+girar @turnRight (15) grados
+</code></pre>
+            <ul>
+              <li>Nuestro gato se moverá 30 pasos, girará un poco, y repetirá eso 24 veces, moviéndose en círculo.</li>
+              <li>Antes, teníamos que hacer clic en nuestros bloques una y otra vez nosotros mismos. Ahora, nuestro gato puede repetir todo eso muy rápidamente.</li>
+            </ul>
+          </li>
+        </ul>
+
+        <h3>Globo</h3>
+        <ul>
+          <li>Usaremos un bucle para hacer que un globo se infle a sí mismo en <a href="https://scratch.mit.edu/projects/507458351/" target="_blank" rel="noopener">Globo 1</a>:
+            <pre class="scratch-block"><code class="language-scratch">al presionar @greenFlag
+repetir (10)
+cambiar tamaño en (10)
+esperar (0.2) segundos
+end
+esconder
+tocar sonido (Pop v) hasta que termine
+</code></pre>
+            <ul>
+              <li>Ahora, cuando hagamos clic en la bandera verde, nuestro globo aumentará su tamaño en 10, hará una pausa de una fracción de segundo. Hará eso 10 veces, hasta que se haga cada vez más grande, y luego desaparecerá y reproducirá un sonido de explosión.</li>
+            </ul>
+          </li>
+          <li>Pero cuando hacemos clic en la bandera verde de nuevo, no pasa nada. El globo sigue oculto, así que necesitamos agregar algunos bloques para mostrarlo otra vez:
+            <pre class="scratch-block"><code class="language-scratch">al presionar @greenFlag
+mostrar
+fijar tamaño a (100) %
+repetir (10)
+cambiar tamaño en (10)
+esperar (0.2) segundos
+end
+esconder
+tocar sonido (Pop v) hasta que termine
+</code></pre>
+            <ul>
+              <li>También usaremos un bloque "fijar tamaño" para devolver el globo a su tamaño original. Ahora, cada vez que hagamos clic en la bandera verde, reaparecerá.</li>
+            </ul>
+          </li>
+          <li>Como empezamos con un tamaño de 100 y lo aumentamos en 10 diez veces, el globo explotará en el tamaño 200. Podemos cambiar la cantidad de veces que se repite nuestro bucle a 15, y ahora nuestro globo crecerá hasta el tamaño 250 antes de explotar.</li>
+          <li>Resulta que podemos usar otro bloque de la sección de Control, "repetir hasta que", para evitar hacer ese cálculo nosotros mismos, en <a href="https://scratch.mit.edu/projects/507458714/" target="_blank" rel="noopener">Globo 2</a>:
+            <pre class="scratch-block"><code class="language-scratch">al presionar @greenFlag
+mostrar
+fijar tamaño a (100) %
+repetir hasta que &lt;(tamaño) = (200)&gt;
+cambiar tamaño en (10)
+esperar (0.2) segundos
+end
+esconder
+tocar sonido (Pop v) hasta que termine
+</code></pre>
+            <ul>
+              <li>El bloque "repetir hasta que" es una combinación de un bucle y una condición. Se ejecutará una y otra vez hasta que alguna pregunta se responda con "sí", o se vuelva verdadera.</li>
+              <li>Usaremos el operador "=" con forma de hexágono de la sección de Operadores para comparar el tamaño de nuestro globo, y una vez que sea igual a 200, nuestro bloque "repetir hasta que" dejará de repetirse.</li>
+              <li>Después de que la condición sea verdadera, el resto de nuestros bloques se ejecutará, escondiendo nuestro globo y reproduciendo el sonido de explosión.</li>
+            </ul>
+          </li>
+          <li>Con el bloque "por siempre", el bloque "repetir" y el bloque "repetir hasta que", tenemos la capacidad de crear bucles en nuestro programa que ejecutan nuestro código varias veces, sin necesidad de hacer clic una y otra vez.</li>
+        </ul>
+
+      </div>
+
+    </main>
+  </div>
+
+  <div id="footer-mount"></div>
+
+</div>
+<script>window.PAGE_DATA = { week: 5 };</script>
+<script src="js/layout.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/scratchblocks@3.6.4/build/scratchblocks.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/scratchblocks@3.6.4/build/translations-all.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    scratchblocks.renderMatching('pre.scratch-block code', {
+      style: 'scratch3',
+      languages: ['es_419', 'en'],
+      scale: 0.75
+    });
+  });
+</script>
+</body>
+</html>
