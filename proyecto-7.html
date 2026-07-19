@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Proyecto 6: Bucles | CS50 en Español</title>
+  <title>Proyecto 7: Variables | CS50 en Español</title>
   <link rel="stylesheet" href="css/main.css" />
   <link rel="stylesheet" href="css/nav.css" />
 </head>
@@ -17,37 +17,34 @@
 
     <main class="main-content">
 
-      <p class="project-back"><a href="semana-6.html">← Volver a Semana 6</a></p>
+      <p class="project-back"><a href="semana-7.html">← Volver a Semana 7</a></p>
 
-      <h1 class="week-title">Proyecto 6: Bucles</h1>
-      <p class="week-subtitle">Crea un proyecto donde un objeto repita comportamientos usando bucles.</p>
+      <h1 class="week-title">Proyecto 7: Variables</h1>
+      <p class="week-subtitle">Crea un juego en Scratch que lleve el puntaje del jugador.</p>
 
       <div class="info-box">
         📄 Estas instrucciones son una adaptación en español del proyecto original de CS50.
         Consulta la versión en inglés en la
-        <a href="https://cs50.harvard.edu/scratch/projects/6/" target="_blank" rel="noopener">página oficial del proyecto</a>.
+        <a href="https://cs50.harvard.edu/scratch/projects/7/" target="_blank" rel="noopener">página oficial del proyecto</a>.
       </div>
 
       <section class="project-section">
         <h2>¿Qué debes hacer?</h2>
         <p>
-          Vas a crear un proyecto en Scratch donde un objeto repita algún comportamiento
-          varias veces — una animación en ciclo, un personaje que siga moviéndose, una
-          secuencia que se repita un número fijo de veces. Tú decides qué hace el objeto,
-          siempre que use los dos tipos de bucle requeridos.
+          Vas a crear un juego en Scratch. Puede ser cualquier tipo de juego que se te
+          ocurra — atrapar objetos, esquivar obstáculos, adivinar respuestas — lo
+          importante es que el juego use una variable para registrar el puntaje del jugador
+          y que ese puntaje cambie durante la partida.
         </p>
       </section>
 
       <section class="project-section">
         <h2>Requisitos</h2>
-        <p>Tu proyecto debe incluir <strong>ambos</strong> tipos de bucle:</p>
         <ul class="requirements-list">
-          <li>Al menos <strong>un bloque "por siempre"</strong> — para repetir algo indefinidamente.</li>
-          <li>Al menos <strong>un bloque "repetir"</strong> — para repetir algo un número fijo de veces.</li>
+          <li>El proyecto debe ser un <strong>juego</strong>.</li>
+          <li>Debe usar al menos <strong>una variable</strong> para llevar el <strong>puntaje del jugador</strong>.</li>
+          <li>El puntaje debe <strong>actualizarse</strong> durante el juego (subir, bajar, o ambos).</li>
         </ul>
-        <div class="info-box">
-          Usar solo uno de los dos <strong>no cumple</strong> ambos requisitos. Tu proyecto debe usar los dos tipos de bucle.
-        </div>
       </section>
 
       <section class="project-section">
@@ -55,9 +52,10 @@
         <ol>
           <li>Ve a <a href="https://scratch.mit.edu/" target="_blank" rel="noopener">scratch.mit.edu</a> y accede a tu cuenta.</li>
           <li>Haz clic en <strong>Crear</strong> para abrir un nuevo proyecto.</li>
-          <li>Encuentra los bloques <strong>"por siempre"</strong> y <strong>"repetir"</strong> en la categoría Control.</li>
-          <li>Construye un objeto que use ambos tipos de bucle en su comportamiento.</li>
-          <li>Prueba que los dos bucles funcionen correctamente.</li>
+          <li>En la categoría <strong>Variables</strong>, crea una nueva variable llamada "Puntaje" (o el nombre que prefieras).</li>
+          <li>Construye la mecánica de tu juego — ¿cuándo sube el puntaje? ¿cuándo termina el juego?</li>
+          <li>Usa los bloques <strong>"fijar [Puntaje] a"</strong> y <strong>"cambiar [Puntaje] por"</strong> para controlarlo.</li>
+          <li>Prueba que el puntaje funcione correctamente durante la partida.</li>
           <li>Guarda y descarga como <code>.sb3</code>.</li>
         </ol>
       </section>
