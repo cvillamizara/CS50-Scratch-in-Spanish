@@ -35,14 +35,22 @@
 
 .sidebar-title a:hover { text-decoration: none; color: var(--purple-dark); }
 
+/* ── Intro links ── */
+.sidebar-intro {
+  padding: 1rem 0 0.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
 /* ── Week links ── */
 .sidebar-weeks {
   flex: 1;
   padding: 1rem 0;
 }
 
+.sidebar-intro ul,
 .sidebar-weeks ul { list-style: none; }
 
+.sidebar-intro ul li a,
 .sidebar-weeks ul li a {
   display: block;
   padding: 0.45rem 1.4rem;
@@ -53,6 +61,7 @@
   border-left: 3px solid transparent;
 }
 
+.sidebar-intro ul li a:hover,
 .sidebar-weeks ul li a:hover {
   color: var(--text);
   background: rgba(207, 109, 252, 0.07);
@@ -60,6 +69,7 @@
   border-left-color: var(--lavender);
 }
 
+.sidebar-intro ul li a.active,
 .sidebar-weeks ul li a.active {
   color: var(--purple-dark);
   background: rgba(207, 109, 252, 0.1);

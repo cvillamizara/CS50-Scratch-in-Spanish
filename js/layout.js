@@ -13,12 +13,22 @@
     { slug: 'semana-9.html', label: 'Semana 9: Construyendo desde Cero' },
   ];
 
+  const INTRO_LINKS = [
+    { href: 'index.html#bienvenida', label: 'Antes de empezar' },
+    { href: 'index.html#como-tomar', label: 'Cómo tomar este curso' },
+    { href: 'index.html#como-ensenar', label: 'Cómo enseñar este curso' },
+  ];
+
   const pd = window.PAGE_DATA || {};
   const currentWeek = pd.week;
 
   // ── Templates ──────────────────────────────────────────────
 
   function sidebarHTML() {
+    const introLinks = INTRO_LINKS.map(l =>
+      `<li><a href="${l.href}">${l.label}</a></li>`
+    ).join('\n          ');
+
     const weekLinks = WEEKS.map((w, i) => {
       const active = i === currentWeek ? ' class="active"' : '';
       return `<li><a href="${w.slug}"${active}>${w.label}</a></li>`;
@@ -33,6 +43,12 @@
           <a href="index.html">
             Introducción a la Programación con Scratch
           </a>
+        </div>
+
+        <div class="sidebar-intro">
+          <ul>
+          ${introLinks}
+          </ul>
         </div>
 
         <div class="sidebar-weeks">
