@@ -50,6 +50,12 @@
 .sidebar-intro ul,
 .sidebar-weeks ul { list-style: none; }
 
+/* Dim the week number so the topic reads first */
+.week-num {
+  opacity: 0.68;
+  font-variant-numeric: tabular-nums;
+}
+
 .sidebar-intro ul li a,
 .sidebar-weeks ul li a {
   display: block;

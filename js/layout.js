@@ -2,16 +2,19 @@
   'use strict';
 
   const WEEKS = [
-    { slug: 'semana-1.html', label: 'Semana 1: Objetos' },
-    { slug: 'semana-2.html', label: 'Semana 2: Funciones' },
-    { slug: 'semana-3.html', label: 'Semana 3: Eventos' },
-    { slug: 'semana-4.html', label: 'Semana 4: Valores' },
-    { slug: 'semana-5.html', label: 'Semana 5: Condiciones' },
-    { slug: 'semana-6.html', label: 'Semana 6: Bucles' },
-    { slug: 'semana-7.html', label: 'Semana 7: Variables' },
-    { slug: 'semana-8.html', label: 'Semana 8: Abstracción' },
-    { slug: 'semana-9.html', label: 'Semana 9: Construyendo desde Cero' },
+    { slug: 'semana-1.html', num: 1, title: 'Objetos' },
+    { slug: 'semana-2.html', num: 2, title: 'Funciones' },
+    { slug: 'semana-3.html', num: 3, title: 'Eventos' },
+    { slug: 'semana-4.html', num: 4, title: 'Valores' },
+    { slug: 'semana-5.html', num: 5, title: 'Condiciones' },
+    { slug: 'semana-6.html', num: 6, title: 'Bucles' },
+    { slug: 'semana-7.html', num: 7, title: 'Variables' },
+    { slug: 'semana-8.html', num: 8, title: 'Abstracción' },
+    { slug: 'semana-9.html', num: 9, title: 'Construyendo desde Cero' },
   ];
+
+  // Renders a week label as "N. Título" with the number dimmed.
+  const weekLabel = w => `<span class="week-num">${w.num}.</span> ${w.title}`;
 
   const INTRO_LINKS = [
     { href: 'index.html#bienvenida', label: 'Antes de empezar' },
@@ -31,7 +34,7 @@
 
     const weekLinks = WEEKS.map((w, i) => {
       const active = i === currentWeek ? ' class="active"' : '';
-      return `<li><a href="${w.slug}"${active}>${w.label}</a></li>`;
+      return `<li><a href="${w.slug}"${active}>${weekLabel(w)}</a></li>`;
     }).join('\n          ');
 
     return `
@@ -89,10 +92,10 @@
     return `
       <nav class="week-nav">
         <div class="week-nav-prev">
-          ${prev ? `<a href="${prev.slug}">← ${prev.label}</a>` : ''}
+          ${prev ? `<a href="${prev.slug}">← ${weekLabel(prev)}</a>` : ''}
         </div>
         <div class="week-nav-next">
-          ${next ? `<a href="${next.slug}">${next.label} →</a>` : ''}
+          ${next ? `<a href="${next.slug}">${weekLabel(next)} →</a>` : ''}
         </div>
       </nav>`;
   }
